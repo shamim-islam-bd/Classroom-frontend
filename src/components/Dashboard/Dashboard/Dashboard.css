@@ -33,3 +33,13 @@
   margin-left: -25px;
   font-size: large;
 }
+
+.active {
+  background-color: #1890ff;
+}
+
+.contentSide{
+  margin: 24px 16px;
+  padding: 24px;
+  min-height: 280px;
+}

@@ -1,4 +1,5 @@
 @import "antd/dist/antd.css";
+@import "remixicon/fonts/remixicon.css";
 
 :root {
   height: 100vh;

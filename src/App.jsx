@@ -1,20 +1,21 @@
-import { BrowserRouter, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import Headers from "./common/Header/Headers";
+import Dashboard from "./components/Dashboard/Dashboard/Dashboard";
+import Login from "./components/pages/Login/Login";
+import NotFound from "./components/pages/NotFound/NotFound";
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Headers />
         <Routes>
           {/* <Route path="/" element={<Home />} /> */}
-          {/* <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/wishlist" element={<WishList />} />
-          <Route path="dashMain/*" element={<DashMain />} /> 
-         <Route path="*" element={<NotFound />} /> */}
+          {/* <Route path="/register" element={<Register />} /> */}
+          <Route path="/" element={<Login />} />
+          {/* <Route path="/cart" element={<Cart />} /> */}
+          {/*  <Route path="/wishlist" element={<WishList />} /> */}
+          <Route path="dashboard/*" element={<Dashboard />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </div>
