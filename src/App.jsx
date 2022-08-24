@@ -3,6 +3,7 @@ import "./App.css";
 import Dashboard from "./components/Dashboard/Dashboard/Dashboard";
 import Login from "./components/pages/Login/Login";
 import NotFound from "./components/pages/NotFound/NotFound";
+import Signup from "./components/pages/Signup/Signup";
 
 function App() {
   return (
@@ -11,9 +12,9 @@ function App() {
         <Routes>
           {/* <Route path="/" element={<Home />} /> */}
           {/* <Route path="/register" element={<Register />} /> */}
-          <Route path="/" element={<Login />} />
-          {/* <Route path="/cart" element={<Cart />} /> */}
           {/*  <Route path="/wishlist" element={<WishList />} /> */}
+          <Route path="/" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
           <Route path="dashboard/*" element={<Dashboard />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

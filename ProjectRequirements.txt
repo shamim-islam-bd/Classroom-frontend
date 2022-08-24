@@ -5,3 +5,9 @@ layout 50/50
 -side layout a class resource 
 - side layout a class info
 - cheating + 
+
+
+
+
+task ------------
+student can see which teacher is on online now

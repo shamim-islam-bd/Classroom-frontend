@@ -1,15 +1,29 @@
 import React from "react";
+import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 
 export default function Login() {
+  const { register, password, handleSubmit } = useForm();
+  const onSubmit = (data) => console.log(data);
+
   return (
     <div>
       <section class="">
-        <div class=" items-center px-5 py-12 lg:px-20">
+        <div class=" items-center px-5 lg:px-20">
           <div class="flex flex-col w-full max-w-md p-10 mx-auto my-6 transition duration-500 ease-in-out transform bg-white rounded-lg md:mt-0">
             <div class="mt-8">
               <div class="mt-6">
-                <form action="" class="space-y-6">
+                <form onSubmit={handleSubmit(onSubmit)} class="space-y-6">
                   <div>
+                    <div className="flex justify-between items-center">
+                      <h2 class="mt-6 text-3xl font-extrabold text-neutral-600 mb-8">
+                        Sign In.
+                      </h2>
+                      <Link to="/signup">
+                        {" "}
+                        <i class="ri-arrow-right-s-line text-2xl "></i>
+                      </Link>
+                    </div>
                     <label
                       for="email"
                       class="block text-sm font-medium text-neutral-600"
@@ -19,14 +33,14 @@ export default function Login() {
                     </label>
                     <div class="mt-1">
                       <input
-                        id="email"
-                        name="email"
+                        {...register("email", {
+                          required: "Email Address is required",
+                        })}
                         type="email"
-                        autocomplete="email"
-                        required=""
                         placeholder="Your Email"
                         class="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
                       />
+                      {/* <p>{errors.email?.message}</p> */}
                     </div>
                   </div>
 
@@ -40,7 +54,9 @@ export default function Login() {
                     </label>
                     <div class="mt-1">
                       <input
-                        id="password"
+                        {...register("password", {
+                          required: "Email Address is required",
+                        })}
                         name="password"
                         type="password"
                         autocomplete="current-password"
