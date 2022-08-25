@@ -1,22 +1,42 @@
 import axios from "axios";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
-
-const SuccessNotify = () => toast.success("Successfully registred!");
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Signup() {
+  // const successnotify = () => {
+  //   return toast.success('Successfully registred', {
+  //      position: "top-center",
+  //      autoClose: 2000,
+  //      hideProgressBar: false,
+  //      closeOnClick: true,
+  //      pauseOnHover: true,
+  //      draggable: true,
+  //      progress: undefined,
+  //     });
+  // }
+  const [error, setError] = useState("");
   const { register, handleSubmit } = useForm();
+  const navigateToLogin = useNavigate();
 
   const onSubmit = async (data) => {
-    console.log(data);
-    const res = await axios.post(
-      "http://classroommern.herokuapp.com/user/register",
-      data
-    );
-    res.data.success ? SuccessNotify() : console.log(res.data.message);
-    // navigate("/login");
+    const Userinfo = {
+      name: data?.name,
+      email: data?.email,
+      password: data?.password,
+      role: data?.role,
+    };
+    console.log(Userinfo);
+
+    await axios
+      .post("http://classroommern.herokuapp.com/user/register", Userinfo)
+      .then((res) => {
+        alert("Successfully registred");
+        navigateToLogin("/login");
+      })
+      .catch((error) => {
+        setError("Please enter your email or password & user role");
+      });
   };
 
   return (
@@ -26,17 +46,37 @@ export default function Signup() {
           <div class="flex flex-col w-full max-w-md p-10 mx-auto my-6 transition duration-500 ease-in-out transform bg-white rounded-lg md:mt-0">
             <div class="mt-8">
               <div class="mt-6">
+                {error && <p class="text-red-500 text-sm">{error}</p>}
                 <div className="flex justify-between items-center">
                   <h2 class="mt-6 text-3xl font-extrabold text-neutral-600 mb-8">
                     Sign Up.
                   </h2>
-                  <Link to="/">
+                  <Link to="/login">
                     {" "}
                     <i class="ri-arrow-right-s-line text-2xl "></i>
                   </Link>
                 </div>
                 <form onSubmit={handleSubmit(onSubmit)} class="space-y-6">
                   <div class="grid grid-cols-1 gap-2">
+                    <div>
+                      <label
+                        for="name"
+                        class="block text-sm font-medium text-neutral-600"
+                      >
+                        {" "}
+                        Name{" "}
+                      </label>
+                      <div class="mt-1">
+                        <input
+                          {...register("name", {
+                            required: "Enter your name",
+                          })}
+                          type="name"
+                          placeholder="Your name"
+                          class="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
+                        />
+                      </div>
+                    </div>
                     <div>
                       <label
                         for="email"
@@ -96,8 +136,8 @@ export default function Signup() {
                     "
                     >
                       <option value="">Select...</option>
-                      <option value="Student">Student</option>
-                      <option value="Teacher">Teacher</option>
+                      <option value="student">Student</option>
+                      <option value="teacher">Teacher</option>
                     </select>
                   </div>
 

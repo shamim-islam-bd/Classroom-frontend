@@ -1,10 +1,34 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
 
 export default function Login() {
-  const { register, password, handleSubmit } = useForm();
-  const onSubmit = (data) => console.log(data);
+  // error state
+  const [error, setError] = useState('');
+
+  // form state
+  const { register, handleSubmit, errors } = useForm();
+  const navigate = useNavigate();
+
+  const onSubmit = async(data) => {
+    const Userinfo = {
+      email: data?.email,
+      password: data?.password,
+    };
+     await axios.post("http://classroommern.herokuapp.com/user/login", Userinfo)
+    .then((res) => {
+      console.log(res);
+      toast.success(res.data.message);
+      // alert("login Success!");
+      navigate('/dashboard');
+    }
+    ).catch((error) => {
+      // toast.error(res.data.message);
+      setError("Invalid email or password");
+    });
+  };
 
   return (
     <div>
@@ -14,11 +38,12 @@ export default function Login() {
             <div class="mt-8">
               <div class="mt-6">
                 <form onSubmit={handleSubmit(onSubmit)} class="space-y-6">
-                  <div>
+                  <div>            
                     <div className="flex justify-between items-center">
                       <h2 class="mt-6 text-3xl font-extrabold text-neutral-600 mb-8">
                         Sign In.
                       </h2>
+                      
                       <Link to="/signup">
                         {" "}
                         <i class="ri-arrow-right-s-line text-2xl "></i>
@@ -40,7 +65,7 @@ export default function Login() {
                         placeholder="Your Email"
                         class="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
                       />
-                      {/* <p>{errors.email?.message}</p> */}
+                    
                     </div>
                   </div>
 
@@ -64,9 +89,10 @@ export default function Login() {
                         placeholder="Your Password"
                         class="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
                       />
+                       {/* <p>{error?.password?.message}</p> */}
                     </div>
                   </div>
-
+                  {error && <p class="text-red-500 text-sm">{error}</p>}
                   <div class="flex items-center justify-between">
                     <div class="flex items-center">
                       <input

@@ -1,9 +1,9 @@
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { Layout } from "antd";
 import React, { useState } from "react";
-import { NavLink, Route, Routes } from "react-router-dom";
-import AllCourses from "../Common/AllCourses/AllCourses";
+import { NavLink, Outlet, Route, Routes } from "react-router-dom";
 import "./Dashboard.css";
+import AllCourses from "../AllCourses/AllCourses";
 import Classroom from "../Student/Classroom/Classroom";
 import ClassRequest from "../Student/ClassRequest/ClassRequest";
 import PaymentInfo from "../Student/PaymentInfo/PaymentInfo";
@@ -18,37 +18,37 @@ export default function Dashboard() {
     {
       key: "1",
       icon: "ri-window-2-fill",
-      link: "/",
+      link: "",
       label: "All Courses",
     },
     {
       key: "2",
       icon: "ri-group-fill",
-      link: "/classroom",
+      link: "classroom",
       label: "Classroom",
     },
     {
       key: "3",
       icon: "ri-user-fill",
-      link: "/lessons",
+      link: "lessons",
       label: "Lessons",
     },
     {
       key: "4",
       icon: "ri-play-list-add-line",
-      link: "/class-requests",
+      link: "class-requests",
       label: "Class Request",
     },
     {
       key: "5",
       icon: "ri-grid-fill",
-      link: "/resources",
+      link: "resources",
       label: "Resources",
     },
     {
       key: "6",
       icon: "ri-money-dollar-box-line",
-      link: "/payments",
+      link: "payments",
       label: "Payment Info",
     },
   ];
@@ -92,16 +92,11 @@ export default function Dashboard() {
           </div>
         </Header>
 
-        {/* --------- Nasted Route ----------*/}
-        <Content className="site-layout-background contentSide">
-          <Routes>
-            <Route index path="/" element={<AllCourses />} />
-            <Route path="classroom" element={<Classroom />} />
-            <Route path="lessons" element={<Lessons />} />
-            <Route path="class-requests" element={<ClassRequest />} />
-            <Route path="payments" element={<PaymentInfo />} />
-          </Routes>
+        {/* --------- Nasted Route  used----------*/}
+        <Content className="site-layout-background contentSide">    
+          <Outlet/>
         </Content>
+
       </Layout>
     </Layout>
   );
