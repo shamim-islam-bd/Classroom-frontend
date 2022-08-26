@@ -2,12 +2,14 @@
 
 layout 50/50
 
--side layout a class resource 
+- side layout a class resource 
 - side layout a class info
 - cheating + 
 
 
+req.user.id / req.user.role (this is currently login user.)
 
 
 task ------------
-student can see which teacher is on online now
+student can see which teacher is on online now.
+login/signup/payment button k disable korte hobe akbar click korar por (untill login process).

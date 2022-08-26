@@ -10,4 +10,13 @@ body {
   font-size: 16px;
   line-height: 1.5;
   max-height: fit-content;
+  /* background: #001529; */
+  color: white;
 }
+
+/* .ant-layout{
+  background: #001529;
+}
+.site-layout .site-layout-background{
+  background: #001529 !important;
+} */

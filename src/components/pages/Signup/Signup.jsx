@@ -1,38 +1,46 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+// import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+// import { registerAction } from "../../../Store/Actions/userActions";
 
 export default function Signup() {
-  // const successnotify = () => {
-  //   return toast.success('Successfully registred', {
-  //      position: "top-center",
-  //      autoClose: 2000,
-  //      hideProgressBar: false,
-  //      closeOnClick: true,
-  //      pauseOnHover: true,
-  //      draggable: true,
-  //      progress: undefined,
-  //     });
-  // }
-  const [error, setError] = useState("");
+  // const dispatch = useDispatch();
+  // error state
+  const [errorMessage, setErrorMessage] = useState("");
   const { register, handleSubmit } = useForm();
-  const navigateToLogin = useNavigate();
+  const navigate = useNavigate();
+
+  // const { isAuthenticated, loading, error, user } = useSelector(
+  //   (state) => state.auth
+  // );
+  // console.log(user);
+
+  // useEffect(() => {
+  //   if (isAuthenticated) {
+  //     // history.push('/')
+  //   }
+  //   if (error) {
+  //     alert("somethinh error");
+  //     dispatch(clearErrors());
+  //   }
+  // }, [dispatch, isAuthenticated, error]);
 
   const onSubmit = async (data) => {
-    const Userinfo = {
+    const userinfo = {
       name: data?.name,
       email: data?.email,
       password: data?.password,
       role: data?.role,
     };
-    console.log(Userinfo);
 
     await axios
-      .post("http://classroommern.herokuapp.com/user/register", Userinfo)
+      .post("http://localhost:5000/user/register", userinfo)
       .then((res) => {
         alert("Successfully registred");
-        navigateToLogin("/login");
+        // dispatch(registerAction(userinfo));
+        navigate("/login");
       })
       .catch((error) => {
         setError("Please enter your email or password & user role");
@@ -42,18 +50,39 @@ export default function Signup() {
   return (
     <div>
       <section class="">
-        <div class=" items-center px-5 lg:px-20">
+        <div class=" items-center lg:px-20">
           <div class="flex flex-col w-full max-w-md p-10 mx-auto my-6 transition duration-500 ease-in-out transform bg-white rounded-lg md:mt-0">
-            <div class="mt-8">
+            <div class="mt-8 border rounded-lg p-6">
               <div class="mt-6">
-                {error && <p class="text-red-500 text-sm">{error}</p>}
+                {errorMessage && (
+                  <p class="text-red-500 text-sm">{errorMessage}</p>
+                )}
                 <div className="flex justify-between items-center">
-                  <h2 class="mt-6 text-3xl font-extrabold text-neutral-600 mb-8">
+                  <h2 class="text-3xl font-extrabold text-neutral-600 mb-8">
                     Sign Up.
                   </h2>
                   <Link to="/login">
-                    {" "}
-                    <i class="ri-arrow-right-s-line text-2xl "></i>
+                    <a
+                      class="inline-block p-3 text-indigo-600 border border-indigo-600 rounded-full hover:text-white hover:bg-indigo-600 active:bg-indigo-500 focus:outline-none focus:ring"
+                      href="/download"
+                    >
+                      <span class="sr-only"> Download </span>
+
+                      <svg
+                        class="w-5 h-5"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M14 5l7 7m0 0l-7 7m7-7H3"
+                        />
+                      </svg>
+                    </a>
                   </Link>
                 </div>
                 <form onSubmit={handleSubmit(onSubmit)} class="space-y-6">

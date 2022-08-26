@@ -38,8 +38,19 @@
   background-color: #1890ff;
 }
 
-.contentSide{
+.contentSide {
   margin: 24px 16px;
   padding: 24px;
   min-height: 280px;
+}
+
+.profilebio {
+  right: 2%;
+  top: 10%;
+  position: absolute;
+  display: none;
+}
+
+.profilepic:hover .profilebio{
+  display: block;
 }

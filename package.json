@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.8.5",
     "antd": "^4.22.7",
     "axios": "^0.27.2",
     "moment": "^2.29.4",
@@ -19,6 +20,8 @@
     "react-router-dom": "^6.3.0",
     "react-toastify": "^9.0.8",
     "redux": "^4.2.0",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-thunk": "^2.4.1",
     "remixicon": "^2.5.0"
   },
   "devDependencies": {
@@ -29,6 +32,5 @@
     "postcss": "^8.4.16",
     "tailwindcss": "^3.1.8",
     "vite": "^3.0.7"
-  },
-  "proxy": "http://classroommern.herokuapp.com"
+  }
 }

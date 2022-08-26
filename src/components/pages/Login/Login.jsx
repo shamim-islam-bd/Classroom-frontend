@@ -1,52 +1,86 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from 'react-toastify';
+import { loginAction } from "../../../Store/Actions/userActions";
 
 export default function Login() {
+  const dispatch = useDispatch();
   // error state
-  const [error, setError] = useState('');
-
-  // form state
+  const [errorMessage, setErrorMessage] = useState("");
   const { register, handleSubmit, errors } = useForm();
   const navigate = useNavigate();
 
-  const onSubmit = async(data) => {
-    const Userinfo = {
+  // const {isAuthenticated, loading, error } = useSelector(state => state.auth);
+  // console.log(user);
+  useSelector((state) => console.log(state));
+
+  // useEffect(()=>{
+  //   if(isAuthenticated){
+  //     navigate('/')
+  //   }
+  //   if(error){
+  //     alert('somethinh error');
+  //     dispatch(clearErrors());
+  //   }
+  // },[ ])
+
+  const onSubmit = async (data) => {
+    const userinfo = {
       email: data?.email,
       password: data?.password,
     };
-     await axios.post("http://classroommern.herokuapp.com/user/login", Userinfo)
-    .then((res) => {
-      console.log(res);
-      toast.success(res.data.message);
-      // alert("login Success!");
-      navigate('/dashboard');
-    }
-    ).catch((error) => {
-      // toast.error(res.data.message);
-      setError("Invalid email or password");
-    });
+    dispatch(loginAction(userinfo));
+
+    // await axios
+    //   .post("http://localhost:5000/user/login", userinfo)
+    //   .then((res) => {
+    //     // toast.success(res.data.message);
+    //     // localStorage.setItem("token", res.data.user)
+    //     navigate("/dashboard");
+    //   })
+    //   .catch((error) => {
+    //     setErrorMessage("Invalid email or password");
+    //   });
   };
 
   return (
     <div>
       <section class="">
-        <div class=" items-center px-5 lg:px-20">
+        <div class=" items-center  lg:px-20">
           <div class="flex flex-col w-full max-w-md p-10 mx-auto my-6 transition duration-500 ease-in-out transform bg-white rounded-lg md:mt-0">
-            <div class="mt-8">
+            <div class="mt-8 border rounded-lg p-6 shadow-md">
               <div class="mt-6">
                 <form onSubmit={handleSubmit(onSubmit)} class="space-y-6">
-                  <div>            
+                  <div>
                     <div className="flex justify-between items-center">
-                      <h2 class="mt-6 text-3xl font-extrabold text-neutral-600 mb-8">
+                      <h2 class=" text-3xl font-extrabold text-neutral-600 mb-8">
                         Sign In.
                       </h2>
-                      
+
                       <Link to="/signup">
-                        {" "}
-                        <i class="ri-arrow-right-s-line text-2xl "></i>
+                        <a
+                          class="inline-block p-3 text-white bg-indigo-600 border border-indigo-600 rounded-full hover:bg-transparent hover:text-indigo-600 active:text-indigo-500 focus:outline-none focus:ring"
+                          href="/download"
+                        >
+                          <span class="sr-only"> Download </span>
+
+                          <svg
+                            class="w-5 h-5"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M14 5l7 7m0 0l-7 7m7-7H3"
+                            />
+                          </svg>
+                        </a>
                       </Link>
                     </div>
                     <label
@@ -65,7 +99,6 @@ export default function Login() {
                         placeholder="Your Email"
                         class="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
                       />
-                    
                     </div>
                   </div>
 
@@ -89,10 +122,12 @@ export default function Login() {
                         placeholder="Your Password"
                         class="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
                       />
-                       {/* <p>{error?.password?.message}</p> */}
+                      {/* <p>{error?.password?.message}</p> */}
                     </div>
                   </div>
-                  {error && <p class="text-red-500 text-sm">{error}</p>}
+                  {errorMessage && (
+                    <p class="text-red-500 text-sm">{errorMessage}</p>
+                  )}
                   <div class="flex items-center justify-between">
                     <div class="flex items-center">
                       <input
