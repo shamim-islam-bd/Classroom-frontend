@@ -1,17 +1,34 @@
 import { Col, Row } from "antd";
 import React, { useEffect } from "react";
+import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getAllCourses } from "../../../../Store/Actions/CoursesAction";
+import {
+  hideLoading,
+  showLoading,
+} from "../../../../Store/reducers/alertReducer";
 
 export default function AllCourses() {
+  const alert = useAlert();
   const dispatch = useDispatch();
-  const courses = useSelector((state) => state.allCourse.Courses.courses);
-  console.log(courses);
+  const { courses, error } = useSelector((state) => state.allCourse.Courses);
+  // console.log(courses, error);
+  const { loading } = useSelector((state) => state.alerts);
+  // console.log(loading);
 
   useEffect(() => {
+    {
+      showLoading;
+    }
+    if (error) {
+      alert.error("There was an error");
+    }
     dispatch(getAllCourses());
-  }, [dispatch]);
+    {
+      hideLoading;
+    }
+  }, [dispatch, showLoading, error, alert]);
 
   return (
     <div>

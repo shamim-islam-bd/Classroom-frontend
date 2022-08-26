@@ -11,11 +11,16 @@ import Home from "./components/pages/Home/Home";
 import Login from "./components/pages/Login/Login";
 import NotFound from "./components/pages/NotFound/NotFound";
 import Signup from "./components/pages/Signup/Signup";
+import Loader from "./common/Loader/loader";
+import { useSelector } from "react-redux";
 
 function App() {
+  const { loading } = useSelector((state) => state.alerts);
+
   return (
     <div className="App">
       <BrowserRouter>
+      {loading ? <Loader /> : null}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />

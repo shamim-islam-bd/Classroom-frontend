@@ -3,7 +3,8 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 // import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-// import { registerAction } from "../../../Store/Actions/userActions";
+import { registerAction } from "../../../Store/Actions/userActions";
+import { hideLoading, showLoading } from "../../../Store/reducers/alertReducer";
 
 export default function Signup() {
   // const dispatch = useDispatch();
@@ -34,15 +35,17 @@ export default function Signup() {
       password: data?.password,
       role: data?.role,
     };
-
+    dispatch(showLoading())
     await axios
       .post("http://localhost:5000/user/register", userinfo)
+      dispatch(hideLoading())
       .then((res) => {
         alert("Successfully registred");
         // dispatch(registerAction(userinfo));
         navigate("/login");
       })
       .catch((error) => {
+        dispatch(hideLoading())
         setError("Please enter your email or password & user role");
       });
   };

@@ -1,30 +1,36 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { loginAction } from "../../../Store/Actions/userActions";
+import { clearErrors, loginAction } from "../../../Store/Actions/userActions";
+import { hideLoading, showLoading } from "../../../Store/reducers/alertReducer";
 
 export default function Login() {
   const dispatch = useDispatch();
+  const alert = useAlert();
   // error state
   const [errorMessage, setErrorMessage] = useState("");
   const { register, handleSubmit, errors } = useForm();
   const navigate = useNavigate();
+  const { loading } = useSelector((state) => state.alerts);
+  console.log(loading);
 
   // const {isAuthenticated, loading, error } = useSelector(state => state.auth);
   // console.log(user);
-  useSelector((state) => console.log(state));
+  const { user, error, isAuthenticated } = useSelector((state) => state.user);
+  console.log(user, error, isAuthenticated);
 
-  // useEffect(()=>{
-  //   if(isAuthenticated){
-  //     navigate('/')
-  //   }
-  //   if(error){
-  //     alert('somethinh error');
-  //     dispatch(clearErrors());
-  //   }
-  // },[ ])
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/dashboard");
+    }
+    if (error) {
+      dispatch(clearErrors());
+      // alert.error('There was an error')
+    }
+  }, [dispatch, error]);
 
   const onSubmit = async (data) => {
     const userinfo = {
@@ -32,17 +38,19 @@ export default function Login() {
       password: data?.password,
     };
     dispatch(loginAction(userinfo));
-
-    // await axios
-    //   .post("http://localhost:5000/user/login", userinfo)
-    //   .then((res) => {
-    //     // toast.success(res.data.message);
-    //     // localStorage.setItem("token", res.data.user)
-    //     navigate("/dashboard");
-    //   })
-    //   .catch((error) => {
-    //     setErrorMessage("Invalid email or password");
-    //   });
+    dispatch(showLoading());
+    await axios
+      .post("http://localhost:5000/user/login", userinfo)
+      .then((res) => {
+        // localStorage.setItem("token", res.data.user)
+        dispatch(hideLoading());
+        alert.success("You are successfully logged in");
+        navigate("/dashboard");
+      })
+      .catch((error) => {
+        dispatch(hideLoading());
+        setErrorMessage("Invalid email or password");
+      });
   };
 
   return (

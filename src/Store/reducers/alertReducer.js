@@ -10,7 +10,7 @@ export const alertSlice = createSlice({
             state.message = action.payload.message;
             state.type = action.payload.type;
         },
-        setLoading: (state) => {
+        showLoading: (state) => {
             state.loading = true;
         },
         hideLoading: (state) => {
@@ -19,4 +19,4 @@ export const alertSlice = createSlice({
     }
 });
 
-export const {setAlert, setLoading, hideLoading} = alertSlice.actions;
+export const {setAlert, showLoading, hideLoading} = alertSlice.actions;
