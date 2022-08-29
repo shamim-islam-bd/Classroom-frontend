@@ -13,7 +13,8 @@ export default function AllCourses() {
   const alert = useAlert();
   const dispatch = useDispatch();
   const { courses, error } = useSelector((state) => state.allCourse.Courses);
-  // console.log(courses, error);
+  console.log(courses, error);
+
   const { loading } = useSelector((state) => state.alerts);
   // console.log(loading);
 

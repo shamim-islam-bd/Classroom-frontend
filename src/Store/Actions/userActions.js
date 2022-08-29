@@ -1,18 +1,46 @@
 import axios from 'axios';
 import {
-    CLEAR_ERRORS, LOGIN_FAIL, LOGIN_REQUEST, LOGIN_SUCCESS
+    CLEAR_ERRORS, LOAD_USER_FAIL, LOAD_USER_REQUEST, LOAD_USER_SUCCESS, LOGIN_FAIL, LOGIN_REQUEST, LOGIN_SUCCESS,
+    REGISTER_FAIL, REGISTER_REQUEST, REGISTER_SUCCESS
 } from "../userConstant/userConstant";
 
 
+
+
+// register user 
+export const registerAction = (userinfo) => async(dispatch)=> {
+    try {
+        dispatch({type: REGISTER_REQUEST})
+        const config = {
+            headers: { 'Content-Type': 'multipart/from-data' }
+        }
+        const { data } = await axios.post('/user/register', userinfo, config );
+        console.log('from registerAction: ', data.user);
+
+        dispatch({
+            type: REGISTER_SUCCESS,
+            payload: data,
+        })
+    } catch (error) {
+        dispatch({
+            type: REGISTER_FAIL,
+            payload: error.message
+        })
+    }
+}
+
+
+
+
 // login Action
-export const loginAction = (userinfo) => async(dispatch)=>{
+export const loginAction = (userdata) => async(dispatch)=>{
     try {
         dispatch({type: LOGIN_REQUEST})
         const config = {
-            headers: { 'content-Type': 'application/json' }
+            headers: { 'Content-Type': 'application/json' },
         }
-        const { data } = await axios.post('http://localhost:5000/user/login', {userinfo}, config);
-        console.log('from loginAction: ', data);
+        const { data } = await axios.post('/user/login', userdata, config);
+        // console.log('from loginAction:', data);
         
         dispatch({
             type: LOGIN_SUCCESS,
@@ -22,32 +50,31 @@ export const loginAction = (userinfo) => async(dispatch)=>{
     } catch (error) {
         dispatch({
             type: LOGIN_FAIL,
-            payload: error.res.data.message
+            payload: error.message
         })
     }
 }
 
 
 
-// register user 
-export const registerAction = (userinfo) => async(dispatch)=>{
+
+// Load user/ currently login user 
+export const loadUserAction = () => async(dispatch) => {
     try {
-        dispatch({type: REGISTER_REQUEST})
-        const config = {
-            headers: { 'content-Type': 'multipart/from-data' }
-        }
-        const { data } = await axios.post('http://localhost:5000/user/register', userinfo, config);
-        console.log('from registerAction: ', data);
+        dispatch({type: LOAD_USER_REQUEST})
+
+        const { data } = await axios.get('/me');
+        
+        console.log('from loadUserAction: ', data);
 
         dispatch({
-            type: REGISTER_SUCCESS,
-            payload: data,
+            type: LOAD_USER_SUCCESS,
+            payload: data.user,
         })
-
     } catch (error) {
         dispatch({
-            type: REGISTER_FAIL,
-            payload: error.res.data.message
+            type: LOAD_USER_FAIL,
+            payload: error.message
         })
     }
 }

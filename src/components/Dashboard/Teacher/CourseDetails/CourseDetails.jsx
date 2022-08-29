@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect } from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import Loader from "../../../../common/Loader/Loader";
 import { getSingleCourse } from "../../../../Store/Actions/CoursesAction";
 import {
@@ -9,14 +10,17 @@ import {
 } from "../../../../Store/reducers/alertReducer";
 import "./CourseDetails.css";
 
-export default function CourseDetails({ match }) {
+export default function CourseDetails() {
+  const { id } = useParams();
+  console.log("geting from useParams", id);
+
   const alert = useAlert();
   const dispatch = useDispatch();
 
   const { isLoading, course, error } = useSelector(
     (state) => state.CourseDetails
   );
-  console.log(course, error);
+  console.log("from cousedetails: ", course, error);
 
   useEffect(() => {
     {
@@ -25,11 +29,11 @@ export default function CourseDetails({ match }) {
     if (error) {
       alert.error("There was an error");
     }
-    dispatch(getSingleCourse(match.params.id));
+    dispatch(getSingleCourse(id));
     {
       hideLoading;
     }
-  }, [dispatch, error, alert, match.params.id]);
+  }, [dispatch, error, alert, id]);
 
   return (
     <Fragment>
@@ -37,6 +41,13 @@ export default function CourseDetails({ match }) {
         <Loader />
       ) : (
         <Fragment>
+          {/* {course.map((course) => (
+            <div className="course-details">
+              <img src={course.image} alt={course.title} />
+              <p>{course.title}</p>
+            </div>
+          ))} */}
+
           <div className="CourseDetails">
             <div class="wrapper pt-10 px-8 flex flex-col items-center">
               {/* <!-- Card--> */}

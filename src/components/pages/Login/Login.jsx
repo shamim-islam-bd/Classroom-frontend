@@ -20,7 +20,7 @@ export default function Login() {
   // const {isAuthenticated, loading, error } = useSelector(state => state.auth);
   // console.log(user);
   const { user, error, isAuthenticated } = useSelector((state) => state.user);
-  console.log(user, error, isAuthenticated);
+  // console.log(user, error, isAuthenticated);
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -28,35 +28,40 @@ export default function Login() {
     }
     if (error) {
       dispatch(clearErrors());
-      // alert.error('There was an error')
     }
   }, [dispatch, error]);
 
   const onSubmit = async (data) => {
-    const userinfo = {
+    const userdata = {
       email: data?.email,
       password: data?.password,
     };
-    dispatch(loginAction(userinfo));
+
+    dispatch(loginAction(userdata));
     dispatch(showLoading());
+
     await axios
-      .post("http://localhost:5000/user/login", userinfo)
+      .post("/user/login", userdata)
       .then((res) => {
-        // localStorage.setItem("token", res.data.user)
         dispatch(hideLoading());
         alert.success("You are successfully logged in");
+        const token = res.data.token;
+        document.cookie = `token=${token}`
         navigate("/dashboard");
       })
       .catch((error) => {
         dispatch(hideLoading());
         setErrorMessage("Invalid email or password");
       });
-  };
+    };
+    
+
+    
 
   return (
     <div>
       <section class="">
-        <div class=" items-center  lg:px-20">
+        <div class="items-center  lg:px-20">
           <div class="flex flex-col w-full max-w-md p-10 mx-auto my-6 transition duration-500 ease-in-out transform bg-white rounded-lg md:mt-0">
             <div class="mt-8 border rounded-lg p-6 shadow-md">
               <div class="mt-6">

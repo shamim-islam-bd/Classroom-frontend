@@ -1,3 +1,4 @@
+import axios from "axios";
 import React from "react";
 import { positions, Provider as AlertProvider, transitions } from "react-alert";
 import AlertTemplate from "react-alert-template-basic";
@@ -7,15 +8,17 @@ import App from "./App";
 import "./main.css";
 import { store } from "./Store/store";
 
-// optional configuration
+// optional configuration for react-alert
 const options = {
-  // you can also just use 'bottom center'
   position: positions.TOP_CENTER,
   timeout: 3000,
   offset: "30px",
-  // you can also just use 'scale'
   transition: transitions.SCALE,
 };
+
+// axios.defaults.headers.common["Authorization"] = `Bearer ${localStorage.getItem( "token")}`;
+
+axios.defaults.baseURL = "http://localhost:5000/";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Provider store={store}>

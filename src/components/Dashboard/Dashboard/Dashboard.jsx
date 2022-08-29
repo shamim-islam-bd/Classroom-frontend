@@ -7,12 +7,23 @@ const { Header, Sider, Content } = Layout;
 export default function Dashboard() {
   const [collapsed, setCollapsed] = useState(false);
 
+  // const cureentUser = async() => {
+  // try {
+  //   const token = localStorage.getItem("token");
+  //   return jwtDecode(token);
+
+  //   console.log(res);
+  // } catch (error) {
+  //   console.log(error);
+  // }
+  // }
+
   // student
   const items = [
     {
       key: "1",
       icon: "ri-window-2-fill",
-      link: "",
+      link: "courses",
       label: "All Courses",
     },
     {

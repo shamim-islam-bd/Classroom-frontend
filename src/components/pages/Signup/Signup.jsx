@@ -1,32 +1,30 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-// import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { clearErrors } from "../../../Store/Actions/CoursesAction";
 import { registerAction } from "../../../Store/Actions/userActions";
 import { hideLoading, showLoading } from "../../../Store/reducers/alertReducer";
 
 export default function Signup() {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   // error state
   const [errorMessage, setErrorMessage] = useState("");
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
 
-  // const { isAuthenticated, loading, error, user } = useSelector(
-  //   (state) => state.auth
-  // );
-  // console.log(user);
+  const { user, isAuthenticated, error } = useSelector((state) => state.user);
+  console.log("From signup route:", user);
 
-  // useEffect(() => {
-  //   if (isAuthenticated) {
-  //     // history.push('/')
-  //   }
-  //   if (error) {
-  //     alert("somethinh error");
-  //     dispatch(clearErrors());
-  //   }
-  // }, [dispatch, isAuthenticated, error]);
+  useEffect(() => {
+    if (isAuthenticated) {
+      history.push("/me");
+    }
+    if (error) {
+      dispatch(clearErrors());
+    }
+  }, [dispatch, error]);
 
   const onSubmit = async (data) => {
     const userinfo = {
@@ -35,17 +33,15 @@ export default function Signup() {
       password: data?.password,
       role: data?.role,
     };
-    dispatch(showLoading())
-    await axios
-      .post("http://localhost:5000/user/register", userinfo)
-      dispatch(hideLoading())
+    dispatch(showLoading());
+    await axios.post("/user/register", userinfo);
+    dispatch(hideLoading());
+    dispatch(registerAction(userinfo))
       .then((res) => {
-        alert("Successfully registred");
-        // dispatch(registerAction(userinfo));
         navigate("/login");
       })
       .catch((error) => {
-        dispatch(hideLoading())
+        dispatch(hideLoading());
         setError("Please enter your email or password & user role");
       });
   };
