@@ -23,7 +23,7 @@ export default function Profile() {
 
   return (
     <div>
-      <h1 className="text-2xl text-blue-800">Profile</h1>
+      <h1 className="text-2xl text-blue-800 text-center">Profile</h1>
     </div>
   );
 }

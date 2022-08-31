@@ -7,17 +7,6 @@ const { Header, Sider, Content } = Layout;
 export default function Dashboard() {
   const [collapsed, setCollapsed] = useState(false);
 
-  // const cureentUser = async() => {
-  // try {
-  //   const token = localStorage.getItem("token");
-  //   return jwtDecode(token);
-
-  //   console.log(res);
-  // } catch (error) {
-  //   console.log(error);
-  // }
-  // }
-
   // student
   const items = [
     {
@@ -69,7 +58,7 @@ export default function Dashboard() {
         <div className="logo text-2xl text-white text-start p-4">Logo</div>
         <nav>
           {items.map((item) => (
-            <div className="my-3 text-white">
+            <div className="my-3 text-white" key={item.key}>
               <NavLink
                 to={item.link}
                 className={`${(state) =>

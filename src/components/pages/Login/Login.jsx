@@ -24,7 +24,7 @@ export default function Login() {
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate("/dashboard");
+      navigate("/profile");
     }
     if (error) {
       dispatch(clearErrors());
@@ -45,42 +45,45 @@ export default function Login() {
       .then((res) => {
         dispatch(hideLoading());
         alert.success("You are successfully logged in");
+
         const token = res.data.token;
-        document.cookie = `token=${token}`
-        navigate("/dashboard");
+        document.cookie = `token=${token}`;
+        // dispatch(loadUserAction());
+
+        // const cookies = data.headers['set-cookie']
+        // res.setHeader('Set-Cookie', cookies)
+
+        navigate("/profile");
       })
       .catch((error) => {
         dispatch(hideLoading());
         setErrorMessage("Invalid email or password");
       });
-    };
-    
-
-    
+  };
 
   return (
     <div>
-      <section class="">
-        <div class="items-center  lg:px-20">
-          <div class="flex flex-col w-full max-w-md p-10 mx-auto my-6 transition duration-500 ease-in-out transform bg-white rounded-lg md:mt-0">
-            <div class="mt-8 border rounded-lg p-6 shadow-md">
-              <div class="mt-6">
-                <form onSubmit={handleSubmit(onSubmit)} class="space-y-6">
+      <section className="">
+        <div className="items-center  lg:px-20">
+          <div className="flex flex-col w-full max-w-md p-10 mx-auto my-6 transition duration-500 ease-in-out transform bg-white rounded-lg md:mt-0">
+            <div className="mt-8 border rounded-lg p-6 shadow-md">
+              <div className="mt-6">
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                   <div>
                     <div className="flex justify-between items-center">
-                      <h2 class=" text-3xl font-extrabold text-neutral-600 mb-8">
+                      <h2 className=" text-3xl font-extrabold text-neutral-600 mb-8">
                         Sign In.
                       </h2>
 
                       <Link to="/signup">
                         <a
-                          class="inline-block p-3 text-white bg-indigo-600 border border-indigo-600 rounded-full hover:bg-transparent hover:text-indigo-600 active:text-indigo-500 focus:outline-none focus:ring"
+                          className="inline-block p-3 text-white bg-indigo-600 border border-indigo-600 rounded-full hover:bg-transparent hover:text-indigo-600 active:text-indigo-500 focus:outline-none focus:ring"
                           href="/download"
                         >
-                          <span class="sr-only"> Download </span>
+                          <span className="sr-only"> Download </span>
 
                           <svg
-                            class="w-5 h-5"
+                            className="w-5 h-5"
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
                             viewBox="0 0 24 24"
@@ -98,32 +101,32 @@ export default function Login() {
                     </div>
                     <label
                       for="email"
-                      class="block text-sm font-medium text-neutral-600"
+                      className="block text-sm font-medium text-neutral-600"
                     >
                       {" "}
                       Email address{" "}
                     </label>
-                    <div class="mt-1">
+                    <div className="mt-1">
                       <input
                         {...register("email", {
                           required: "Email Address is required",
                         })}
                         type="email"
                         placeholder="Your Email"
-                        class="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
+                        className="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
                       />
                     </div>
                   </div>
 
-                  <div class="space-y-1">
+                  <div className="space-y-1">
                     <label
                       for="password"
-                      class="block text-sm font-medium text-neutral-600"
+                      className="block text-sm font-medium text-neutral-600"
                     >
                       {" "}
                       Password{" "}
                     </label>
-                    <div class="mt-1">
+                    <div className="mt-1">
                       <input
                         {...register("password", {
                           required: "Email Address is required",
@@ -133,36 +136,36 @@ export default function Login() {
                         autocomplete="current-password"
                         required=""
                         placeholder="Your Password"
-                        class="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
+                        className="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
                       />
                       {/* <p>{error?.password?.message}</p> */}
                     </div>
                   </div>
                   {errorMessage && (
-                    <p class="text-red-500 text-sm">{errorMessage}</p>
+                    <p className="text-red-500 text-sm">{errorMessage}</p>
                   )}
-                  <div class="flex items-center justify-between">
-                    <div class="flex items-center">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center">
                       <input
                         id="remember-me"
                         name="remember-me"
                         type="checkbox"
                         placeholder="Your password"
-                        class="w-4 h-4 text-blue-600 border-gray-200 rounded focus:ring-blue-500"
+                        className="w-4 h-4 text-blue-600 border-gray-200 rounded focus:ring-blue-500"
                       />
                       <label
                         for="remember-me"
-                        class="block ml-2 text-sm text-neutral-600"
+                        className="block ml-2 text-sm text-neutral-600"
                       >
                         {" "}
                         Remember me{" "}
                       </label>
                     </div>
 
-                    <div class="text-sm">
+                    <div className="text-sm">
                       <a
                         href="#"
-                        class="font-medium text-blue-600 hover:text-blue-500"
+                        className="font-medium text-blue-600 hover:text-blue-500"
                       >
                         {" "}
                         Forgot your password?{" "}
@@ -173,18 +176,18 @@ export default function Login() {
                   <div>
                     <button
                       type="submit"
-                      class="flex items-center justify-center w-full px-10 py-4 text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-blue-600 rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                      className="flex items-center justify-center w-full px-10 py-4 text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-blue-600 rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                     >
                       Sign in
                     </button>
                   </div>
                 </form>
-                <div class="relative my-4">
-                  <div class="absolute inset-0 flex items-center">
-                    <div class="w-full border-t border-gray-300"></div>
+                <div className="relative my-4">
+                  <div className="absolute inset-0 flex items-center">
+                    <div className="w-full border-t border-gray-300"></div>
                   </div>
-                  <div class="relative flex justify-center text-sm">
-                    <span class="px-2 text-neutral-600 bg-white">
+                  <div className="relative flex justify-center text-sm">
+                    <span className="px-2 text-neutral-600 bg-white">
                       {" "}
                       Or continue with{" "}
                     </span>
@@ -193,10 +196,10 @@ export default function Login() {
                 <div>
                   <button
                     type="submit"
-                    class="w-full items-center block px-10 py-3.5 text-base font-medium text-center text-blue-600 transition duration-500 ease-in-out transform border-2 border-white shadow-md rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+                    className="w-full items-center block px-10 py-3.5 text-base font-medium text-center text-blue-600 transition duration-500 ease-in-out transform border-2 border-white shadow-md rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
                   >
-                    <div class="flex items-center justify-center">
-                      <span class="ml-4"> Log in with Google</span>
+                    <div className="flex items-center justify-center">
+                      <span className="ml-4"> Log in with Google</span>
                     </div>
                   </button>
                 </div>

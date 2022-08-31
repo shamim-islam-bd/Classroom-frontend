@@ -6,7 +6,6 @@ import {
 
 
 
-
 // register user 
 export const registerAction = (userinfo) => async(dispatch)=> {
     try {
@@ -38,6 +37,7 @@ export const loginAction = (userdata) => async(dispatch)=>{
         dispatch({type: LOGIN_REQUEST})
         const config = {
             headers: { 'Content-Type': 'application/json' },
+            // withCredentials: true,
         }
         const { data } = await axios.post('/user/login', userdata, config);
         // console.log('from loginAction:', data);
@@ -57,20 +57,18 @@ export const loginAction = (userdata) => async(dispatch)=>{
 
 
 
-
-// Load user/ currently login user 
-export const loadUserAction = () => async(dispatch) => {
+export const loadUserAction = () => async(dispatch)=>{
     try {
         dispatch({type: LOAD_USER_REQUEST})
 
-        const { data } = await axios.get('/me');
+        const { data } = await axios.get('/profile');
+        // console.log('from loginAction:', data);
         
-        console.log('from loadUserAction: ', data);
-
         dispatch({
             type: LOAD_USER_SUCCESS,
             payload: data.user,
         })
+
     } catch (error) {
         dispatch({
             type: LOAD_USER_FAIL,
@@ -78,6 +76,55 @@ export const loadUserAction = () => async(dispatch) => {
         })
     }
 }
+
+
+
+
+
+
+// Shamim@gmail.com
+
+// Load user/ currently login user 
+// export const loadUserAction = () => async(dispatch) => {
+//     try {
+
+//         const rootReducer = store.getState();
+//         const { token } = rootReducer.user;
+//         console.log("Token from store:", rootReducer);
+
+//         dispatch({type: LOAD_USER_REQUEST})
+
+        // const config = {
+        //     headers: { 'Set-Cookie': `${document.cookie}`},
+        // }
+
+        // const config = {
+        //     headers: {
+        //         Cookie: `token=${token}`,
+        //     },
+        //   }
+
+        // const config = {
+        //     headers: {
+        //         Cookie: `token=${token}`,
+        //     },
+        //   }
+
+//         const { data } = await axios.get('/profile');
+
+//         // console.log('from loadUserAction: ', data.user);
+
+//         dispatch({
+//             type: LOAD_USER_SUCCESS,
+//             payload: data.user,
+//         })
+//     } catch (error) {
+//         dispatch({
+//             type: LOAD_USER_FAIL,
+//             payload: error.message
+//         })
+//     }
+// }
 
 
 

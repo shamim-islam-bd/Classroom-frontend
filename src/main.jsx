@@ -16,7 +16,9 @@ const options = {
   transition: transitions.SCALE,
 };
 
-// axios.defaults.headers.common["Authorization"] = `Bearer ${localStorage.getItem( "token")}`;
+// axios.defaults.headers.common["Set-Cookie"] =
+//   document.cookie.split("token=")[1];
+// axios.defaults.withCredentials = true;
 
 axios.defaults.baseURL = "http://localhost:5000/";
 

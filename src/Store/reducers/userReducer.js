@@ -1,7 +1,5 @@
 import {
-    CLEAR_ERRORS, LOGIN_FAIL, LOGIN_REQUEST, LOGIN_SUCCESS,
-    REGISTER_REQUEST, REGISTER_SUCCESS, REGISTER_FAIL ,
-    LOAD_USER_FAIL, LOAD_USER_REQUEST, LOAD_USER_SUCCESS,
+    CLEAR_ERRORS, LOAD_USER_FAIL, LOAD_USER_REQUEST, LOAD_USER_SUCCESS, LOGIN_FAIL, LOGIN_REQUEST, LOGIN_SUCCESS, REGISTER_FAIL, REGISTER_REQUEST, REGISTER_SUCCESS
 } from "../userConstant/userConstant";
 
  
@@ -29,6 +27,13 @@ export const userReducer = (state= initialstates, action)=>{
                isAuthenticated: true,
                user: action.payload,
             };
+        case LOAD_USER_FAIL:
+            return{
+                loading: false,
+                isAuthenticated: false,
+                user: null,
+                error: action.payload
+            };    
         case LOGIN_FAIL:
         case REGISTER_FAIL:
         case LOAD_USER_FAIL:
