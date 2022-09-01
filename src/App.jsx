@@ -24,38 +24,27 @@ function App() {
 
   useSelector((state) => console.log("From App: ", state.user));
 
-  // useEffect(() => {
-  // store.dispatch(loadUserAction());
-  // }, []);
-
   return (
     <div className="App">
       <BrowserRouter>
         {loading ? <Loader /> : null}
-
-        {/* <Route path="/profile" element={<Profile />} /> */}
-
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="*" element={<NotFound />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route
-            path="/dashboard"
-            element={
-              <PrivateRoute>
-                <Dashboard />
-              </PrivateRoute>
-            }
-          >
-            <Route path="lessons" element={<Lessons />} />
-            <Route path="courses" element={<AllCourses />} />
-            <Route path=":id" element={<CourseDetails />} />
-            <Route path="classroom" element={<Classroom />} />
-            <Route path="class-requests" element={<ClassRequest />} />
-            <Route path="payments" element={<PaymentInfo />} />
-            <Route path="*" element={<NotFound />} />
+
+          <Route element={<PrivateRoute />}>
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/dashboard" element={<Dashboard />}>
+              <Route path="lessons" element={<Lessons />} />
+              <Route path="courses" element={<AllCourses />} />
+              <Route path=":id" element={<CourseDetails />} />
+              <Route path="classroom" element={<Classroom />} />
+              <Route path="class-requests" element={<ClassRequest />} />
+              <Route path="payments" element={<PaymentInfo />} />
+              <Route path="*" element={<NotFound />} />
+            </Route>
           </Route>
         </Routes>
       </BrowserRouter>

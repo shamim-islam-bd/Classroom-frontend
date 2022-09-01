@@ -17,14 +17,12 @@ export default function Login() {
   const { loading } = useSelector((state) => state.alerts);
   console.log(loading);
 
-  // const {isAuthenticated, loading, error } = useSelector(state => state.auth);
-  // console.log(user);
   const { user, error, isAuthenticated } = useSelector((state) => state.user);
-  // console.log(user, error, isAuthenticated);
+  console.log(user, error, isAuthenticated);
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate("/profile");
+      navigate("/dashboard");
     }
     if (error) {
       dispatch(clearErrors());
@@ -33,7 +31,7 @@ export default function Login() {
 
   const onSubmit = async (data) => {
     const userdata = {
-      email: data?.email,
+      email: data?.email.toLowerCase(),
       password: data?.password,
     };
 
@@ -47,13 +45,17 @@ export default function Login() {
         alert.success("You are successfully logged in");
 
         const token = res.data.token;
-        document.cookie = `token=${token}`;
+        // save token to local storage
+        // make data stringify and save to local storage
+        localStorage.setItem("token", token);
+
+        // document.cookie = `${token}`;
         // dispatch(loadUserAction());
 
         // const cookies = data.headers['set-cookie']
         // res.setHeader('Set-Cookie', cookies)
 
-        navigate("/profile");
+        navigate("/dashboard");
       })
       .catch((error) => {
         dispatch(hideLoading());

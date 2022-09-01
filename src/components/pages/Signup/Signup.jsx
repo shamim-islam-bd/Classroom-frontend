@@ -15,11 +15,11 @@ export default function Signup() {
   const navigate = useNavigate();
 
   const { user, isAuthenticated, error } = useSelector((state) => state.user);
-  console.log("From signup route:", user);
+  // console.log("From signup route:", user);
 
   useEffect(() => {
     if (isAuthenticated) {
-      history.push("/me");
+      history.push("/dashboard");
     }
     if (error) {
       dispatch(clearErrors());

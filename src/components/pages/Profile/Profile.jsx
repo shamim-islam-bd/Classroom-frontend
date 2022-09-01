@@ -1,25 +1,26 @@
 // import jwtDecode from "jwt-decode";
+import axios from "axios";
 import React from "react";
 // import { useDispatch } from "react-redux";
 // import { loadUserAction } from "../../../Store/Actions/userActions";
 // import { store } from "../../../Store/store";
 
 export default function Profile() {
+  axios
+    .get("/user/profile")
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
   //   const dispatch = useDispatch();
   // const { loading } = useSelector((state) => state.alerts);
 
   //   useEffect(() => {
   //     dispatch(loadUserAction());
   //   }, []);
-
-  // try {
-  //   const token = localStorage.getItem("token");
-  //   return jwtDecode(token);
-
-  //   console.log(res);
-  // } catch (error) {
-  //   console.log(error);
-  // }
 
   return (
     <div>
