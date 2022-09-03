@@ -7,7 +7,7 @@ import { getSingleCourse } from "../../../../Store/Actions/CoursesAction";
 import {
   hideLoading,
   showLoading,
-} from "../../../../Store/reducers/alertReducer";
+} from "../../../../Store/reducers/alertSlice";
 import "./CourseDetails.css";
 
 export default function CourseDetails() {

@@ -1,25 +1,45 @@
-import { useSelector } from "react-redux";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
+import { userReducer } from "../../Store/reducers/userReducer";
 
 function PrivateRoute({ children }) {
   const { isAuthenticated, user } = useSelector((state) => state.user);
-  console.log("From Private Route: ", user, isAuthenticated);
+  // console.log("From Private Route: ", user, isAuthenticated);
 
-  //   const getCookie = cookie.get("token");
-  //   console.log(getCookie);
+  const dispatch = useDispatch();
 
-  // const navigate = useNavigate();
-  // geting browser cookies and spilit them by 'token=' and getting the token
-  //   const token = document.cookie.split("token=")[1];
-  const token = document.cookie;
-  console.log(token);
+  const token = localStorage.getItem("token");
 
-  if (token && isAuthenticated === true) {
+  const getUserProfile = async () => {
+    try {
+      const res = await axios.post("/user/profile", {
+        // token: token,
+        haeder: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (res.data.success) {
+        dispatch(userReducer(res.data.user));
+      } else {
+        return <Navigate to="/login" />;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // token from local storage and check if it is expired or not if expired then redirect to login page
+
+  if (token) {
     return children;
-  }
-  if (isAuthenticated === false) {
+  } else {
     return <Navigate to="/login" replace />;
   }
 }
 
 export default PrivateRoute;
+
+// const token = document.cookie;
+// console.log(token);

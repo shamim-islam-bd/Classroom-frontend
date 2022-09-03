@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import Loader from "./common/Loader/loader";
+// import Loader from "./common/Loader/loader";
 import Dashboard from "./components/Dashboard/Dashboard/Dashboard";
 import ClassRequest from "./components/Dashboard/Student/ClassRequest/ClassRequest";
 import Classroom from "./components/Dashboard/Student/Classroom/Classroom";
@@ -20,22 +20,22 @@ import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 
 function App() {
   const dispatch = useDispatch();
-  const { loading } = useSelector((state) => state.alerts);
+  // const { loading } = useSelector((state) => state.alerts);
 
   useSelector((state) => console.log("From App: ", state.user));
 
   return (
     <div className="App">
       <BrowserRouter>
-        {loading ? <Loader /> : null}
+        {/* {loading ? <Loader /> : null} */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="*" element={<NotFound />} />
+          <Route path="/profile" element={<Profile />} />
 
           <Route element={<PrivateRoute />}>
-            <Route path="/profile" element={<Profile />} />
             <Route path="/dashboard" element={<Dashboard />}>
               <Route path="lessons" element={<Lessons />} />
               <Route path="courses" element={<AllCourses />} />

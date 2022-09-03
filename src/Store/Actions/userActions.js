@@ -29,8 +29,6 @@ export const registerAction = (userinfo) => async(dispatch)=> {
 }
 
 
-
-
 // login Action
 export const loginAction = (userdata) => async(dispatch)=>{
     try {
@@ -57,7 +55,6 @@ export const loginAction = (userdata) => async(dispatch)=>{
         })
     }
 }
-
 
 
 // export const loadUserAction = () => async(dispatch)=>{

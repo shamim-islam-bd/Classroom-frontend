@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { clearErrors } from "../../../Store/Actions/CoursesAction";
 import { registerAction } from "../../../Store/Actions/userActions";
-import { hideLoading, showLoading } from "../../../Store/reducers/alertReducer";
+import { hideLoading, showLoading } from "../../../Store/reducers/alertSlice";
 
 export default function Signup() {
   const dispatch = useDispatch();

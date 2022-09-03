@@ -7,7 +7,7 @@ import { getAllCourses } from "../../../../Store/Actions/CoursesAction";
 import {
   hideLoading,
   showLoading,
-} from "../../../../Store/reducers/alertReducer";
+} from "../../../../Store/reducers/alertSlice";
 
 export default function AllCourses() {
   const alert = useAlert();
