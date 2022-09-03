@@ -5,10 +5,10 @@ import { persistReducer } from 'reduxjs-toolkit-persist';
 import storage from 'reduxjs-toolkit-persist/lib/storage';
 import { alertSlice } from './reducers/alertSlice';
 import { CourseReducer, SingleCourseReducer } from './reducers/CourseReducer';
-import { userSlice } from './reducers/userSlice';
-const middleware = [thunk];
+// import { userSlice } from './reducers/userSlice';
+import { userReducer } from './reducers/userReducer';
 
-// import { userReducer } from './reducers/userReducer';
+const middleware = [thunk];
 
 const persistConfig = {
       key: 'root',
@@ -17,7 +17,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
    alerts: alertSlice.reducer,
-   user: userSlice.reducer,
+   user: userReducer,
    allCourse : CourseReducer,
    CourseDetails: SingleCourseReducer
 })

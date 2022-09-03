@@ -52,9 +52,6 @@ export default function Login() {
         // document.cookie = `${token}`;
         // dispatch(loadUserAction());
 
-        // const cookies = data.headers['set-cookie']
-        // res.setHeader('Set-Cookie', cookies)
-
         navigate("/dashboard");
       })
       .catch((error) => {

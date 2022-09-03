@@ -11,24 +11,24 @@ function PrivateRoute({ children }) {
 
   const token = localStorage.getItem("token");
 
-  const getUserProfile = async () => {
-    try {
-      const res = await axios.post("/user/profile", {
-        // token: token,
-        haeder: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+  // const getUserProfile = async () => {
+  //   try {
+  //     const res = await axios.post("/user/profile", {
+  //       // token: token,
+  //       haeder: {
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     });
 
-      if (res.data.success) {
-        dispatch(userReducer(res.data.user));
-      } else {
-        return <Navigate to="/login" />;
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  //     if (res.data.success) {
+  //       dispatch(userReducer(res.data.user));
+  //     } else {
+  //       return <Navigate to="/login" />;
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   // token from local storage and check if it is expired or not if expired then redirect to login page
 

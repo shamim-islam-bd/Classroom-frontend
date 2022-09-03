@@ -35,17 +35,13 @@ export const loginAction = (userdata) => async(dispatch)=>{
         dispatch({type: LOGIN_REQUEST})
         const config = {
             headers: { 'Content-Type': 'application/json' },
-            // withCredentials: true,
         }
         const { data } = await axios.post('/user/login', userdata, config);
         // console.log('from loginAction:', data);
 
-        // store user's token in local storage
-        // localStorage.setItem('token', data.token)
-        
         dispatch({
             type: LOGIN_SUCCESS,
-            payload: data,
+            payload: data.user,
         })
 
     } catch (error) {
@@ -81,58 +77,10 @@ export const loginAction = (userdata) => async(dispatch)=>{
 // }
 
 
-
-
-
-
-// Shamim@gmail.com
-
-// Load user/ currently login user 
-// export const loadUserAction = () => async(dispatch) => {
-//     try {
-
-//         const rootReducer = store.getState();
-//         const { token } = rootReducer.user;
-//         console.log("Token from store:", rootReducer);
-
-//         dispatch({type: LOAD_USER_REQUEST})
-
-        // const config = {
-        //     headers: { 'Set-Cookie': `${document.cookie}`},
-        // }
-
-        // const config = {
-        //     headers: {
-        //         Cookie: `token=${token}`,
-        //     },
-        //   }
-
-        // const config = {
-        //     headers: {
-        //         Cookie: `token=${token}`,
-        //     },
-        //   }
-
-//         const { data } = await axios.get('/profile');
-
-//         // console.log('from loadUserAction: ', data.user);
-
-//         dispatch({
-//             type: LOAD_USER_SUCCESS,
-//             payload: data.user,
-//         })
-//     } catch (error) {
-//         dispatch({
-//             type: LOAD_USER_FAIL,
-//             payload: error.message
-//         })
-//     }
-// }
-
-
-
-
 // clear errors
 export const clearErrors = () => async(dispatch)=> {
     dispatch({type: CLEAR_ERRORS})
 }
+
+
+

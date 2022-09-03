@@ -3,10 +3,16 @@ import {
 } from "../userConstant/userConstant";
 
  
+//get user from local storage
+const user = localStorage.getItem("user");
+
 const initialstates = {
     isAuthenticated: false,
-    user: {},
-    error: {}
+    user: user ? user : null,
+    isSuccess: false,
+    error: false,
+    loading: false,
+    message: '',
 }
 
 export const userReducer = (state= initialstates, action)=>{
