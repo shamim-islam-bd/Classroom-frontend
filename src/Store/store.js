@@ -1,19 +1,19 @@
 import { applyMiddleware, combineReducers, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
+import { persistReducer } from 'reduxjs-toolkit-persist';
+import storage from 'reduxjs-toolkit-persist/lib/storage';
 import { alertSlice } from './reducers/alertSlice';
 import { CourseReducer, SingleCourseReducer } from './reducers/CourseReducer';
 import { userSlice } from './reducers/userSlice';
-// import { userReducer } from './reducers/userReducer';
 const middleware = [thunk];
 
-let initialUserState = {
-   user: {
-      isAuthenticated: false,
-      loading: false,
-      user: {},
-   },
-};
+// import { userReducer } from './reducers/userReducer';
+
+const persistConfig = {
+      key: 'root',
+      storage,
+   }
 
 const rootReducer = combineReducers({
    alerts: alertSlice.reducer,
@@ -21,9 +21,12 @@ const rootReducer = combineReducers({
    allCourse : CourseReducer,
    CourseDetails: SingleCourseReducer
 })
+ 
+const persistedReducer = persistReducer(persistConfig, rootReducer)
+
+
 
 export const store = createStore(
-   rootReducer,
-   // initialUserState,
+   persistedReducer,
    composeWithDevTools(applyMiddleware(...middleware))
-);
+ );

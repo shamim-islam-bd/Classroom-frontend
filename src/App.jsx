@@ -16,6 +16,7 @@ import Profile from "./components/pages/Profile/Profile";
 import Signup from "./components/pages/Signup/Signup";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 
+
 // import store and currently login user.
 
 function App() {
