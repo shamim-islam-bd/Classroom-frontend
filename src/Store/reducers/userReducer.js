@@ -1,14 +1,17 @@
 import {
-    CLEAR_ERRORS, LOAD_USER_FAIL, LOAD_USER_REQUEST, LOAD_USER_SUCCESS, LOGIN_FAIL, LOGIN_REQUEST, LOGIN_SUCCESS, REGISTER_FAIL, REGISTER_REQUEST, REGISTER_SUCCESS
+    CLEAR_ERRORS, LOAD_USER_FAIL, LOAD_USER_REQUEST, LOAD_USER_SUCCESS,
+    LOGIN_FAIL, LOGIN_REQUEST, LOGIN_SUCCESS, REGISTER_FAIL,
+    REGISTER_REQUEST, REGISTER_SUCCESS
 } from "../userConstant/userConstant";
 
  
-//get user from local storage
-const user = localStorage.getItem("user");
+// get user from local storage
+// const user = localStorage.getItem("user");
 
 const initialstates = {
     isAuthenticated: false,
-    user: user ? user : null,
+    // user: user ? user : null,
+    user: null,
     isSuccess: false,
     error: false,
     loading: false,

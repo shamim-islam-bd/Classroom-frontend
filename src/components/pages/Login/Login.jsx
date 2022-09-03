@@ -15,10 +15,10 @@ export default function Login() {
   const { register, handleSubmit, errors } = useForm();
   const navigate = useNavigate();
   const { loading } = useSelector((state) => state.alerts);
-  console.log(loading);
+  // console.log(loading);
 
   const { user, error, isAuthenticated } = useSelector((state) => state.user);
-  console.log(user, error, isAuthenticated);
+  // console.log(user, error, isAuthenticated);
 
   useEffect(() => {
     if (isAuthenticated) {

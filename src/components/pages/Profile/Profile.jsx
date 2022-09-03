@@ -7,9 +7,9 @@ import React from "react";
 
 export default function Profile() {
   axios
-    .get("/user/profile")
+    .post("/user/profile")
     .then((res) => {
-      console.log(res);
+      console.log("From Profile: ", res.data.user);
     })
     .catch((err) => {
       console.log(err);

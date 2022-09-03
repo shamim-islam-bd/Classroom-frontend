@@ -51,6 +51,6 @@
   display: none;
 }
 
-.profilepic:hover .profilebio{
+.profilepic:hover .profilebio {
   display: block;
 }

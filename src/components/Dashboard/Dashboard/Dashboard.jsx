@@ -1,11 +1,23 @@
 import { Layout } from "antd";
-import React, { useState } from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import "./Dashboard.css";
+import Message from "./message";
 const { Header, Sider, Content } = Layout;
 
 export default function Dashboard() {
+  const navigate = useNavigate();
   const [collapsed, setCollapsed] = useState(false);
+
+  const { user } = useSelector((state) => state.user);
+  console.log("From Dashboard", user);
+
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    }
+  }, [user, navigate]);
 
   // student
   const items = [
@@ -88,6 +100,7 @@ export default function Dashboard() {
             )}
           </div>
           <div className="flex text-gray-600 items-center justify-around">
+            <Message />
             <i class="mx-3 px-1 ri-notification-4-line text-gray-600 "></i>
             {/* <i class="ri-notification-off-line"></i> */}
 
