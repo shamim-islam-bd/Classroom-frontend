@@ -9,9 +9,19 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@devexpress/dx-react-scheduler-material-ui": "^3.0.5",
+    "@emotion/react": "^11.10.4",
+    "@fullcalendar/core": "^5.11.3",
+    "@fullcalendar/daygrid": "^5.11.3",
+    "@fullcalendar/interaction": "^5.11.3",
+    "@fullcalendar/list": "^5.11.3",
+    "@fullcalendar/luxon2": "^5.11.3",
+    "@fullcalendar/react": "^5.11.2",
+    "@fullcalendar/timegrid": "^5.11.3",
     "@reduxjs/toolkit": "^1.8.5",
     "antd": "^4.22.7",
     "axios": "^0.27.2",
+    "luxon": "^3.0.3",
     "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-alert": "^7.0.3",
@@ -26,7 +36,8 @@
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.1",
     "reduxjs-toolkit-persist": "^7.2.1",
-    "remixicon": "^2.5.0"
+    "remixicon": "^2.5.0",
+    "tw-elements": "^1.0.0-alpha12"
   },
   "devDependencies": {
     "@types/react": "^18.0.17",

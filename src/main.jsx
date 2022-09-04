@@ -6,6 +6,7 @@ import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
 import { persistStore } from "reduxjs-toolkit-persist";
 import { PersistGate } from "reduxjs-toolkit-persist/integration/react";
+// import "tw-elements";
 import App from "./App";
 import "./main.css";
 import { store } from "./Store/store";
@@ -23,9 +24,7 @@ const options = {
 // axios.defaults.withCredentials = true;
 
 // axios.defaults.headers.common["Authorization"] = `Bearer ${document.cookie}`;
-axios.defaults.headers.common["Authorization"] = `Bearer ${localStorage.getItem(
-  "token"
-)}`;
+axios.defaults.headers.common["Authorization"] = `Bearer ${localStorage.getItem("token")}`;
 
 // axios.defaults.baseURL = "https://classroommern.herokuapp.com";
 axios.defaults.baseURL = "http://localhost:5000";

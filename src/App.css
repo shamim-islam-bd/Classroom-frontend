@@ -1,5 +1,8 @@
 @import "antd/dist/antd.css";
 @import "remixicon/fonts/remixicon.css";
+
+/* @import "@fullcalendar/core/main.css";
+@import "@fullcalendar/daygrid/main.css"; */
 /* @import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"; */
 
 :root {

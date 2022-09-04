@@ -1,4 +1,4 @@
-import { Dropdown, Menu, Space } from "antd";
+import { Badge, Dropdown, Menu, Space } from "antd";
 import React from "react";
 const menu = (
   <Menu
@@ -27,8 +27,9 @@ export default function Message() {
     <Dropdown overlay={menu} trigger={["click"]}>
       <a onClick={(e) => e.preventDefault()}>
         <Space>
-          <i class="ri-message-2-line"></i>
-          {/* <DownOutlined /> */}
+          <Badge count={5}>
+            <i class="ri-message-2-line m-1"></i>
+          </Badge>
         </Space>
       </a>
     </Dropdown>

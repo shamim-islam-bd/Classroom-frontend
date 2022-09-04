@@ -7,12 +7,16 @@ import ClassRequest from "./components/Dashboard/Student/ClassRequest/ClassReque
 import Classroom from "./components/Dashboard/Student/Classroom/Classroom";
 import Lessons from "./components/Dashboard/Student/Lessons/Lessons";
 import PaymentInfo from "./components/Dashboard/Student/PaymentInfo/PaymentInfo";
+import SavedCourses from "./components/Dashboard/Student/SavedCourses/SavedCourses";
+import StudentProfile from "./components/Dashboard/Student/StudentProfile/StudentProfile";
 import AllCourses from "./components/Dashboard/Teacher/AllCourses/AllCourses";
+import ClassScheduling from "./components/Dashboard/Teacher/ClassScheduling/ClassScheduling";
 import CourseDetails from "./components/Dashboard/Teacher/CourseDetails/CourseDetails";
+import LiveStream from "./components/Dashboard/Teacher/LiveStream/LiveStream";
+import TeacherProfile from "./components/Dashboard/Teacher/TeacherProfile/TeacherProfile";
 import Home from "./components/pages/Home/Home";
 import Login from "./components/pages/Login/Login";
 import NotFound from "./components/pages/NotFound/NotFound";
-import Profile from "./components/pages/Profile/Profile";
 import Signup from "./components/pages/Signup/Signup";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 
@@ -22,7 +26,12 @@ function App() {
   const dispatch = useDispatch();
   // const { loading } = useSelector((state) => state.alerts);
 
-  useSelector((state) => console.log("From App: ", state.user));
+  const { user } = useSelector((state) => state.user);
+  const teacher = user.role === "teacher";
+  const student = user.role === "student";
+  const admin = user.role === "admin";
+
+  console.log(admin);
 
   return (
     <div className="App">
@@ -33,7 +42,6 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="*" element={<NotFound />} />
-          <Route path="/profile" element={<Profile />} />
 
           <Route
             path="/dashboard"
@@ -43,10 +51,32 @@ function App() {
               </PrivateRoute>
             }
           >
+            {/* {
+              teacher ? (
+                <> */}
+            <Route path="live-stream" element={<LiveStream />} />
+            <Route index path="teacherProfile" element={<TeacherProfile />} />
+            {/* </>
+              ) :  "Access Denied"
+      
+            } */}
+            {/* {
+              student ? (
+                <> */}
+            <Route index path="studentProfile" element={<StudentProfile />} />
             <Route path="lessons" element={<Lessons />} />
-            <Route path="courses" element={<AllCourses />} />
-            <Route path=":id" element={<CourseDetails />} />
+            <Route path="classScheduling" element={<ClassScheduling />} />
             <Route path="classroom" element={<Classroom />} />
+            <Route path="class-requests" element={<ClassRequest />} />
+            <Route path="saved-courses" element={<SavedCourses />} />
+            <Route path="payment-info" element={<PaymentInfo />} />
+            {/* </> 
+                )  : "Access Denied"
+            } */}
+            <Route path="courses" element={<AllCourses />}>
+              <Route path=":id" element={<CourseDetails />} />
+            </Route>
+            <Route path="savedCourses" element={<SavedCourses />} />
             <Route path="class-requests" element={<ClassRequest />} />
             <Route path="payments" element={<PaymentInfo />} />
             <Route path="*" element={<NotFound />} />

@@ -3,12 +3,18 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import "./Dashboard.css";
-import Message from "./message";
+import MegaProfile from "./MegaProfile";
+import Message from "./Message";
 const { Header, Sider, Content } = Layout;
 
 export default function Dashboard() {
   const navigate = useNavigate();
   const [collapsed, setCollapsed] = useState(false);
+  const [profileShow, setProfileShow] = useState();
+
+  const ToggleProfile = () => {
+    setProfileShow(!profileShow);
+  };
 
   const { user } = useSelector((state) => state.user);
   console.log("From Dashboard", user);
@@ -23,42 +29,91 @@ export default function Dashboard() {
   const items = [
     {
       key: "1",
-      icon: "ri-window-2-fill",
-      link: "courses",
-      label: "All Courses",
+      icon: "ri-profile-line",
+      link: "studentProfile",
+      role: ["student"],
+      label: "My Profile",
+    },
+    {
+      key: "10",
+      icon: "ri-profile-line",
+      link: "teacherProfile",
+      role: ["teacher"],
+      label: "My Profile",
     },
     {
       key: "2",
-      icon: "ri-group-fill",
-      link: "classroom",
-      label: "Classroom",
+      icon: "ri-window-2-fill",
+      link: "courses",
+      role: ["student", "teacher"],
+      label: "All Courses",
     },
     {
       key: "3",
-      icon: "ri-user-fill",
-      link: "lessons",
-      label: "Lessons",
+      icon: "ri-group-fill",
+      link: "classroom",
+      role: ["student"],
+      label: "Classroom",
     },
     {
       key: "4",
-      icon: "ri-play-list-add-line",
-      link: "class-requests",
-      label: "Class Request",
+      icon: "ri-user-fill",
+      link: "lessons",
+      role: ["student"],
+      label: "Lessons",
     },
     {
       key: "5",
-      icon: "ri-grid-fill",
-      link: "resources",
-      label: "Resources",
+      icon: "ri-play-list-add-line",
+      link: "class-requests",
+      role: ["student"],
+      label: "Class Request",
     },
     {
       key: "6",
+      icon: "ri-grid-fill",
+      link: "resources",
+      role: ["student"],
+      label: "Resources",
+    },
+    {
+      key: "7",
+      icon: "ri-grid-fill",
+      link: "live-stream",
+      role: ["teacher"],
+      label: "Live Stream",
+    },
+    {
+      key: "8",
+      icon: "ri-grid-fill",
+      link: "savedCourses",
+      role: ["student"],
+      label: "Saved Courses",
+    },
+    {
+      key: "9",
       icon: "ri-money-dollar-box-line",
       link: "payments",
+      role: ["student"],
       label: "Payment Info",
+    },
+    {
+      key: "11",
+      icon: "ri-money-dollar-box-line",
+      link: "classScheduling",
+      role: ["teacher"],
+      label: "Class Schedule",
     },
   ];
 
+  const role = "teacher";
+  const navElements = items.filter((item) =>
+    item.role.find((info) => info == role)
+  );
+
+  let avater = "https://cdn-icons-png.flaticon.com/512/1053/1053244.png?w=360";
+
+  console.log(navElements);
   return (
     <Layout>
       <Sider
@@ -67,9 +122,15 @@ export default function Dashboard() {
         collapsed={collapsed}
         onCollapse={() => setCollapsed(!collapsed)}
       >
-        <div className="logo text-2xl text-white text-start p-4">Logo</div>
-        <nav>
-          {items.map((item) => (
+        <div className="logo text-white text-start p-6">
+          <img
+            src="https://elearni.wpengine.com/wp-content/uploads/2018/12/logo.png"
+            alt=""
+            srcset=""
+          />
+        </div>
+        <nav className="">
+          {navElements.map((item) => (
             <div className="my-3 text-white" key={item.key}>
               <NavLink
                 to={item.link}
@@ -84,46 +145,40 @@ export default function Dashboard() {
           ))}
         </nav>
       </Sider>
-      <Layout className="site-layout scroll-auto">
-        <Header className="site-layout-background mx-4 flex justify-between items-center">
-          <div className="">
-            {collapsed ? (
-              <i
-                onClick={() => setCollapsed(!collapsed)}
-                class="ri-menu-unfold-fill text-2xl text-gray-600 "
-              ></i>
-            ) : (
-              <i
-                onClick={() => setCollapsed(!collapsed)}
-                class="ri-menu-fold-fill text-2xl text-gray-600"
-              ></i>
-            )}
-          </div>
-          <div className="flex text-gray-600 items-center justify-around">
-            <Message />
-            <i class="mx-3 px-1 ri-notification-4-line text-gray-600 "></i>
-            {/* <i class="ri-notification-off-line"></i> */}
 
-            <img
-              class="profilepic cursor-pointer shadow-lg mx-auto h-8 rounded-full"
-              src="https://cdn-icons-png.flaticon.com/512/1053/1053244.png?w=360"
-              alt=""
-            />
-          </div>
-        </Header>
+      <Layout className="site-layout overflow-scroll">
+        <div className="relative">
+          <Header className="fixed top-0 left-[200px] right-[17px] z-30 site-layout-background mx-4 flex justify-between items-center">
+            <div className="">
+              {collapsed ? (
+                <i
+                  onClick={() => setCollapsed(!collapsed)}
+                  class="ri-menu-unfold-fill text-2xl text-gray-600 "
+                ></i>
+              ) : (
+                <i
+                  onClick={() => setCollapsed(!collapsed)}
+                  class="ri-menu-fold-fill text-2xl text-gray-600"
+                ></i>
+              )}
+            </div>
+            <div className="flex text-gray-600 items-center justify-around">
+              <Message />
+              <i class="mx-3 px-1 ri-notification-4-line text-gray-600 "></i>
+              {/* <i class="ri-notification-off-line"></i> */}
 
-        <div className="z-20 bg-[#042645e9] text-white profilebio w-[150px] border text-sm p-4 text-center">
-          <img
-            class="cursor-pointer mb-2 shadow-lg mx-auto h-14 rounded-full"
-            src="https://cdn-icons-png.flaticon.com/512/1053/1053244.png?w=360"
-            alt=""
-          />
-          <p className=" py-1">Shamim islam</p>
-          <p className="">Date</p>
-          <hr className="my-4" />
-          <p className=" py-1">Profile Details</p>
-          <p className="">payment info</p>
-          <button className="py-1 border">Logout</button>
+              {/*----------- MegaMenu------ */}
+              <div>
+                <img
+                  onClick={ToggleProfile}
+                  class="profilepic cursor-pointer shadow-lg mx-auto h-8 rounded-full"
+                  src={user.avader?.url ? user.avader?.url : avater}
+                  alt=""
+                />
+                {profileShow ? <MegaProfile /> : ""}
+              </div>
+            </div>
+          </Header>
         </div>
 
         {/* --------- Nasted Route  used----------*/}

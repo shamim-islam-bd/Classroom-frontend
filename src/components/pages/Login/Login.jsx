@@ -43,14 +43,8 @@ export default function Login() {
       .then((res) => {
         dispatch(hideLoading());
         alert.success("You are successfully logged in");
-
         const token = res.data.token;
-        // save token to local storage
-        // make data stringify and save to local storage
         localStorage.setItem("token", token);
-
-        // document.cookie = `${token}`;
-        // dispatch(loadUserAction());
 
         navigate("/dashboard");
       })

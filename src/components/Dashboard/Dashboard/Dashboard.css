@@ -46,11 +46,6 @@
 
 .profilebio {
   right: 2%;
-  top: 10%;
+  top: 100%;
   position: absolute;
-  display: none;
-}
-
-.profilepic:hover .profilebio {
-  display: block;
 }
