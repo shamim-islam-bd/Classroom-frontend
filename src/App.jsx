@@ -27,11 +27,11 @@ function App() {
   // const { loading } = useSelector((state) => state.alerts);
 
   const { user } = useSelector((state) => state.user);
-  const teacher = user.role === "teacher";
-  const student = user.role === "student";
-  const admin = user.role === "admin";
+  // const teacher = user.role === "teacher";
+  // const student = user.role === "student";
+  // const admin = user.role === "admin";
 
-  console.log(admin);
+  // console.log(admin);
 
   return (
     <div className="App">

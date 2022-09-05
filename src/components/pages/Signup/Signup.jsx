@@ -101,7 +101,7 @@ export default function Signup() {
                           })}
                           type="name"
                           placeholder="Your name"
-                          class="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
+                          class="classReq-input"
                         />
                       </div>
                     </div>
@@ -120,7 +120,7 @@ export default function Signup() {
                           })}
                           type="email"
                           placeholder="Your Email"
-                          class="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
+                          class="classReq-input"
                         />
                         {/* {errors.email && <span role="alert">{errors.email.message}</span>} */}
                       </div>
@@ -144,7 +144,7 @@ export default function Signup() {
                           })}
                           type="password"
                           placeholder="Your Password"
-                          class="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
+                          class="classReq-input"
                         />
                         {/* {errors.password && <span role="alert">{errors.password.message}</span>} */}
                       </div>
@@ -160,8 +160,7 @@ export default function Signup() {
                     </label>
                     <select
                       {...register("role", { required: true })}
-                      className="my-2 block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300
-                    "
+                      className="classReq-input"
                     >
                       <option value="">Select...</option>
                       <option value="student">Student</option>

@@ -66,7 +66,7 @@ export default function Dashboard() {
       key: "5",
       icon: "ri-play-list-add-line",
       link: "class-requests",
-      role: ["student"],
+      role: ["student", "teacher"],
       label: "Class Request",
     },
     {
