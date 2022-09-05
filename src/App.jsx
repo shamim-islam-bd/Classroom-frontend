@@ -13,6 +13,7 @@ import AllCourses from "./components/Dashboard/Teacher/AllCourses/AllCourses";
 import ClassScheduling from "./components/Dashboard/Teacher/ClassScheduling/ClassScheduling";
 import CourseDetails from "./components/Dashboard/Teacher/CourseDetails/CourseDetails";
 import LiveStream from "./components/Dashboard/Teacher/LiveStream/LiveStream";
+import RequestedClasses from "./components/Dashboard/Teacher/RequestedClasses/RequestedClasses";
 import TeacherProfile from "./components/Dashboard/Teacher/TeacherProfile/TeacherProfile";
 import Home from "./components/pages/Home/Home";
 import Login from "./components/pages/Login/Login";
@@ -56,6 +57,7 @@ function App() {
                 <> */}
             <Route path="live-stream" element={<LiveStream />} />
             <Route index path="teacherProfile" element={<TeacherProfile />} />
+            <Route path="reqclassfeed" element={<RequestedClasses />} />
             {/* </>
               ) :  "Access Denied"
       

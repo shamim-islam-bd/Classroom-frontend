@@ -5,6 +5,7 @@ import { persistReducer } from 'reduxjs-toolkit-persist';
 import storage from 'reduxjs-toolkit-persist/lib/storage';
 import { alertSlice } from './reducers/alertSlice';
 import { CourseReducer, SingleCourseReducer } from './reducers/CourseReducer';
+import { StudentClassReqReducer } from './reducers/StudentClassReqReducer';
 // import { userSlice } from './reducers/userSlice';
 import { userReducer } from './reducers/userReducer';
 
@@ -16,6 +17,7 @@ const persistConfig = {
    }
 
 const rootReducer = combineReducers({
+   StudentClassReq: StudentClassReqReducer,
    alerts: alertSlice.reducer,
    user: userReducer,
    allCourse : CourseReducer,

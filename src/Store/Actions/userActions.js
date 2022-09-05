@@ -2,7 +2,7 @@ import axios from 'axios';
 import {
     CLEAR_ERRORS, LOGIN_FAIL, LOGIN_REQUEST, LOGIN_SUCCESS,
     REGISTER_FAIL, REGISTER_REQUEST, REGISTER_SUCCESS
-} from "../userConstant/userConstant";
+} from "../constants/userConstant";
 
 
 

@@ -17,7 +17,7 @@ export default function Dashboard() {
   };
 
   const { user } = useSelector((state) => state.user);
-  console.log("From Dashboard", user);
+  // console.log("From Dashboard", user);
 
   useEffect(() => {
     if (!user) {
@@ -104,6 +104,13 @@ export default function Dashboard() {
       role: ["teacher"],
       label: "Class Schedule",
     },
+    {
+      key: "12",
+      icon: "ri-money-dollar-box-line",
+      link: "reqclassfeed",
+      role: ["teacher"],
+      label: "Requested Class",
+    },
   ];
 
   const role = "teacher";
@@ -113,7 +120,8 @@ export default function Dashboard() {
 
   let avater = "https://cdn-icons-png.flaticon.com/512/1053/1053244.png?w=360";
 
-  console.log(navElements);
+  // console.log(navElements);
+
   return (
     <Layout>
       <Sider

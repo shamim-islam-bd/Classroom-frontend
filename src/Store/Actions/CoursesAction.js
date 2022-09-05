@@ -2,7 +2,7 @@ import axios from 'axios';
 // import { id } from 'useParams';
 
 // create redux course action 
-import { ALL_COURSE_FAIL, ALL_COURSE_REQUEST, ALL_COURSE_SUCCESS, CLEAR_ERRORS } from "../userConstant/CourseConstant.js";
+import { ALL_COURSE_FAIL, ALL_COURSE_REQUEST, ALL_COURSE_SUCCESS, CLEAR_ERRORS } from "../constants/CourseConstant.js";
 
 
 // Geting All Courses
