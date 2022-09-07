@@ -1,45 +1,68 @@
 import { Col, DatePicker, Form, Input, Row, Select, TimePicker } from "antd";
 import axios from "axios";
-import React, { useState } from "react";
-const { RangePicker } = DatePicker;
+import React, { useEffect, useState } from "react";
+import { useAlert } from "react-alert";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  createStudentClassRequest,
+  deleteStudentClassRequest,
+} from "../../../../Store/Actions/StudentClassReqAction";
+import { clearErrors } from "../../../../Store/Actions/userActions";
+import {
+  hideLoading,
+  showLoading,
+} from "../../../../Store/reducers/alertSlice";
+
+// const { RangePicker } = DatePicker;
 
 export default function ClassRequest() {
+  const alert = useAlert();
+  const dispatch = useDispatch();
   const [errorMessage, setErrorMessage] = useState("");
 
-  const onFinish = (values) => {
-    // console.log('Received values of form: ', values);
-    axios
+  const { user, error, isAuthenticated } = useSelector((state) => state.user);
+
+  const { AllStudentClassRequest } = useSelector(
+    (state) => state.ClassReqByStudent
+  );
+  // console.log("frm classreq student: ", createClassRequest);
+
+  dispatch(showLoading());
+
+  const onFinish = async (values) => {
+    // const onFinish = (values) => { values}
+    await axios
       .post("/student/makeclassRequest", values)
       .then((res) => {
-        console.log(res);
+        dispatch(hideLoading());
+        alert.success("You are successfully logged in");
+        dispatch(createStudentClassRequest(values));
       })
       .catch((err) => {
         console.log(err);
-        setErrorMessage(err.response.data.message);
+        dispatch(hideLoading());
+        setErrorMessage(err.res?.data.message);
       });
   };
 
+  // delete class request useing id from database
+  const deleteClassRequest = async (id) => {
+    await axios
+      .delete(`/student/deleteClassRequest/${id}`)
+      .then((res) => {
+        console.log(res.data);
+        dispatch(deleteStudentClassRequest(id));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
-  
-  // geting class histories from student database 
-  // const [classHistory, setClassHistory] = useState([]);
-
-  // const getClassHistory = () => {
-  //   axios
-  //     .get("/student/getClasshistory")
-  //     .then((res) => {
-  //       console.log(res);
-  //       setClassHistory(res.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
-
-
-
-
-
+  useEffect(() => {
+    if (error) {
+      dispatch(clearErrors());
+    }
+  }, [dispatch, error, AllStudentClassRequest]);
 
   return (
     <div className="mt-10">
@@ -249,7 +272,7 @@ export default function ClassRequest() {
 
                   <Form.Item>
                     <button
-                      htmlType="submit"
+                      htmltype="submit"
                       type="submit"
                       class="flex items-center justify-center w-full px-10 py-4 text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-blue-600 rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                     >
@@ -263,10 +286,41 @@ export default function ClassRequest() {
         </Col>
         <Col span={24} sm={24} xm={24} md={24} lg={12}>
           <h2 class="text-2xl text-center font-extrabold text-neutral-600 mb-8">
-            Class Requst Events
+            My Requsted Classes
           </h2>
-          <div>
-            <div>
+          <div className="overflow-scroll">
+            <div className="relative">
+              {AllStudentClassRequest.filter(
+                (item) => item.student === user._id
+              ).map((item) => (
+                <div
+                  className="p-4 border m-2 text-sm flex justify-between"
+                  key={item._id}
+                >
+                  <div>
+                    <p className="font-semibold">Title: {item.title}</p>
+                    <p className="">Price: {item.price} $</p>
+                    <p className="my-2">
+                      category:{" "}
+                      <span className="bg-green-200 px-1 rounded">
+                        {item.category}
+                      </span>
+                    </p>
+                    <p>Created At: {item.date}</p>
+                  </div>
+                  <div className="text-end">
+                    <i
+                      onClick={() => {
+                        deleteClassRequest(item._id);
+                      }}
+                      class="ri-delete-bin-6-line text-2xl cursor-pointer text-red-600"
+                    ></i>
+                    <p className="p-2 bg-sky-100 text-[12px] rounded-sm mt-5">
+                      {item.status}
+                    </p>
+                  </div>
+                </div>
+              ))}
               <img src="" alt="" srcset="" />
             </div>
           </div>

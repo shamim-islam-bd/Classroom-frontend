@@ -1,6 +1,6 @@
 import {
     CLEAR_ERRORS, LOAD_USER_FAIL, LOAD_USER_REQUEST, LOAD_USER_SUCCESS,
-    LOGIN_FAIL, LOGIN_REQUEST, LOGIN_SUCCESS, REGISTER_FAIL,
+    LOGIN_FAIL, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT_FAIL, LOGOUT_SUCCESS, REGISTER_FAIL,
     REGISTER_REQUEST, REGISTER_SUCCESS
 } from "../constants/userConstant";
 
@@ -53,6 +53,19 @@ export const userReducer = (state= initialstates, action)=>{
                user: null,
                error: action.payload
             };
+        case LOGOUT_SUCCESS:
+            return{
+                loading: false,
+                isAuthenticated: false,
+                user: null,
+                error: null
+            };
+        case LOGOUT_FAIL:
+            return{
+                ...state,
+                error: action.payload
+            };
+            
         case CLEAR_ERRORS:
             return{
                ...state,

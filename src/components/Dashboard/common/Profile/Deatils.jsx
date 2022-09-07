@@ -17,7 +17,7 @@ export default function Deatils() {
           />
           <div class="text-center space-y-2 sm:text-left">
             <div class="space-y-0.5 mb-10">
-              <p class="text-lg text-black font-semibold">Shamim Islam</p>
+              <p class="text-lg text-black font-semibold">{user.name}</p>
               <p class="text-slate-500 font-medium">
                 Studying Bsc Engineering in CSE
               </p>

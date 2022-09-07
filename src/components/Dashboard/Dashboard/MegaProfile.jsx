@@ -1,37 +1,48 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useAlert } from "react-alert";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
+import { logoutAction } from "../../../Store/Actions/userActions";
 
 export default function MegaProfile() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const alert = useAlert();
 
   let avater = "https://cdn-icons-png.flaticon.com/512/1053/1053244.png?w=360";
 
   const { user } = useSelector((state) => state.user);
-  console.log("User from Profile: ", user.avader?.url);
+  // console.log("User from Profile: ", user.avader?.url);
+
+  const logoutHandler = () => {
+    dispatch(logoutAction());
+    localStorage.removeItem("token");
+    alert.success("logged out successfully");
+    navigate("/login");
+  };
 
   const items = [
     {
       key: "2",
-      link: "Past-Lessons",
+      link: "/dashboard/profile/past-Lessons",
       label: "Past Lessons",
       icon: <i class="ri-file-text-line mr-1"></i>,
     },
     {
       key: "3",
-      link: "favorites",
+      link: "/dashboard/profile/favorites",
       label: "Favorites",
       icon: <i class="ri-heart-add-line"></i>,
     },
     {
       key: "4",
-      link: "bookmark",
+      link: "/dashboard/profile/bookmarks",
       label: "Bookmark",
       icon: <i class="ri-bookmark-3-line"></i>,
     },
     {
       key: "5",
-      link: "become-Tuitor",
+      link: "/dashboard/profile/become-tuitor",
       label: "Become a Tuitor",
       icon: <i class="ri-user-voice-line"></i>,
     },
@@ -47,7 +58,8 @@ export default function MegaProfile() {
         />
         <div>
           <p className=" py-1">{user.name}</p>
-          <NavLink to="/profile">
+          <p className="text-sm font-thin text-[13px]">{user.role}</p>
+          <NavLink to="/dashboard/profile">
             <button class="btn-primary">View Profile</button>
           </NavLink>
           <hr className="my-4" />
@@ -60,11 +72,11 @@ export default function MegaProfile() {
               </ul>
             </div>
           ))}
-          <NavLink to="/logout">
-            <button class="btn-primary">
-              <i class="ri-logout-circle-r-line"></i> Logout
-            </button>
-          </NavLink>
+          {/* <NavLink to="/logout"> */}
+          <button onClick={() => logoutHandler()} class="btn-primary">
+            <i class="ri-logout-circle-r-line"></i> Logout
+          </button>
+          {/* </NavLink> */}
         </div>
       </div>
     </div>

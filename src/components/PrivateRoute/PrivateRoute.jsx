@@ -11,6 +11,7 @@ function PrivateRoute({ children }) {
   // const dispatch = useDispatch();
 
   const token = localStorage.getItem("token");
+  // console.log("token frm Pvt: ", token);
 
   if (!token) {
     // return <Navigate to="/login" replace />;

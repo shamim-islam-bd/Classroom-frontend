@@ -1,6 +1,8 @@
 import axios from 'axios';
 import {
     CLEAR_ERRORS, LOGIN_FAIL, LOGIN_REQUEST, LOGIN_SUCCESS,
+    LOGOUT_FAIL,
+    LOGOUT_SUCCESS,
     REGISTER_FAIL, REGISTER_REQUEST, REGISTER_SUCCESS
 } from "../constants/userConstant";
 
@@ -47,6 +49,22 @@ export const loginAction = (userdata) => async(dispatch)=>{
     } catch (error) {
         dispatch({
             type: LOGIN_FAIL,
+            payload: error.message
+        })
+    }
+}
+
+
+// logout Action
+export const logoutAction = () => async(dispatch)=>{
+    try {
+        await axios.get('/user/logout');
+        dispatch({
+            type: LOGOUT_SUCCESS,
+        })
+    } catch (error) {
+        dispatch({
+            type: LOGOUT_FAIL,
             payload: error.message
         })
     }

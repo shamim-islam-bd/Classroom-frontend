@@ -17,7 +17,7 @@ const persistConfig = {
    }
 
 const rootReducer = combineReducers({
-   StudentClassReq: StudentClassReqReducer,
+   ClassReqByStudent: StudentClassReqReducer,
    alerts: alertSlice.reducer,
    user: userReducer,
    allCourse : CourseReducer,

@@ -24,7 +24,9 @@ const options = {
 // axios.defaults.withCredentials = true;
 
 // axios.defaults.headers.common["Authorization"] = `Bearer ${document.cookie}`;
-axios.defaults.headers.common["Authorization"] = `Bearer ${localStorage.getItem("token")}`;
+axios.defaults.headers.common["Authorization"] = `Bearer ${localStorage.getItem(
+  "token"
+)}`;
 
 // axios.defaults.baseURL = "https://classroommern.herokuapp.com";
 axios.defaults.baseURL = "http://localhost:5000";

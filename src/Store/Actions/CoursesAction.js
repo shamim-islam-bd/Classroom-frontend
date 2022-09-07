@@ -11,11 +11,11 @@ export const getAllCourses = () => {
         try{
             dispatch({ type: ALL_COURSE_REQUEST });
             const {data}  = await axios.get('http://localhost:5000/allcourses');
-            // console.log('course actions', data);
+            // console.log('course actions', data.courses );
 
              dispatch({
                 type: ALL_COURSE_SUCCESS,
-                payload: data,
+                payload: data.courses,                
             })
         }catch(err){
              dispatch({

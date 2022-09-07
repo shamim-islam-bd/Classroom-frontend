@@ -13,3 +13,7 @@ req.user.id / req.user.role (this is currently login user.)
 task ------------
 student can see which teacher is on online now.
 login/signup/payment button k disable korte hobe akbar click korar por (untill login process).
+
+   -------Todo----------
+1. Teacher should accpet class request.
+2. when student make a class reques it'll be stored in student histories. (Solved)
