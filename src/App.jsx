@@ -13,6 +13,7 @@ import SessionRoom from "./components/Dashboard/Student/SessionRoom/SessionRoom"
 import AllCourses from "./components/Dashboard/Teacher/AllCourses/AllCourses";
 import ClassScheduling from "./components/Dashboard/Teacher/ClassScheduling/ClassScheduling";
 import CourseDetails from "./components/Dashboard/Teacher/CourseDetails/CourseDetails";
+import CreateCourse from "./components/Dashboard/Teacher/CreateCourse/CreateCourse";
 import LiveClass from "./components/Dashboard/Teacher/LiveClass/LiveClass";
 import LiveStream from "./components/Dashboard/Teacher/LiveStream/LiveStream";
 import RequestedClasses from "./components/Dashboard/Teacher/RequestedClasses/RequestedClasses";
@@ -58,6 +59,7 @@ function App() {
             <Route path="lessons" element={<Lessons />} />
             <Route path="classScheduling" element={<ClassScheduling />} />
             <Route path="classroom" element={<Classroom />} />
+            <Route path="create-course" element={<CreateCourse />} />
             <Route path="liveclass" element={<LiveClass />} />
             <Route path="class-requests" element={<ClassRequest />} />
             <Route path="saved-courses" element={<SavedCourses />} />

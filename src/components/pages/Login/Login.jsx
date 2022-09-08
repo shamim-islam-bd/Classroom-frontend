@@ -14,7 +14,7 @@ export default function Login() {
   const [errorMessage, setErrorMessage] = useState("");
   const { register, handleSubmit, errors } = useForm();
   const navigate = useNavigate();
-  const { loading } = useSelector((state) => state.alerts);
+  const { loading } = useSelector((state) => state.user.alerts);
   // console.log(loading);
 
   const { user, error, isAuthenticated } = useSelector((state) => state.user);

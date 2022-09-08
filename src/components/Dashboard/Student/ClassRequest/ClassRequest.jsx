@@ -21,19 +21,35 @@ export default function ClassRequest() {
   const [errorMessage, setErrorMessage] = useState("");
 
   const { user, error, isAuthenticated } = useSelector((state) => state.user);
+  const userId = user._id
 
   const { AllStudentClassRequest } = useSelector(
     (state) => state.ClassReqByStudent
   );
-  // console.log("frm classreq student: ", createClassRequest);
+  // console.log("frm classreq student: ", AllStudentClassRequest);
+
+  // find current user class request from database and set it to redux store
+  useEffect(() => {
+    if (isAuthenticated) {
+      axios
+        .get(`/students-Class-Request`)
+        .then((res) => {
+          // console.log("res.data: ", res.data);
+          dispatch(createStudentClassRequest(res.data));
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }, [dispatch, isAuthenticated]);
+
 
   dispatch(showLoading());
-
   const onFinish = async (values) => {
-    // const onFinish = (values) => { values}
     await axios
       .post("/student/makeclassRequest", values)
       .then((res) => {
+        console.log("frm clsreq: ", res.data);
         dispatch(hideLoading());
         alert.success("You are successfully logged in");
         dispatch(createStudentClassRequest(values));
@@ -62,7 +78,7 @@ export default function ClassRequest() {
     if (error) {
       dispatch(clearErrors());
     }
-  }, [dispatch, error, AllStudentClassRequest]);
+  }, [dispatch, error]);
 
   return (
     <div className="mt-10">

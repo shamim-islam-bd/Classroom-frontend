@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {
-    CREATE_STUDENT_CLASS_REQUEST, CREATE_STUDENT_CLASS_REQUEST_DELETE, CREATE_STUDENT_CLASS_REQUEST_FAIL, DELETE_STUDENT_CLASS_REQUEST, DELETE_STUDENT_CLASS_REQUEST_FAIL, GET_ALL_STUDENT_CLASS_REQUEST, GET_ALL_STUDENT_CLASS_REQUEST_FAIL, GET_SINGLE_STUDENT_CLASS_REQUEST, GET_SINGLE_STUDENT_CLASS_REQUEST_FAIL, STUDENT_CLASS_REQUEST_ERROR, UPDATE_STUDENT_CLASS_REQUEST, UPDATE_STUDENT_CLASS_REQUEST_FAIL
+    CREATE_STUDENT_CLASS_REQUEST, CREATE_STUDENT_CLASS_REQUEST_FAIL, DELETE_STUDENT_CLASS_REQUEST, DELETE_STUDENT_CLASS_REQUEST_FAIL, GET_ALL_STUDENT_CLASS_REQUEST, GET_ALL_STUDENT_CLASS_REQUEST_FAIL, GET_SINGLE_STUDENT_CLASS_REQUEST, GET_SINGLE_STUDENT_CLASS_REQUEST_FAIL, STUDENT_CLASS_REQUEST_ERROR, UPDATE_STUDENT_CLASS_REQUEST, UPDATE_STUDENT_CLASS_REQUEST_FAIL
 } from '../constants/StudentClassReqConstant';
 
 
@@ -8,7 +8,7 @@ import {
 export const getAllStudentClassRequest = () => async (dispatch) => {
     try {
         const res = await axios.get('/students-Class-Request');
-        // console.log("from Actions allstudentClassReq: ", res.data.studentClassRequest);
+        console.log("from Actions allstudentClassReq: ", res.data.studentClassRequest);
 
         dispatch({
             type: GET_ALL_STUDENT_CLASS_REQUEST,
@@ -59,9 +59,12 @@ export const createStudentClassRequest = (values) => async (dispatch) => {
 }
 
 
-export const updateStudentClassRequest = (id, studentClassRequest) => async (dispatch) => {
+// update student class request by status
+export const updateStudentClassRequest = (id) => async (dispatch) => {
     try {
-        const res = await axios.put(`/students-Class-Request/${id}`, studentClassRequest);
+        const res = await axios.put(`/student/classRequest/${id}`);
+        console.log("update Status From Redux Action :" , res.data);
+
         dispatch({
             type: UPDATE_STUDENT_CLASS_REQUEST,
             payload: res.data

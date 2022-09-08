@@ -1,5 +1,5 @@
-import { applyMiddleware, combineReducers, createStore } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
+import { configureStore } from '@reduxjs/toolkit';
+import { combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import { persistReducer } from 'reduxjs-toolkit-persist';
 import storage from 'reduxjs-toolkit-persist/lib/storage';
@@ -9,26 +9,34 @@ import { StudentClassReqReducer } from './reducers/StudentClassReqReducer';
 // import { userSlice } from './reducers/userSlice';
 import { userReducer } from './reducers/userReducer';
 
-const middleware = [thunk];
+// const middleware = [thunk];
 
 const persistConfig = {
       key: 'root',
       storage,
    }
 
-const rootReducer = combineReducers({
-   ClassReqByStudent: StudentClassReqReducer,
-   alerts: alertSlice.reducer,
+const Reducer = combineReducers({
    user: userReducer,
-   allCourse : CourseReducer,
-   CourseDetails: SingleCourseReducer
+   alerts: alertSlice.reducer,
 })
  
-const persistedReducer = persistReducer(persistConfig, rootReducer)
+const persistedReducer = persistReducer(persistConfig, Reducer)
+
+export const store = configureStore({
+      reducer:{
+         user: persistedReducer,
+         ClassReqByStudent: StudentClassReqReducer,
+         allCourse : CourseReducer,
+         CourseDetails: SingleCourseReducer,
+         devTools: process.env.NODE_ENV !== 'production',
+         middleware: [thunk]
+      }
+  })
 
 
 
-export const store = createStore(
-   persistedReducer,
-   composeWithDevTools(applyMiddleware(...middleware))
- );
+// export const store = createStore(
+//    persistedReducer,
+//    composeWithDevTools(applyMiddleware(...middleware))
+//  );

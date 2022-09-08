@@ -18,7 +18,7 @@ export default function AllCourses() {
   const { Courses, error } = useSelector((state) => state.allCourse);
   // console.log(Courses);
 
-  const { loading } = useSelector((state) => state.alerts);
+  const { loading } = useSelector((state) => state.user.alerts);
   // console.log(loading);
 
   useEffect(() => {

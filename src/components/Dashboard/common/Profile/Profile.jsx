@@ -49,9 +49,14 @@ export default function Profile() {
             </TabPane>
           </>
         ) : (
-          <TabPane tab="Passed Lessons" key="5">
-            <PassedLesson />
-          </TabPane>
+          <>
+            <TabPane tab="Passed Lessons" key="5">
+              <PassedLesson />
+            </TabPane>
+            <TabPane tab="Notifications" key="7">
+              <Notifications />
+            </TabPane>
+          </>
         )}
       </Tabs>
     </div>

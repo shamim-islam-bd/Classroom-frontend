@@ -21,6 +21,12 @@
   .btn-primary {
     @apply bg-sky-500 py-2 px-5 mt-5 rounded-full hover:text-white hover:bg-sky-700 hover:bg-sky-600 active:bg-sky-700 focus:outline-none focus:ring focus:ring-sky-300;
   }
+  .btn-confirm {
+    @apply bg-sky-500 px-3 mt-5 rounded-md hover:text-white hover:bg-sky-700 hover:bg-sky-600 active:bg-sky-700 focus:outline-none focus:ring focus:ring-sky-300;
+  }
+  .btn-reject {
+    @apply bg-gray-200 py-1 px-5 mt-5 rounded-md hover:text-white hover:bg-gray-700 hover:bg-gray-300 active:bg-gray-400 focus:outline-none focus:ring focus:ring-sky-300;
+  }
   .upload-pic-input {
     @apply block w-full text-sm text-slate-500
     file:mr-4 file:py-2 file:px-4

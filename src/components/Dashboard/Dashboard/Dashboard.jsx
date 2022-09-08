@@ -16,7 +16,7 @@ export default function Dashboard() {
     setProfileShow(!profileShow);
   };
 
-  const { user } = useSelector((state) => state.user);
+  const { user } = useSelector((state) => state.user.user);
   // console.log("From Dashboard", user);
 
   useEffect(() => {
@@ -38,7 +38,7 @@ export default function Dashboard() {
       key: "3",
       icon: "ri-group-fill",
       link: "session-room",
-      role: ["student", "teacher"],
+      role: ["student"],
       label: "Session Room",
     },
     {
@@ -48,13 +48,13 @@ export default function Dashboard() {
       role: ["student", "teacher"],
       label: "Course Feed",
     },
-    // {
-    //   key: "5",
-    //   icon: "ri-group-fill",
-    //   link: "classroom",
-    //   role: ["student"],
-    //   label: "Classroom",
-    // },
+    {
+      key: "14",
+      icon: "ri-group-fill",
+      link: "create-course",
+      role: ["teacher"],
+      label: "Create Course",
+    },
     // {
     //   key: "6",
     //   icon: "ri-user-fill",
@@ -66,7 +66,7 @@ export default function Dashboard() {
       key: "7",
       icon: "ri-play-list-add-line",
       link: "class-requests",
-      role: ["student", "teacher"],
+      role: ["student"],
       label: "Class Request",
     },
     {
@@ -108,12 +108,12 @@ export default function Dashboard() {
       key: "13",
       icon: "ri-money-dollar-box-line",
       link: "reqclassfeed",
-      role: ["teacher"],
+      role: ["teacher", "student"],
       label: "Requested Class",
     },
   ];
 
-  const role = user.role
+  const role = user.role;
   const navElements = items.filter((item) =>
     item.role.find((info) => info == role)
   );
