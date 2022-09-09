@@ -11,6 +11,7 @@ import PaymentInfo from "./components/Dashboard/Student/PaymentInfo/PaymentInfo"
 import SavedCourses from "./components/Dashboard/Student/SavedCourses/SavedCourses";
 import SessionRoom from "./components/Dashboard/Student/SessionRoom/SessionRoom";
 import AllCourses from "./components/Dashboard/Teacher/AllCourses/AllCourses";
+import AllTeacher from "./components/Dashboard/Teacher/AllTeacher/AllTeacher";
 import ClassScheduling from "./components/Dashboard/Teacher/ClassScheduling/ClassScheduling";
 import CourseDetails from "./components/Dashboard/Teacher/CourseDetails/CourseDetails";
 import CreateCourse from "./components/Dashboard/Teacher/CreateCourse/CreateCourse";
@@ -24,10 +25,10 @@ import Signup from "./components/pages/Signup/Signup";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 
 function App() {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   // const { loading } = useSelector((state) => state.alerts);
 
-  const { user } = useSelector((state) => state.user);
+  // const { user } = useSelector((state) => state.user);
   // const teacher = user.role === "teacher";
   // const student = user.role === "student";
   // const admin = user.role === "admin";
@@ -57,6 +58,7 @@ function App() {
             <Route index path="session-room" element={<SessionRoom />} />
             <Route path="reqclassfeed" element={<RequestedClasses />} />
             <Route path="lessons" element={<Lessons />} />
+            <Route path="teachers" element={<AllTeacher />} />
             <Route path="classScheduling" element={<ClassScheduling />} />
             <Route path="classroom" element={<Classroom />} />
             <Route path="create-course" element={<CreateCourse />} />

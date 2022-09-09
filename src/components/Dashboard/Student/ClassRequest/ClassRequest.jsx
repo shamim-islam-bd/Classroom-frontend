@@ -3,6 +3,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import {
   createStudentClassRequest,
   deleteStudentClassRequest,
@@ -19,30 +20,17 @@ export default function ClassRequest() {
   const alert = useAlert();
   const dispatch = useDispatch();
   const [errorMessage, setErrorMessage] = useState("");
+  const [ClassRequest, setClassRequest] = useState([]);
 
-  const { user, error, isAuthenticated } = useSelector((state) => state.user);
-  const userId = user._id
+  const { user, error, isAuthenticated } = useSelector(
+    (state) => state.user.user
+  );
+  const userId = user._id;
 
   const { AllStudentClassRequest } = useSelector(
     (state) => state.ClassReqByStudent
   );
   // console.log("frm classreq student: ", AllStudentClassRequest);
-
-  // find current user class request from database and set it to redux store
-  useEffect(() => {
-    if (isAuthenticated) {
-      axios
-        .get(`/students-Class-Request`)
-        .then((res) => {
-          // console.log("res.data: ", res.data);
-          dispatch(createStudentClassRequest(res.data));
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
-  }, [dispatch, isAuthenticated]);
-
 
   dispatch(showLoading());
   const onFinish = async (values) => {
@@ -74,11 +62,23 @@ export default function ClassRequest() {
       });
   };
 
+  // geting All class requsest for loggin student
+  useEffect(() => {
+    axios.get("/students-Class-Request").then((res) => {
+      const result = res.data.studentClassRequest.filter(
+        (item) => item.student === userId
+      );
+      setClassRequest(result);
+    });
+  }, [userId]);
+
   useEffect(() => {
     if (error) {
       dispatch(clearErrors());
     }
   }, [dispatch, error]);
+
+  //  const status = "pending";
 
   return (
     <div className="mt-10">
@@ -306,13 +306,12 @@ export default function ClassRequest() {
           </h2>
           <div className="overflow-scroll">
             <div className="relative">
-              {AllStudentClassRequest.filter(
-                (item) => item.student === user._id
-              ).map((item) => (
+              {ClassRequest.map((item) => (
                 <div
                   className="p-4 border m-2 text-sm flex justify-between"
                   key={item._id}
                 >
+                  {console.log(item)}
                   <div>
                     <p className="font-semibold">Title: {item.title}</p>
                     <p className="">Price: {item.price} $</p>
@@ -331,17 +330,38 @@ export default function ClassRequest() {
                       }}
                       class="ri-delete-bin-6-line text-2xl cursor-pointer text-red-600"
                     ></i>
-                    <p className="p-2 bg-sky-100 text-[12px] rounded-sm mt-5">
-                      {item.status}
-                    </p>
+                    <div className="flex  text-sm">
+                      {item.status === "pending" ? (
+                        <p className="text-yellow-500 rounded-sm mt-5 p-2">
+                          Pending
+                        </p>
+                      ) : (
+                        <>
+                          <Link to="/dashboard/session-room">
+                            <button className="btn-profile mt-5">
+                              View Teacher
+                            </button>
+                          </Link>
+                        </>
+                      )}
+                    </div>
                   </div>
                 </div>
               ))}
-              <img src="" alt="" srcset="" />
+              {/* <img src="" alt="" srcSet="" /> */}
             </div>
           </div>
         </Col>
       </Row>
     </div>
   );
+}
+
+{
+  /*                <p className="p-2 bg-sky-100 text-[12px] rounded-sm mt-5">
+                       {item.status}
+                     </p> */
+}
+{
+  /* <button className="btn-confirm text-white">Teacher Profile</button> */
 }

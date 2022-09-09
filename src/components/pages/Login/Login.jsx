@@ -14,10 +14,10 @@ export default function Login() {
   const [errorMessage, setErrorMessage] = useState("");
   const { register, handleSubmit, errors } = useForm();
   const navigate = useNavigate();
-  const { loading } = useSelector((state) => state.user.alerts);
+  // const { loading } = useSelector((state) => state.login.alerts);
   // console.log(loading);
 
-  const { user, error, isAuthenticated } = useSelector((state) => state.user);
+  const { error, isAuthenticated } = useSelector((state) => state.auth);
   // console.log(user, error, isAuthenticated);
 
   useEffect(() => {
@@ -83,7 +83,7 @@ export default function Login() {
                             stroke="currentColor"
                           >
                             <path
-                              stroke-linecap="round"
+                              strokeLinecap="round"
                               stroke-linejoin="round"
                               stroke-width="2"
                               d="M14 5l7 7m0 0l-7 7m7-7H3"

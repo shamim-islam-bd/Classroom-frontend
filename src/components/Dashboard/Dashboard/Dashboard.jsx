@@ -16,14 +16,14 @@ export default function Dashboard() {
     setProfileShow(!profileShow);
   };
 
-  const { user } = useSelector((state) => state.user.user);
-  // console.log("From Dashboard", user);
+  const { auth } = useSelector((state) => state);
+  console.log("From Dashboard", auth);
 
   useEffect(() => {
-    if (!user) {
+    if (!auth) {
       navigate("/login");
     }
-  }, [user, navigate]);
+  }, [auth, navigate]);
 
   // student
   const items = [
@@ -55,13 +55,13 @@ export default function Dashboard() {
       role: ["teacher"],
       label: "Create Course",
     },
-    // {
-    //   key: "6",
-    //   icon: "ri-user-fill",
-    //   link: "lessons",
-    //   role: ["student"],
-    //   label: "Lessons",
-    // },
+    {
+      key: "15",
+      icon: "ri-group-fill",
+      link: "teachers",
+      role: ["student"],
+      label: "Teachers",
+    },
     {
       key: "7",
       icon: "ri-play-list-add-line",
@@ -108,12 +108,12 @@ export default function Dashboard() {
       key: "13",
       icon: "ri-money-dollar-box-line",
       link: "reqclassfeed",
-      role: ["teacher", "student"],
+      role: ["teacher"],
       label: "Requested Class",
     },
   ];
 
-  const role = user.role;
+  const role = auth.role;
   const navElements = items.filter((item) =>
     item.role.find((info) => info == role)
   );
@@ -180,7 +180,7 @@ export default function Dashboard() {
                 <img
                   onClick={ToggleProfile}
                   className="profilepic cursor-pointer shadow-lg mx-auto h-8 rounded-full"
-                  src={user.avader?.url ? user.avader?.url : avater}
+                  src={auth.avader?.url ? auth.avader?.url : avater}
                   alt=""
                 />
                 {profileShow ? <MegaProfile /> : ""}

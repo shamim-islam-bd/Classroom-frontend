@@ -12,13 +12,13 @@ import PassedLesson from "./PassedLesson";
 const { TabPane } = Tabs;
 
 export default function Profile() {
-  const { user } = useSelector((state) => state.user);
-  const role = user.role;
+  const { auth } = useSelector((state) => state.auth.login);
+  const role = auth.role;
 
   axios
     .post("/user/profile")
     .then((res) => {
-      console.log("From Profile: ", res.data.user);
+      console.log("From Profile: ", res.data);
     })
     .catch((err) => {
       console.log(err);

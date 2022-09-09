@@ -3,7 +3,7 @@ import { Navigate } from "react-router-dom";
 
 function PrivateRoute({ children }) {
   // const navigate = useNavigate();
-  const { user } = useSelector((state) => state.user);
+  // const { user } = useSelector((state) => state.user);
 
   // const { isAuthenticated, user } = useSelector((state) => state.user);
   // console.log("From Private Route: ", user, isAuthenticated);

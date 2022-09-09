@@ -39,11 +39,11 @@ export const loginAction = (userdata) => async(dispatch)=>{
             headers: { 'Content-Type': 'application/json' },
         }
         const { data } = await axios.post('/user/login', userdata, config);
-        // console.log('from loginAction:', data);
+        // console.log('from loginAction:', data.auth);
 
         dispatch({
             type: LOGIN_SUCCESS,
-            payload: data.user,
+            payload: data.auth,
         })
 
     } catch (error) {

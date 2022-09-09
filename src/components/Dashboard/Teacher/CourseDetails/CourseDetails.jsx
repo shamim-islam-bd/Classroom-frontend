@@ -50,7 +50,6 @@ export default function CourseDetails() {
 
           <div className="CourseDetails">
             <div class="wrapper pt-10 px-8 flex flex-col items-center">
-              {/* <!-- Card--> */}
               <article class="mb-4 break-inside p-6 rounded-xl bg-white dark:bg-slate-800 flex flex-col bg-clip-border sm:w-3/6 w-full">
                 <div class="flex pb-6 items-center justify-between">
                   <div class="flex">

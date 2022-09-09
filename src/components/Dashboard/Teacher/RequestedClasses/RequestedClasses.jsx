@@ -14,7 +14,9 @@ export default function RequestedClasses() {
   const { AllStudentClassRequest, error } = useSelector(
     (state) => state.ClassReqByStudent
   );
-  console.log("frm req classes: ", AllStudentClassRequest);
+  // console.log("frm req classes: ", AllStudentClassRequest);
+
+  const { user, loading } = useSelector((state) => state.user.user);
 
   // get studentclassRequest id from redux store then teacher can make it update its status approved or rejected
 
@@ -25,7 +27,7 @@ export default function RequestedClasses() {
   //get All Student Class Request from database and show it in teacher dashboard and store in redux store
   useEffect(() => {
     dispatch(getAllStudentClassRequest());
-  }, [dispatch, AllStudentClassRequest, error]);
+  }, [dispatch, error]);
 
   const handleConfirm = (id) => {
     axios
@@ -41,7 +43,7 @@ export default function RequestedClasses() {
 
   useEffect(() => {
     dispatch(getAllStudentClassRequest());
-  }, [dispatch]);
+  }, [dispatch, error]);
 
   return (
     <div className="mt-10">
@@ -73,13 +75,22 @@ export default function RequestedClasses() {
               </div>
             </li>
             <div className="flex gap-4">
-              <button
-                onClick={() => handleConfirm(person._id)}
-                className="btn-confirm hover:text-white text-white"
-              >
-                Confirm
-              </button>
-              <button className="btn-reject hover:text-red-700">Reject</button>
+              {person.status === "accepted" ? (
+                <button
+                  // onClick={() => handleConfirm(person._id)}
+                  className="btn-disabled text-white"
+                >
+                  Confirm
+                </button>
+              ) : (
+                <button
+                  onClick={() => handleConfirm(person._id)}
+                  className="btn-confirm hover:text-white text-white"
+                >
+                  Confirm
+                </button>
+              )}
+              <button className="btn-reject hover:text-red-700 ">Hide</button>
             </div>
           </div>
         ))}

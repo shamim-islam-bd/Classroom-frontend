@@ -11,8 +11,8 @@ export default function MegaProfile() {
 
   let avater = "https://cdn-icons-png.flaticon.com/512/1053/1053244.png?w=360";
 
-  const { user } = useSelector((state) => state.user);
-  // console.log("User from Profile: ", user.avader?.url);
+  const { auth } = useSelector((state) => state.auth.login);
+  console.log("From Dashboard", auth);
 
   const logoutHandler = () => {
     dispatch(logoutAction());
@@ -53,12 +53,12 @@ export default function MegaProfile() {
       <div className="z-20 bg-[#0b1120] text-white profilebio rounded-md w-[190px] border text-sm p-4 text-center">
         <img
           class="cursor-pointer mb-2 shadow-lg mx-auto h-14 rounded-full"
-          src={user.avader?.url ? user.avader?.url : avater}
+          src={auth.avader?.url ? auth.avader?.url : avater}
           alt=""
         />
         <div>
-          <p className=" py-1">{user.name}</p>
-          <p className="text-sm font-thin text-[13px]">{user.role}</p>
+          <p className=" py-1">{auth.name}</p>
+          <p className="text-sm font-thin text-[13px]">{auth.role}</p>
           <NavLink to="/dashboard/profile">
             <button class="btn-primary">View Profile</button>
           </NavLink>

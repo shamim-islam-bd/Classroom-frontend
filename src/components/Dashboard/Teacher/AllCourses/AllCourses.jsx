@@ -1,4 +1,5 @@
 // import { Col, Row } from "antd";
+import { Button, Tooltip } from "antd";
 import axios from "axios";
 import React, { useEffect } from "react";
 import { useAlert } from "react-alert";
@@ -59,13 +60,15 @@ export default function AllCourses() {
                     srcSet=""
                   />
                   <div class="flex justify-end">
-                    <svg
-                      class="h-6 w-6 text-white fill-current cursor-pointer absolute top-0 right-0 m-8"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
+                    <Tooltip
+                      className="border-none hover:bg-transparent text-white hover:text-[#2db7f5] text-[24px] h-6 w-6 fill-current cursor-pointer absolute top-0 right-2 m-8"
+                      title="Add to Favorites"
+                      color="#2db7f5"
                     >
-                      <path d="M12.76 3.76a6 6 0 0 1 8.48 8.48l-8.53 8.54a1 1 0 0 1-1.42 0l-8.53-8.54a6 6 0 0 1 8.48-8.48l.76.75.76-.75zm7.07 7.07a4 4 0 1 0-5.66-5.66l-1.46 1.47a1 1 0 0 1-1.42 0L9.83 5.17a4 4 0 1 0-5.66 5.66L12 18.66l7.83-7.83z"></path>
-                    </svg>
+                      <Button>
+                        <i class="ri-heart-line"></i>
+                      </Button>
+                    </Tooltip>
                   </div>
                 </div>
                 <div class="py-3 px-4">

@@ -11,7 +11,7 @@ import {
 const initialstates = {
     isAuthenticated: false,
     // user: user ? user : null,
-    user: null,
+    auth: null,
     isSuccess: false,
     error: false,
     loading: false,
@@ -34,13 +34,13 @@ export const userReducer = (state= initialstates, action)=>{
                ...state,
                loading: false,
                isAuthenticated: true,
-               user: action.payload,
+               auth: action.payload,
             };
         case LOAD_USER_FAIL:
             return{
                 loading: false,
                 isAuthenticated: false,
-                user: null,
+                auth: null,
                 error: action.payload
             };    
         case LOGIN_FAIL:
@@ -50,14 +50,14 @@ export const userReducer = (state= initialstates, action)=>{
                ...state,
                loading: false,
                isAuthenticated: false,
-               user: null,
+               auth: null,
                error: action.payload
             };
         case LOGOUT_SUCCESS:
             return{
                 loading: false,
                 isAuthenticated: false,
-                user: null,
+                auth: null,
                 error: null
             };
         case LOGOUT_FAIL:

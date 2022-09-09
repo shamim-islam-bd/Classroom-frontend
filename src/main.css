@@ -19,7 +19,13 @@
 
 @layer components {
   .btn-primary {
-    @apply bg-sky-500 py-2 px-5 mt-5 rounded-full hover:text-white hover:bg-sky-700 hover:bg-sky-600 active:bg-sky-700 focus:outline-none focus:ring focus:ring-sky-300;
+    @apply bg-sky-500 py-1 px-5 mt-5 rounded-full hover:text-white hover:bg-sky-700 hover:bg-sky-600 active:bg-sky-700 focus:outline-none focus:ring focus:ring-sky-300;
+  }
+  .btn-disabled {
+    @apply bg-gray-300 py-1 px-5 mt-5 rounded-md hover:text-white cursor-not-allowed;
+  }
+  .btn-profile {
+    @apply px-4 py-1 text-sm font-semibold text-sky-900 rounded-full border border-purple-200 hover:text-white hover:bg-sky-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-sky-600 focus:ring-offset-2;
   }
   .btn-confirm {
     @apply bg-sky-500 px-3 mt-5 rounded-md hover:text-white hover:bg-sky-700 hover:bg-sky-600 active:bg-sky-700 focus:outline-none focus:ring focus:ring-sky-300;
@@ -28,6 +34,14 @@
     @apply bg-gray-200 py-1 px-5 mt-5 rounded-md hover:text-white hover:bg-gray-700 hover:bg-gray-300 active:bg-gray-400 focus:outline-none focus:ring focus:ring-sky-300;
   }
   .upload-pic-input {
+    @apply block w-full text-sm text-slate-500
+    file:mr-4 file:py-2 file:px-4
+    file:rounded-full file:border-0
+    file:text-sm file:font-semibold
+    file:bg-violet-50 file:text-violet-700
+    hover:file:bg-violet-100;
+  }
+  .avader-pic {
     @apply block w-full text-sm text-slate-500
     file:mr-4 file:py-2 file:px-4
     file:rounded-full file:border-0
