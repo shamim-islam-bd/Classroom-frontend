@@ -8,7 +8,7 @@ import listPlugin from "@fullcalendar/list";
 import { Col, Layout, Row } from "antd";
 // import { events } from "./data";
 
-export default function ClassScheduling() {
+export default function classNamecheduling() {
   const events = [
     {
       id: 1,
@@ -51,8 +51,8 @@ export default function ClassScheduling() {
 
   return (
     <div className="mt-5 p-1">
-      <h2 class="text-2xl text-center font-extrabold text-neutral-600 my-3 py-3">
-        Class Time Date Scheduling
+      <h2 className="text-2xl text-center font-extrabold text-neutral-600 my-3 py-3">
+        className Time Date Scheduling
       </h2>
       <Layout>
         <Row>

@@ -28,7 +28,7 @@ export default function Message() {
       <a onClick={(e) => e.preventDefault()}>
         <Space>
           <Badge count={5}>
-            <i class="ri-message-2-line m-1"></i>
+            <i className="ri-message-2-line m-1"></i>
           </Badge>
         </Space>
       </a>

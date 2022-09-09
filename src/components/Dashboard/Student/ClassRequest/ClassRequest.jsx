@@ -5,10 +5,10 @@ import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
-  createStudentClassRequest,
-  deleteStudentClassRequest,
-} from "../../../../Store/Actions/StudentClassReqAction";
-import { clearErrors } from "../../../../Store/Actions/userActions";
+  createStudentclassRequest,
+  deleteStudentclassRequest,
+} from "../../../../Store/Actions/StudentclassReqAction";
+import { clearErrors } from "../../../../Store/Actions/authActions";
 import {
   hideLoading,
   showLoading,
@@ -20,17 +20,17 @@ export default function ClassRequest() {
   const alert = useAlert();
   const dispatch = useDispatch();
   const [errorMessage, setErrorMessage] = useState("");
-  const [ClassRequest, setClassRequest] = useState([]);
+  const [classRequest, setclassRequest] = useState([]);
 
   const { user, error, isAuthenticated } = useSelector(
     (state) => state.user.user
   );
   const userId = user._id;
 
-  const { AllStudentClassRequest } = useSelector(
-    (state) => state.ClassReqByStudent
+  const { AllStudentclassRequest } = useSelector(
+    (state) => state.classReqByStudent
   );
-  // console.log("frm classreq student: ", AllStudentClassRequest);
+  // console.log("frm classereq student: ", AllStudentclassRequest);
 
   dispatch(showLoading());
   const onFinish = async (values) => {
@@ -40,7 +40,7 @@ export default function ClassRequest() {
         console.log("frm clsreq: ", res.data);
         dispatch(hideLoading());
         alert.success("You are successfully logged in");
-        dispatch(createStudentClassRequest(values));
+        dispatch(createStudentclassRequest(values));
       })
       .catch((err) => {
         console.log(err);
@@ -49,26 +49,26 @@ export default function ClassRequest() {
       });
   };
 
-  // delete class request useing id from database
-  const deleteClassRequest = async (id) => {
+  // delete className request useing id from database
+  const deleteclassRequest = async (id) => {
     await axios
-      .delete(`/student/deleteClassRequest/${id}`)
+      .delete(`/student/deleteclassRequest/${id}`)
       .then((res) => {
         console.log(res.data);
-        dispatch(deleteStudentClassRequest(id));
+        dispatch(deleteStudentclassRequest(id));
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
-  // geting All class requsest for loggin student
+  // geting All className requsest for loggin student
   useEffect(() => {
-    axios.get("/students-Class-Request").then((res) => {
-      const result = res.data.studentClassRequest.filter(
+    axios.get("/students-class-Request").then((res) => {
+      const result = res.data.studentclassRequest.filter(
         (item) => item.student === userId
       );
-      setClassRequest(result);
+      setclassNameRequest(result);
     });
   }, [userId]);
 
@@ -82,33 +82,33 @@ export default function ClassRequest() {
 
   return (
     <div className="mt-10">
-      {/* <h1 className="text-center font-semibold">ClassRequest</h1> */}
+      {/* <h1 className="text-center font-semibold">classNameRequest</h1> */}
       <Row>
         <Col span={24} sm={24} xm={24} md={24} lg={12}>
-          <div class="items-center">
-            <div class="flex flex-col w-full transition duration-500 ease-in-out transform bg-white">
-              <div class="px-3">
+          <div className="items-center">
+            <div className="flex flex-col w-full transition duration-500 ease-in-out transform bg-white">
+              <div className="px-3">
                 {errorMessage && (
-                  <p class="text-red-500 text-sm">{errorMessage}</p>
+                  <p className="text-red-500 text-sm">{errorMessage}</p>
                 )}
                 <div className="flex justify-between items-center">
-                  <h2 class="text-2xl font-extrabold text-neutral-600 mb-8">
-                    Make class requst form
+                  <h2 className="text-2xl font-extrabold text-neutral-600 mb-8">
+                    Make className requst form
                   </h2>
                 </div>
-                <Form class="space-y-6" onFinish={onFinish}>
+                <Form className="space-y-6" onFinish={onFinish}>
                   <div>
                     <label
                       for="name"
-                      class="block text-sm font-medium text-neutral-600"
+                      className="block text-sm font-medium text-neutral-600"
                     >
                       Title
                     </label>
-                    <Form.Item class="mt-1" name="title">
+                    <Form.Item className="mt-1" name="title">
                       <Input
                         type="title"
                         placeholder="Your title"
-                        class="classReq-input"
+                        className="classNameReq-input"
                       />
                     </Form.Item>
                   </div>
@@ -116,16 +116,16 @@ export default function ClassRequest() {
                   <div>
                     <label
                       for="description"
-                      class="block text-sm font-medium text-neutral-600"
+                      className="block text-sm font-medium text-neutral-600"
                     >
                       {" "}
                       Post Description{" "}
                     </label>
-                    <Form.Item class="mt-1" name="description">
+                    <Form.Item className="mt-1" name="description">
                       <Input.TextArea
                         type="description"
                         placeholder="Your description"
-                        class="classReq-input"
+                        className="classNameReq-input"
                       />
                       {/* {errors.email && <span role="alert">{errors.email.message}</span>} */}
                     </Form.Item>
@@ -134,12 +134,12 @@ export default function ClassRequest() {
                   <div>
                     <label
                       for="level"
-                      class="block text-sm font-medium text-neutral-600"
+                      className="block text-sm font-medium text-neutral-600"
                     >
                       Select Categories
                     </label>
-                    <Form.Item class="mt-1" name="category">
-                      <Select className="classReq-input">
+                    <Form.Item className="mt-1" name="category">
+                      <Select className="classNameReq-input">
                         <Select.Option value="">Select...</Select.Option>
                         <Select.Option value="Web Development">
                           Web Development
@@ -184,16 +184,16 @@ export default function ClassRequest() {
                   <div>
                     <label
                       for="price"
-                      class="block text-sm font-medium text-neutral-600"
+                      className="block text-sm font-medium text-neutral-600"
                     >
                       {" "}
                       Price{" "}
                     </label>
-                    <Form.Item class="mt-1" name="price">
+                    <Form.Item className="mt-1" name="price">
                       <Input
                         type="number"
                         placeholder="Your price"
-                        class="classReq-input"
+                        className="classNameReq-input"
                       />
                       {/* {errors.password && <span role="alert">{errors.password.message}</span>} */}
                     </Form.Item>
@@ -202,13 +202,13 @@ export default function ClassRequest() {
                   <div>
                     <label
                       for="studentSlot"
-                      class="block py-2 text-sm font-medium text-neutral-600"
+                      className="block py-2 text-sm font-medium text-neutral-600"
                     >
                       {" "}
                       StudentSlot{" "}
                     </label>
                     <Form.Item
-                      class="mt-1"
+                      className="mt-1"
                       name="studentSlot"
                       rules={[
                         {
@@ -217,7 +217,7 @@ export default function ClassRequest() {
                         },
                       ]}
                     >
-                      <Select className="classReq-input">
+                      <Select className="classNameReq-input">
                         <Select.Option value="">Select...</Select.Option>
                         <Select.Option value="1">1</Select.Option>
                         <Select.Option value="5">5</Select.Option>
@@ -232,12 +232,12 @@ export default function ClassRequest() {
                   <div>
                     <label
                       for="level"
-                      class="block text-sm font-medium text-neutral-600"
+                      className="block text-sm font-medium text-neutral-600"
                     >
                       Level
                     </label>
-                    <Form.Item class="mt-1" name="level">
-                      <Select className="classReq-input">
+                    <Form.Item className="mt-1" name="level">
+                      <Select className="classNameReq-input">
                         <Select.Option value="">Select...</Select.Option>
                         <Select.Option value="Beginner">Beginner</Select.Option>
                         <Select.Option value="Upper Beginner">
@@ -255,7 +255,7 @@ export default function ClassRequest() {
                     <div>
                       <label
                         for="level"
-                        class="block text-sm font-medium text-neutral-600"
+                        className="block text-sm font-medium text-neutral-600"
                       >
                         Select Date
                       </label>
@@ -271,7 +271,7 @@ export default function ClassRequest() {
                     <div>
                       <label
                         for="level"
-                        class="block text-sm font-medium text-neutral-600"
+                        className="block text-sm font-medium text-neutral-600"
                       >
                         Select Time
                       </label>
@@ -290,7 +290,7 @@ export default function ClassRequest() {
                     <button
                       htmltype="submit"
                       type="submit"
-                      class="flex items-center justify-center w-full px-10 py-4 text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-blue-600 rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                      className="flex items-center justify-center w-full px-10 py-4 text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-blue-600 rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                     >
                       Create Request
                     </button>
@@ -301,12 +301,12 @@ export default function ClassRequest() {
           </div>
         </Col>
         <Col span={24} sm={24} xm={24} md={24} lg={12}>
-          <h2 class="text-2xl text-center font-extrabold text-neutral-600 mb-8">
-            My Requsted Classes
+          <h2 className="text-2xl text-center font-extrabold text-neutral-600 mb-8">
+            My Requsted classNamees
           </h2>
           <div className="overflow-scroll">
             <div className="relative">
-              {ClassRequest.map((item) => (
+              {classRequest.map((item) => (
                 <div
                   className="p-4 border m-2 text-sm flex justify-between"
                   key={item._id}
@@ -326,9 +326,9 @@ export default function ClassRequest() {
                   <div className="text-end">
                     <i
                       onClick={() => {
-                        deleteClassRequest(item._id);
+                        deleteclassRequest(item._id);
                       }}
-                      class="ri-delete-bin-6-line text-2xl cursor-pointer text-red-600"
+                      className="ri-delete-bin-6-line text-2xl cursor-pointer text-red-600"
                     ></i>
                     <div className="flex  text-sm">
                       {item.status === "pending" ? (
@@ -348,20 +348,10 @@ export default function ClassRequest() {
                   </div>
                 </div>
               ))}
-              {/* <img src="" alt="" srcSet="" /> */}
             </div>
           </div>
         </Col>
       </Row>
     </div>
   );
-}
-
-{
-  /*                <p className="p-2 bg-sky-100 text-[12px] rounded-sm mt-5">
-                       {item.status}
-                     </p> */
-}
-{
-  /* <button className="btn-confirm text-white">Teacher Profile</button> */
 }

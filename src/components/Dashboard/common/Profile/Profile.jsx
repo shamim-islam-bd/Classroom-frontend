@@ -1,6 +1,6 @@
 import { Tabs } from "antd";
 import axios from "axios";
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import Activity from "./Activity";
 import BookmarkCourses from "./BookmarkCourses";
@@ -9,20 +9,16 @@ import EditProfile from "./EditProfile";
 import Favorites from "./Favorites";
 import Notifications from "./Notifications";
 import PassedLesson from "./PassedLesson";
+import { loadUserAction } from "../../../../Store/Actions/authActions";
 const { TabPane } = Tabs;
 
 export default function Profile() {
   const { auth } = useSelector((state) => state.auth.login);
   const role = auth.role;
 
-  axios
-    .post("/user/profile")
-    .then((res) => {
-      console.log("From Profile: ", res.data);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  useEffect(() => {
+    loadUserAction();
+  }, [auth]);
 
   return (
     <div>

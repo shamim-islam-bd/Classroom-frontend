@@ -16,7 +16,7 @@ export default function Dashboard() {
     setProfileShow(!profileShow);
   };
 
-  const { auth } = useSelector((state) => state);
+  const { auth } = useSelector((state) => state.auth.login);
   console.log("From Dashboard", auth);
 
   useEffect(() => {
@@ -109,7 +109,7 @@ export default function Dashboard() {
       icon: "ri-money-dollar-box-line",
       link: "reqclassfeed",
       role: ["teacher"],
-      label: "Requested Class",
+      label: "Requested class",
     },
   ];
 
@@ -173,7 +173,7 @@ export default function Dashboard() {
             <div className="flex text-gray-600 items-center justify-around">
               <Message />
               <i className="mx-3 px-1 ri-notification-4-line text-gray-600 "></i>
-              {/* <i class="ri-notification-off-line"></i> */}
+              {/* <i className="ri-notification-off-line"></i> */}
 
               {/*----------- MegaMenu------ */}
               <div>

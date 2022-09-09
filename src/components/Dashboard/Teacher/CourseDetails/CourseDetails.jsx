@@ -49,97 +49,97 @@ export default function CourseDetails() {
           ))} */}
 
           <div className="CourseDetails">
-            <div class="wrapper pt-10 px-8 flex flex-col items-center">
-              <article class="mb-4 break-inside p-6 rounded-xl bg-white dark:bg-slate-800 flex flex-col bg-clip-border sm:w-3/6 w-full">
-                <div class="flex pb-6 items-center justify-between">
-                  <div class="flex">
-                    <a class="inline-block mr-4" href="#">
+            <div className="wrapper pt-10 px-8 flex flex-col items-center">
+              <article className="mb-4 break-inside p-6 rounded-xl bg-white dark:bg-slate-800 flex flex-col bg-clip-border sm:w-3/6 w-full">
+                <div className="flex pb-6 items-center justify-between">
+                  <div className="flex">
+                    <a className="inline-block mr-4" href="#">
                       <img
-                        class="rounded-full max-w-none w-12 h-12"
+                        className="rounded-full max-w-none w-12 h-12"
                         src="https://randomuser.me/api/portraits/men/35.jpg"
                       />
                     </a>
-                    <div class="flex flex-col">
+                    <div className="flex flex-col">
                       <div>
                         <a
-                          class="inline-block text-lg font-bold dark:text-white"
+                          className="inline-block text-lg font-bold dark:text-white"
                           href="#"
                         >
                           Wade Warren
                         </a>
                       </div>
-                      <div class="text-slate-500 dark:text-slate-300 dark:text-slate-400">
+                      <div className="text-slate-500 dark:text-slate-300 dark:text-slate-400">
                         July 17, 2018
                       </div>
                     </div>
                   </div>
                 </div>
-                <h2 class="text-3xl font-extrabold dark:text-white">
+                <h2 className="text-3xl font-extrabold dark:text-white">
                   Web Design templates Selection
                 </h2>
-                <div class="py-4">
-                  <div class="flex justify-between gap-1 mb-1">
-                    <a class="flex" href="#">
+                <div className="py-4">
+                  <div className="flex justify-between gap-1 mb-1">
+                    <a className="flex" href="#">
                       <img
-                        class="max-w-full rounded-tl-lg"
+                        className="max-w-full rounded-tl-lg"
                         src="https://images.pexels.com/photos/92866/pexels-photo-92866.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
                       />
                     </a>
-                    <a class="flex" href="#">
+                    <a className="flex" href="#">
                       <img
-                        class="max-w-full"
+                        className="max-w-full"
                         src="https://images.pexels.com/photos/247929/pexels-photo-247929.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
                       />
                     </a>
-                    <a class="flex" href="#">
+                    <a className="flex" href="#">
                       <img
-                        class="max-w-full rounded-tr-lg"
+                        className="max-w-full rounded-tr-lg"
                         src="https://images.pexels.com/photos/631522/pexels-photo-631522.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
                       />
                     </a>
                   </div>
-                  <div class="flex justify-between gap-1">
-                    <a class="flex" href="#">
+                  <div className="flex justify-between gap-1">
+                    <a className="flex" href="#">
                       <img
-                        class="max-w-full rounded-bl-lg"
+                        className="max-w-full rounded-bl-lg"
                         src="https://images.pexels.com/photos/1429748/pexels-photo-1429748.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
                       />
                     </a>
-                    <a class="flex" href="#">
+                    <a className="flex" href="#">
                       <img
-                        class="max-w-full rounded-br-lg"
+                        className="max-w-full rounded-br-lg"
                         src="https://images.pexels.com/photos/69020/pexels-photo-69020.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
                       />
                     </a>
                   </div>
                 </div>
-                <p class="dark:text-slate-200">
+                <p className="dark:text-slate-200">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                   do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                 </p>
-                <div class="py-4">
-                  <a class="inline-flex items-center" href="#">
-                    <span class="mr-2">
+                <div className="py-4">
+                  <a className="inline-flex items-center" href="#">
+                    <span className="mr-2">
                       <svg
-                        class="fill-rose-600 dark:fill-rose-400"
+                        className="fill-rose-600 dark:fill-rose-400"
                         style="width: 24px; height: 24px;"
                         viewBox="0 0 24 24"
                       >
                         <path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z"></path>
                       </svg>
                     </span>
-                    <span class="text-lg font-bold">34</span>
+                    <span className="text-lg font-bold">34</span>
                   </a>
                 </div>
-                <div class="relative">
+                <div className="relative">
                   <input
-                    class="pt-2 pb-2 pl-3 w-full h-11 bg-slate-100 dark:bg-slate-600 rounded-lg placeholder:text-slate-600 dark:placeholder:text-slate-300 font-medium pr-20"
+                    className="pt-2 pb-2 pl-3 w-full h-11 bg-slate-100 dark:bg-slate-600 rounded-lg placeholder:text-slate-600 dark:placeholder:text-slate-300 font-medium pr-20"
                     type="text"
                     placeholder="Write a comment"
                   />
-                  <span class="flex absolute right-3 top-2/4 -mt-3 items-center">
+                  <span className="flex absolute right-3 top-2/4 -mt-3 items-center">
                     <svg
-                      class="mr-2"
+                      className="mr-2"
                       style="width: 26px; height: 26px;"
                       viewBox="0 0 24 24"
                     >
@@ -149,7 +149,7 @@ export default function CourseDetails() {
                       ></path>
                     </svg>
                     <svg
-                      class="fill-blue-500 dark:fill-slate-50"
+                      className="fill-blue-500 dark:fill-slate-50"
                       style="width: 24px; height: 24px;"
                       viewBox="0 0 24 24"
                     >
@@ -158,42 +158,45 @@ export default function CourseDetails() {
                   </span>
                 </div>
                 {/* <!-- Comments content --> */}
-                <div class="pt-6">
+                <div className="pt-6">
                   {/* <!-- Comment row --> */}
-                  <div class="media flex pb-4">
-                    <a class="mr-4" href="#">
+                  <div className="media flex pb-4">
+                    <a className="mr-4" href="#">
                       <img
-                        class="rounded-full max-w-none w-12 h-12"
+                        className="rounded-full max-w-none w-12 h-12"
                         src="https://randomuser.me/api/portraits/men/82.jpg"
                       />
                     </a>
-                    <div class="media-body">
+                    <div className="media-body">
                       <div>
                         <a
-                          class="inline-block text-base font-bold mr-2"
+                          className="inline-block text-base font-bold mr-2"
                           href="#"
                         >
                           Leslie Alexander
                         </a>
-                        <span class="text-slate-500 dark:text-slate-300">
+                        <span className="text-slate-500 dark:text-slate-300">
                           25 minutes ago
                         </span>
                       </div>
                       <p>Lorem ipsum dolor sit amet, consectetur.</p>
-                      <div class="mt-2 flex items-center">
-                        <a class="inline-flex items-center py-2 mr-3" href="#">
-                          <span class="mr-2">
+                      <div className="mt-2 flex items-center">
+                        <a
+                          className="inline-flex items-center py-2 mr-3"
+                          href="#"
+                        >
+                          <span className="mr-2">
                             <svg
-                              class="fill-rose-600 dark:fill-rose-400"
+                              className="fill-rose-600 dark:fill-rose-400"
                               style="width: 22px; height: 22px;"
                               viewBox="0 0 24 24"
                             >
                               <path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z"></path>
                             </svg>
                           </span>
-                          <span class="text-base font-bold">12</span>
+                          <span className="text-base font-bold">12</span>
                         </a>
-                        <button class="py-2 px-4 font-medium hover:bg-slate-50 dark:hover:bg-slate-700 rounded-lg">
+                        <button className="py-2 px-4 font-medium hover:bg-slate-50 dark:hover:bg-slate-700 rounded-lg">
                           Repply
                         </button>
                       </div>
@@ -201,40 +204,43 @@ export default function CourseDetails() {
                   </div>
                   {/* <!-- End comments row --> */}
                   {/* <!-- comments row --> */}
-                  <div class="media flex pb-4">
-                    <a class="inline-block mr-4" href="#">
+                  <div className="media flex pb-4">
+                    <a className="inline-block mr-4" href="#">
                       <img
-                        class="rounded-full max-w-none w-12 h-12"
+                        className="rounded-full max-w-none w-12 h-12"
                         src="https://randomuser.me/api/portraits/women/76.jpg"
                       />
                     </a>
-                    <div class="media-body">
+                    <div className="media-body">
                       <div>
                         <a
-                          class="inline-block text-base font-bold mr-2"
+                          className="inline-block text-base font-bold mr-2"
                           href="#"
                         >
                           Tina Mills
                         </a>
-                        <span class="text-slate-500 dark:text-slate-300">
+                        <span className="text-slate-500 dark:text-slate-300">
                           3 minutes ago
                         </span>
                       </div>
                       <p>Dolor sit ameteiusmod consectetur adipiscing elit.</p>
-                      <div class="mt-2 flex items-center">
-                        <a class="inline-flex items-center py-2 mr-3" href="#">
-                          <span class="mr-2">
+                      <div className="mt-2 flex items-center">
+                        <a
+                          className="inline-flex items-center py-2 mr-3"
+                          href="#"
+                        >
+                          <span className="mr-2">
                             <svg
-                              class="fill-rose-600 dark:fill-rose-400"
+                              className="fill-rose-600 dark:fill-rose-400"
                               style="width: 22px; height: 22px;"
                               viewBox="0 0 24 24"
                             >
                               <path d="M12.1 18.55L12 18.65L11.89 18.55C7.14 14.24 4 11.39 4 8.5C4 6.5 5.5 5 7.5 5C9.04 5 10.54 6 11.07 7.36H12.93C13.46 6 14.96 5 16.5 5C18.5 5 20 6.5 20 8.5C20 11.39 16.86 14.24 12.1 18.55M16.5 3C14.76 3 13.09 3.81 12 5.08C10.91 3.81 9.24 3 7.5 3C4.42 3 2 5.41 2 8.5C2 12.27 5.4 15.36 10.55 20.03L12 21.35L13.45 20.03C18.6 15.36 22 12.27 22 8.5C22 5.41 19.58 3 16.5 3Z"></path>
                             </svg>
                           </span>
-                          <span class="text-base font-bold">0</span>
+                          <span className="text-base font-bold">0</span>
                         </a>
-                        <button class="py-2 px-4 font-medium hover:bg-slate-50 dark:hover:bg-slate-700 rounded-lg">
+                        <button className="py-2 px-4 font-medium hover:bg-slate-50 dark:hover:bg-slate-700 rounded-lg">
                           Repply
                         </button>
                       </div>
@@ -242,10 +248,10 @@ export default function CourseDetails() {
                   </div>
                   {/* <!-- End comments row --> */}
                   {/* <!-- More comments --> */}
-                  <div class="w-full">
+                  <div className="w-full">
                     <a
                       href="#"
-                      class="py-3 px-4 w-full block bg-slate-100 dark:bg-slate-700 text-center rounded-lg font-medium hover:bg-slate-200 dark:hover:bg-slate-600 transition ease-in-out delay-75"
+                      className="py-3 px-4 w-full block bg-slate-100 dark:bg-slate-700 text-center rounded-lg font-medium hover:bg-slate-200 dark:hover:bg-slate-600 transition ease-in-out delay-75"
                     >
                       Show more comments
                     </a>
@@ -258,22 +264,22 @@ export default function CourseDetails() {
             {/* <!-- End Wrapper--> */}
 
             {/* <!-- Footer--> */}
-            <footer class="w-full flex justify-center flex-col py-4 text-center mt-14">
-              <p class="mb-1">
+            <footer className="w-full flex justify-center flex-col py-4 text-center mt-14">
+              <p className="mb-1">
                 Built by
                 <a
-                  class="font-medium underline"
+                  className="font-medium underline"
                   href="https://codepen.io/frankuxui"
                 >
                   Frank Esteban
                 </a>
               </p>
-              <p class="dark:text-white mb-3">
+              <p className="dark:text-white mb-3">
                 Contact me on the different platforms and social networks
               </p>
-              <div class="flex items-center justify-center">
+              <div className="flex items-center justify-center">
                 <a
-                  class="w-12 h-12 flex justify-center items-center rounded-full hover:bg-slate-300 transition dark:hover:bg-slate-800 dark:text-white"
+                  className="w-12 h-12 flex justify-center items-center rounded-full hover:bg-slate-300 transition dark:hover:bg-slate-800 dark:text-white"
                   href="https://codepen.io/frankuxui"
                   target="__blank"
                 >
@@ -292,7 +298,7 @@ export default function CourseDetails() {
             </svg> */}
                 </a>
                 <a
-                  class="w-12 h-12 flex justify-center items-center rounded-full hover:bg-slate-300 transition dark:hover:bg-slate-800 dark:text-white"
+                  className="w-12 h-12 flex justify-center items-center rounded-full hover:bg-slate-300 transition dark:hover:bg-slate-800 dark:text-white"
                   href="https://codesandbox.io/u/frankuxui"
                   target="__blank"
                 >
@@ -311,7 +317,7 @@ export default function CourseDetails() {
             </svg> */}
                 </a>
                 <a
-                  class="w-12 h-12 flex justify-center items-center rounded-full hover:bg-slate-300 transition dark:hover:bg-slate-800 dark:text-white"
+                  className="w-12 h-12 flex justify-center items-center rounded-full hover:bg-slate-300 transition dark:hover:bg-slate-800 dark:text-white"
                   href="https://github.com/frankuxui"
                   target="__blank"
                 >
@@ -330,7 +336,7 @@ export default function CourseDetails() {
             </svg> */}
                 </a>
                 <a
-                  class="w-12 h-12 flex justify-center items-center rounded-full hover:bg-slate-300 transition dark:hover:bg-slate-800 dark:text-white"
+                  className="w-12 h-12 flex justify-center items-center rounded-full hover:bg-slate-300 transition dark:hover:bg-slate-800 dark:text-white"
                   href="https://twitter.com/frankuxui"
                   target="__blank"
                 >
@@ -349,7 +355,7 @@ export default function CourseDetails() {
             </svg> */}
                 </a>
                 <a
-                  class="w-12 h-12 flex justify-center items-center rounded-full hover:bg-slate-300 transition dark:hover:bg-slate-800 dark:text-white"
+                  className="w-12 h-12 flex justify-center items-center rounded-full hover:bg-slate-300 transition dark:hover:bg-slate-800 dark:text-white"
                   href="https://dribbble.com/frankuxui"
                   target="__blank"
                 >

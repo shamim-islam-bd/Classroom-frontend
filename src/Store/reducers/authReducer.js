@@ -2,7 +2,7 @@ import {
     CLEAR_ERRORS, LOAD_USER_FAIL, LOAD_USER_REQUEST, LOAD_USER_SUCCESS,
     LOGIN_FAIL, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT_FAIL, LOGOUT_SUCCESS, REGISTER_FAIL,
     REGISTER_REQUEST, REGISTER_SUCCESS
-} from "../constants/userConstant";
+} from "../constants/authConstant";
 
  
 // get user from local storage
@@ -18,7 +18,7 @@ const initialstates = {
     message: '',
 }
 
-export const userReducer = (state= initialstates, action)=>{
+export const authReducer = (state= initialstates, action)=>{
     switch (action.type ) {
         case LOGIN_REQUEST:
         case REGISTER_REQUEST:

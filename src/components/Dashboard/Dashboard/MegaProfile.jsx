@@ -2,7 +2,7 @@ import React from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
-import { logoutAction } from "../../../Store/Actions/userActions";
+import { logoutAction } from "../../../Store/Actions/authActions";
 
 export default function MegaProfile() {
   const navigate = useNavigate();
@@ -26,25 +26,25 @@ export default function MegaProfile() {
       key: "2",
       link: "/dashboard/profile/past-Lessons",
       label: "Past Lessons",
-      icon: <i class="ri-file-text-line mr-1"></i>,
+      icon: <i className="ri-file-text-line mr-1"></i>,
     },
     {
       key: "3",
       link: "/dashboard/profile/favorites",
       label: "Favorites",
-      icon: <i class="ri-heart-add-line"></i>,
+      icon: <i className="ri-heart-add-line"></i>,
     },
     {
       key: "4",
       link: "/dashboard/profile/bookmarks",
       label: "Bookmark",
-      icon: <i class="ri-bookmark-3-line"></i>,
+      icon: <i className="ri-bookmark-3-line"></i>,
     },
     {
       key: "5",
       link: "/dashboard/profile/become-tuitor",
       label: "Become a Tuitor",
-      icon: <i class="ri-user-voice-line"></i>,
+      icon: <i className="ri-user-voice-line"></i>,
     },
   ];
 
@@ -52,7 +52,7 @@ export default function MegaProfile() {
     <div>
       <div className="z-20 bg-[#0b1120] text-white profilebio rounded-md w-[190px] border text-sm p-4 text-center">
         <img
-          class="cursor-pointer mb-2 shadow-lg mx-auto h-14 rounded-full"
+          className="cursor-pointer mb-2 shadow-lg mx-auto h-14 rounded-full"
           src={auth.avader?.url ? auth.avader?.url : avater}
           alt=""
         />
@@ -60,7 +60,7 @@ export default function MegaProfile() {
           <p className=" py-1">{auth.name}</p>
           <p className="text-sm font-thin text-[13px]">{auth.role}</p>
           <NavLink to="/dashboard/profile">
-            <button class="btn-primary">View Profile</button>
+            <button className="btn-primary">View Profile</button>
           </NavLink>
           <hr className="my-4" />
           {items.map((item) => (
@@ -73,8 +73,8 @@ export default function MegaProfile() {
             </div>
           ))}
           {/* <NavLink to="/logout"> */}
-          <button onClick={() => logoutHandler()} class="btn-primary">
-            <i class="ri-logout-circle-r-line"></i> Logout
+          <button onClick={() => logoutHandler()} className="btn-primary">
+            <i className="ri-logout-circle-r-line"></i> Logout
           </button>
           {/* </NavLink> */}
         </div>

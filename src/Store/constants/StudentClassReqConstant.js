@@ -1,4 +1,4 @@
-// create all class request constant 
+// create all className request constant 
 export const GET_ALL_STUDENT_CLASS_REQUEST = 'GET_ALL_STUDENT_CLASS_REQUEST';
 export const GET_ALL_STUDENT_CLASS_REQUEST_FAIL = 'GET_ALL_STUDENT_CLASS_REQUEST_FAIL';
 export const GET_SINGLE_STUDENT_CLASS_REQUEST = 'GET_SINGLE_STUDENT_CLASS_REQUEST';

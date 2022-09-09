@@ -3,43 +3,43 @@ import {
     DELETE_STUDENT_CLASS_REQUEST_FAIL, GET_ALL_STUDENT_CLASS_REQUEST, GET_ALL_STUDENT_CLASS_REQUEST_FAIL,
     GET_SINGLE_STUDENT_CLASS_REQUEST, GET_SINGLE_STUDENT_CLASS_REQUEST_FAIL, STUDENT_CLASS_REQUEST_ERROR,
     UPDATE_STUDENT_CLASS_REQUEST, UPDATE_STUDENT_CLASS_REQUEST_FAIL
-} from "../constants/StudentClassReqConstant";
+} from "../constants/StudentclassReqConstant";
 
 
-// student class request reducer 
+// student CLASS request reducer 
 const initialState = {
-    AllStudentClassRequest: [],
-    singleStudentClassRequest: {},
+    AllStudentclassRequest: [],
+    singleStudentclassRequest: {},
     loading: true,
     error: null
 }
 
-export const StudentClassReqReducer = (state = initialState, action) => {
+export const StudentclassReqReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_ALL_STUDENT_CLASS_REQUEST:
             return {
                 ...state,
-                AllStudentClassRequest: action.payload,
+                AllStudentclassRequest: action.payload,
                 Countdoc: action.payload.length,
                 loading: false
             }
         case GET_SINGLE_STUDENT_CLASS_REQUEST:
             return {
                 ...state,
-                singleStudentClassRequest: action.payload,
+                singleStudentclassNameRequest: action.payload,
                 loading: false
             }
         case CREATE_STUDENT_CLASS_REQUEST:
             return {
                 ...state,
-                AllStudentClassRequest: [...state.AllStudentClassRequest, action.payload],
+                AllStudentclassRequest: [...state.AllStudentclassRequest, action.payload],
                 loading: false
             }
-        // when teacher approve the class request the status will be changed to approved or rejected on AllStudentClassRequest array
+
         case UPDATE_STUDENT_CLASS_REQUEST:
             return {
                 ...state,
-                AllStudentClassRequest: state.AllStudentClassRequest.map((item) => item._id === action.payload._id ?  action.payload : item),
+                AllStudentclassRequest: state.AllStudentclassRequest.map((item) => item._id === action.payload._id ?  action.payload : item),
                 loading: false
             }
             
@@ -48,27 +48,20 @@ export const StudentClassReqReducer = (state = initialState, action) => {
                    ...state,
                    loading: false,
                    isAuthenticated: false,
-                //    AllStudentClassRequest: [],
                    error: action.payload,
             };
         case DELETE_STUDENT_CLASS_REQUEST:
             return {
                 ...state,
-                AllStudentClassRequest: state.AllStudentClassRequest.filter((item) => item._id !== action.payload),
+                AllStudentclassRequest: state.AllStudentclassRequest.filter((item) => item._id !== action.payload),
                 loading: false
             }
-        // case CREATE_STUDENT_CLASS_REQUEST_DELETE:
-        //     return {
-        //         ...state,
-        //         createClassRequest: state.createClassRequest.filter((item) => item._id !== action.payload),
-        //         loading: false
-        //     }
         case GET_ALL_STUDENT_CLASS_REQUEST_FAIL:
             return{
                ...state,
                loading: false,
                isAuthenticated: false,
-               AllStudentClassRequest: null,
+               AllStudentclassRequest: null,
                error: action.payload
          };
         case DELETE_STUDENT_CLASS_REQUEST_FAIL:
@@ -76,7 +69,6 @@ export const StudentClassReqReducer = (state = initialState, action) => {
                ...state,
                loading: false,
                isAuthenticated: false,
-            //    AllStudentClassRequest: null,
                error: action.payload
          };
         case GET_SINGLE_STUDENT_CLASS_REQUEST_FAIL:
@@ -84,7 +76,6 @@ export const StudentClassReqReducer = (state = initialState, action) => {
                ...state,
                loading: false,
                isAuthenticated: false,
-            //    AllStudentClassRequest: null,
                error: action.payload
          };
         case CREATE_STUDENT_CLASS_REQUEST_FAIL:
@@ -92,7 +83,7 @@ export const StudentClassReqReducer = (state = initialState, action) => {
                ...state,
                loading: false,
                isAuthenticated: false,
-               AllStudentClassRequest: null,
+               AllStudentclassRequest: null,
                error: action.payload
          };
         case STUDENT_CLASS_REQUEST_ERROR:

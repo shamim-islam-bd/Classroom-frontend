@@ -4,7 +4,7 @@ import {
     LOGOUT_FAIL,
     LOGOUT_SUCCESS,
     REGISTER_FAIL, REGISTER_REQUEST, REGISTER_SUCCESS
-} from "../constants/userConstant";
+} from "../constants/authConstant";
 
 
 
@@ -71,28 +71,23 @@ export const logoutAction = () => async(dispatch)=>{
 }
 
 
-// export const loadUserAction = () => async(dispatch)=>{
-//     try {
-//         dispatch({type: LOAD_USER_REQUEST})
-//         // const { token } = store.getState().user;
-//         // console.log( 'from load user:', token);
-//         const config = {
-//             //  headers: { 'Set-Cookie': `${document.cookie}`},
-//          }
-//         const { data } = await axios.get('/user/profile', config);
-//         // console.log('from loginAction:', data);
-//         dispatch({
-//             type: LOAD_USER_SUCCESS,
-//             payload: data.user,
-//         })
-
-//     } catch (error) {
-//         dispatch({
-//             type: LOAD_USER_FAIL,
-//             payload: error.message
-//         })
-//     }
-// }
+// load current login user
+export const loadUserAction = () => async(dispatch)=>{
+    try {
+        const { data } = await axios.get('/user/profile');
+        console.log('from loadUserAction: ', data);
+        
+        dispatch({
+            type: LOGIN_SUCCESS,
+            payload: data,
+        })
+    } catch (error) {
+        dispatch({
+            type: LOGIN_FAIL,
+            payload: error.message
+        })
+    }
+}
 
 
 // clear errors

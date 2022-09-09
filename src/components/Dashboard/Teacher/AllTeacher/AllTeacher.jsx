@@ -9,14 +9,16 @@ export default function AllTeacher() {
   const dispatch = useDispatch();
 
   const { teachers } = useSelector((state) => state.teachers);
-  const { user } = useSelector((state) => state.user.user);
-  console.log("fm Teacher fnd", teachers[0].teacher_info);
+  const { auth } = useSelector((state) => state.auth.login);
+  console.log(auth)
+
+//   console.log("fm Teacher fnd", teachers[0].teacher_info);
   //   console.log("fm user fnd", user._id);
 
-  {
-   const re = user.map((user) => user._id === teachers[0].teacher_info);
-   console.log(re); 
-  }
+//   {
+//     const re = auth.map((auth) => auth._id === teachers[0].teacher_info);
+//     console.log(re);
+//   }
 
   useEffect(() => {
     dispatch(getAllTeachers());
@@ -26,13 +28,12 @@ export default function AllTeacher() {
     <div className="mt-10">
       <div className="flex flex-cols-2">
         {teachers?.map((teacher) => (
-          <>
-            <div class="card">
-              <div class="img-avatar"></div>
-              <div class="card-text">
-                <div class="portada"></div>
-                <div class="title-total">
-                  <div class="title gap-2">
+            <div className="card" key={teacher._id}>
+              <div className="img-avatar"></div>
+              <div className="card-text">
+                <div className="portada"></div>
+                <div className="title-total">
+                  <div className="title gap-2">
                     <span>Professior Mr.{teacher.name}</span>
                     <Link to="">
                       <Tooltip
@@ -59,41 +60,40 @@ export default function AllTeacher() {
                   </div>
                   <h2>Modern Science</h2>
 
-                  <div class="desc">
+                  <div className="desc">
                     I have a contagious Can-Do attitude, determined to leverage
                     my knowledge and passion for writing to be a catalyst
                     alongside this journey with you. I am easy going,
                   </div>
-                  <div class="actions mt-2">
+                  <div className="actions mt-2">
                     <Tooltip
                       className="btn"
                       title="Add to Favorite"
                       color="#2db7f5"
                     >
                       <Link to="" className="link">
-                        <i class="ri-heart-line"></i>
+                        <i className="ri-heart-line"></i>
                       </Link>
                     </Tooltip>
                     <Tooltip className="btn" title="Message" color="#2db7f5">
                       <Link to="" className="link">
                         {" "}
-                        <i class="ri-chat-2-line"></i>
+                        <i className="ri-chat-2-line"></i>
                       </Link>
                     </Tooltip>
                     <Tooltip
                       className="btn"
-                      title="Start Class"
+                      title="Start className"
                       color="#2db7f5"
                     >
                       <Link to="" className="link">
-                        <i class="ri-phone-line"></i>
+                        <i className="ri-phone-line"></i>
                       </Link>
                     </Tooltip>
                   </div>
                 </div>
               </div>
             </div>
-          </>
         ))}
       </div>
     </div>

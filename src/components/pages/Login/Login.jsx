@@ -4,7 +4,7 @@ import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { clearErrors, loginAction } from "../../../Store/Actions/userActions";
+import { clearErrors, loginAction } from "../../../Store/Actions/authActions";
 import { hideLoading, showLoading } from "../../../Store/reducers/alertSlice";
 
 export default function Login() {
@@ -85,7 +85,7 @@ export default function Login() {
                             <path
                               strokeLinecap="round"
                               stroke-linejoin="round"
-                              stroke-width="2"
+                              strokeWidth="2"
                               d="M14 5l7 7m0 0l-7 7m7-7H3"
                             />
                           </svg>
@@ -126,7 +126,7 @@ export default function Login() {
                         })}
                         name="password"
                         type="password"
-                        autocomplete="current-password"
+                        autoComplete="current-password"
                         required=""
                         placeholder="Your Password"
                         className="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"

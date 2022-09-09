@@ -22,7 +22,7 @@
 //       info.el.style.backgroundColor = 'red';
 
 //       // Change color of dot marker
-//       var dotEl = info.el.getElementsByClassName('fc-event-dot')[0];
+//       var dotEl = info.el.getElementsByclassName('fc-event-dot')[0];
 //       if (dotEl) {
 //         dotEl.style.backgroundColor = 'white';
 //       }

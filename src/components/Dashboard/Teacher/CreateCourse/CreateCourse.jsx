@@ -3,7 +3,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
-import { createStudentClassRequest } from "../../../../Store/Actions/StudentClassReqAction";
+import { createStudentclassRequest } from "../../../../Store/Actions/StudentclassReqAction";
 import {
   hideLoading,
   showLoading,
@@ -16,21 +16,21 @@ export default function CreateCourse() {
 
   const { user, error, isAuthenticated } = useSelector((state) => state.user);
 
-  const { AllStudentClassRequest } = useSelector(
-    (state) => state.ClassReqByStudent
+  const { AllStudentclassRequest } = useSelector(
+    (state) => state.classNameReqByStudent
   );
-  // console.log("frm classreq student: ", createClassRequest);
+  // console.log("frm classNamereq student: ", createclassRequest);
 
   dispatch(showLoading());
 
   const onFinish = async (values) => {
     // const onFinish = (values) => { values}
     await axios
-      .post("/student/makeclassRequest", values)
+      .post("/student/makeclassNameRequest", values)
       .then((res) => {
         dispatch(hideLoading());
         alert.success("You are successfully logged in");
-        dispatch(createStudentClassRequest(values));
+        dispatch(createStudentclassRequest(values));
       })
       .catch((err) => {
         console.log(err);
@@ -39,39 +39,37 @@ export default function CreateCourse() {
       });
   };
 
-
-
-  const coursePic = "https://i.pinimg.com/474x/83/34/24/833424244cbf585cc789776110471d74.jpg"
-
+  const coursePic =
+    "https://i.pinimg.com/474x/83/34/24/833424244cbf585cc789776110471d74.jpg";
 
   return (
     <div className="mt-6">
       <Row>
         <Col span={24} sm={24} xm={24} md={24} lg={12}>
-          <div class="items-center">
-            <div class="flex flex-col w-full transition duration-500 ease-in-out transform bg-white">
-              <div class="px-3">
+          <div className="items-center">
+            <div className="flex flex-col w-full transition duration-500 ease-in-out transform bg-white">
+              <div className="px-3">
                 {errorMessage && (
-                  <p class="text-red-500 text-sm">{errorMessage}</p>
+                  <p className="text-red-500 text-sm">{errorMessage}</p>
                 )}
                 <div className="flex justify-between items-center">
-                  <h2 class="text-2xl font-extrabold text-neutral-600 mb-8">
-                    Create Class For Student
+                  <h2 className="text-2xl font-extrabold text-neutral-600 mb-8">
+                    Create className For Student
                   </h2>
                 </div>
-                <Form class="space-y-6" onFinish={onFinish}>
+                <Form className="space-y-6" onFinish={onFinish}>
                   <div>
                     <label
                       for="name"
-                      class="block text-sm font-medium text-neutral-600"
+                      className="block text-sm font-medium text-neutral-600"
                     >
-                    Class  Title
+                      className Title
                     </label>
-                    <Form.Item class="mt-1" name="title">
+                    <Form.Item className="mt-1" name="title">
                       <Input
                         type="title"
                         placeholder="Your title"
-                        class="classReq-input"
+                        className="classNameReq-input"
                       />
                     </Form.Item>
                   </div>
@@ -79,16 +77,16 @@ export default function CreateCourse() {
                   <div>
                     <label
                       for="description"
-                      class="block text-sm font-medium text-neutral-600"
+                      className="block text-sm font-medium text-neutral-600"
                     >
                       {" "}
-                      Create Class Description{" "}
+                      Create className Description{" "}
                     </label>
-                    <Form.Item class="mt-1" name="description">
+                    <Form.Item className="mt-1" name="description">
                       <Input.TextArea
                         type="description"
                         placeholder="Your description"
-                        class="classReq-input"
+                        className="classNameReq-input"
                       />
                       {/* {errors.email && <span role="alert">{errors.email.message}</span>} */}
                     </Form.Item>
@@ -97,12 +95,12 @@ export default function CreateCourse() {
                   <div>
                     <label
                       for="level"
-                      class="block text-sm font-medium text-neutral-600"
+                      className="block text-sm font-medium text-neutral-600"
                     >
                       Select Categories
                     </label>
-                    <Form.Item class="mt-1" name="category">
-                      <Select className="classReq-input">
+                    <Form.Item className="mt-1" name="category">
+                      <Select className="classNameReq-input">
                         <Select.Option value="">Select...</Select.Option>
                         <Select.Option value="Web Development">
                           Web Development
@@ -147,32 +145,32 @@ export default function CreateCourse() {
                   <div>
                     <label
                       for="price"
-                      class="block text-sm font-medium text-neutral-600"
+                      className="block text-sm font-medium text-neutral-600"
                     >
                       {" "}
                       Price{" "}
                     </label>
-                    <Form.Item class="mt-1" name="price">
+                    <Form.Item className="mt-1" name="price">
                       <Input
                         type="number"
                         placeholder="Your price"
-                        class="classReq-input"
+                        className="classNameReq-input"
                       />
                       {/* {errors.password && <span role="alert">{errors.password.message}</span>} */}
                     </Form.Item>
                   </div>
 
-                  <form class="flex items-center space-x-6 mb-5">
-                    <div class="shrink-0">
+                  <form className="flex items-center space-x-6 mb-5">
+                    <div className="shrink-0">
                       <img
-                        class="h-16 w-16 object-cover rounded-md"
+                        className="h-16 w-16 object-cover rounded-md"
                         src={coursePic}
                         alt="Current dammy photo"
                       />
                     </div>
-                    <label class="block">
-                      <span class="sr-only">Choose Course photo</span>
-                      <input type="file" class="upload-pic-input" />
+                    <label className="block">
+                      <span className="sr-only">Choose Course photo</span>
+                      <input type="file" className="upload-pic-input" />
                     </label>
                   </form>
 
@@ -180,9 +178,9 @@ export default function CreateCourse() {
                     <button
                       htmltype="submit"
                       type="submit"
-                      class="flex items-center justify-center w-full px-10 py-4 text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-blue-600 rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                      className="flex items-center justify-center w-full px-10 py-4 text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-blue-600 rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                     >
-                      Create Class
+                      Create className
                     </button>
                   </Form.Item>
                 </Form>

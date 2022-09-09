@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { clearErrors } from "../../../Store/Actions/CoursesAction";
-import { registerAction } from "../../../Store/Actions/userActions";
+import { registerAction } from "../../../Store/Actions/authActions";
 import { hideLoading, showLoading } from "../../../Store/reducers/alertSlice";
 
 export default function Signup() {
@@ -48,27 +48,27 @@ export default function Signup() {
 
   return (
     <div>
-      <section class="">
-        <div class=" items-center lg:px-20">
-          <div class="flex flex-col w-full max-w-md p-10 mx-auto my-6 transition duration-500 ease-in-out transform bg-white rounded-lg md:mt-0">
-            <div class="mt-8 border rounded-lg p-6">
-              <div class="mt-6">
+      <section className="">
+        <div className=" items-center lg:px-20">
+          <div className="flex flex-col w-full max-w-md p-10 mx-auto my-6 transition duration-500 ease-in-out transform bg-white rounded-lg md:mt-0">
+            <div className="mt-8 border rounded-lg p-6">
+              <div className="mt-6">
                 {errorMessage && (
-                  <p class="text-red-500 text-sm">{errorMessage}</p>
+                  <p className="text-red-500 text-sm">{errorMessage}</p>
                 )}
                 <div className="flex justify-between items-center">
-                  <h2 class="text-3xl font-extrabold text-neutral-600 mb-8">
+                  <h2 className="text-3xl font-extrabold text-neutral-600 mb-8">
                     Sign Up.
                   </h2>
                   <Link to="/login">
                     <a
-                      class="inline-block p-3 text-indigo-600 border border-indigo-600 rounded-full hover:text-white hover:bg-indigo-600 active:bg-indigo-500 focus:outline-none focus:ring"
+                      className="inline-block p-3 text-indigo-600 border border-indigo-600 rounded-full hover:text-white hover:bg-indigo-600 active:bg-indigo-500 focus:outline-none focus:ring"
                       href="/download"
                     >
-                      <span class="sr-only"> Download </span>
+                      <span className="sr-only"> Download </span>
 
                       <svg
-                        class="w-5 h-5"
+                        className="w-5 h-5"
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
@@ -84,56 +84,56 @@ export default function Signup() {
                     </a>
                   </Link>
                 </div>
-                <form onSubmit={handleSubmit(onSubmit)} class="space-y-6">
-                  <div class="grid grid-cols-1 gap-2">
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                  <div className="grid grid-cols-1 gap-2">
                     <div>
                       <label
                         for="name"
-                        class="block text-sm font-medium text-neutral-600"
+                        className="block text-sm font-medium text-neutral-600"
                       >
                         {" "}
                         Name{" "}
                       </label>
-                      <div class="mt-1">
+                      <div className="mt-1">
                         <input
                           {...register("name", {
                             required: "Enter your name",
                           })}
                           type="name"
                           placeholder="Your name"
-                          class="classReq-input"
+                          className="classNameReq-input"
                         />
                       </div>
                     </div>
                     <div>
                       <label
                         for="email"
-                        class="block text-sm font-medium text-neutral-600"
+                        className="block text-sm font-medium text-neutral-600"
                       >
                         {" "}
                         Email address{" "}
                       </label>
-                      <div class="mt-1">
+                      <div className="mt-1">
                         <input
                           {...register("email", {
                             required: "Email Address is required",
                           })}
                           type="email"
                           placeholder="Your Email"
-                          class="classReq-input"
+                          className="classNameReq-input"
                         />
                         {/* {errors.email && <span role="alert">{errors.email.message}</span>} */}
                       </div>
                     </div>
-                    <div class="space-y-1">
+                    <div className="space-y-1">
                       <label
                         for="password"
-                        class="block text-sm font-medium text-neutral-600"
+                        className="block text-sm font-medium text-neutral-600"
                       >
                         {" "}
                         Password{" "}
                       </label>
-                      <div class="mt-1">
+                      <div className="mt-1">
                         <input
                           {...register("password", {
                             required: "password is required",
@@ -144,7 +144,7 @@ export default function Signup() {
                           })}
                           type="password"
                           placeholder="Your Password"
-                          class="classReq-input"
+                          className="classNameReq-input"
                         />
                         {/* {errors.password && <span role="alert">{errors.password.message}</span>} */}
                       </div>
@@ -153,14 +153,14 @@ export default function Signup() {
                   <div>
                     <label
                       for="email"
-                      class="block text-sm font-medium text-neutral-600"
+                      className="block text-sm font-medium text-neutral-600"
                     >
                       {" "}
                       Sign up As{" "}
                     </label>
                     <select
                       {...register("role", { required: true })}
-                      className="classReq-input"
+                      className="classNameReq-input"
                     >
                       <option value="">Select...</option>
                       <option value="student">Student</option>
@@ -168,27 +168,27 @@ export default function Signup() {
                     </select>
                   </div>
 
-                  <div class="flex items-center justify-between">
-                    <div class="flex items-center">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center">
                       <input
                         id="remember-me"
                         name="remember-me"
                         type="checkbox"
                         placeholder="Your password"
-                        class="w-4 h-4 text-blue-600 border-gray-200 rounded focus:ring-blue-500"
+                        className="w-4 h-4 text-blue-600 border-gray-200 rounded focus:ring-blue-500"
                       />
                       <label
                         for="remember-me"
-                        class="block ml-2 text-sm text-neutral-600"
+                        className="block ml-2 text-sm text-neutral-600"
                       >
                         {" "}
                         Remember me{" "}
                       </label>
                     </div>
-                    <div class="text-sm">
+                    <div className="text-sm">
                       <a
                         href="#"
-                        class="font-medium text-blue-600 hover:text-blue-500"
+                        className="font-medium text-blue-600 hover:text-blue-500"
                       >
                         {" "}
                         Forgot your password?{" "}
@@ -198,18 +198,18 @@ export default function Signup() {
                   <div>
                     <button
                       type="submit"
-                      class="flex items-center justify-center w-full px-10 py-4 text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-blue-600 rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                      className="flex items-center justify-center w-full px-10 py-4 text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-blue-600 rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                     >
                       Sign in
                     </button>
                   </div>
                 </form>
-                <div class="relative my-4">
-                  <div class="absolute inset-0 flex items-center">
-                    <div class="w-full border-t border-gray-300"></div>
+                <div className="relative my-4">
+                  <div className="absolute inset-0 flex items-center">
+                    <div className="w-full border-t border-gray-300"></div>
                   </div>
-                  <div class="relative flex justify-center text-sm">
-                    <span class="px-2 text-neutral-600 bg-white">
+                  <div className="relative flex justify-center text-sm">
+                    <span className="px-2 text-neutral-600 bg-white">
                       {" "}
                       Or continue with{" "}
                     </span>
@@ -218,10 +218,10 @@ export default function Signup() {
                 <div>
                   <button
                     type="submit"
-                    class="w-full items-center block px-10 py-3.5 text-base font-medium text-center text-blue-600 transition duration-500 ease-in-out transform border-2 border-white shadow-md rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+                    className="w-full items-center block px-10 py-3.5 text-base font-medium text-center text-blue-600 transition duration-500 ease-in-out transform border-2 border-white shadow-md rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
                   >
-                    <div class="flex items-center justify-center">
-                      <span class="ml-4"> Log in with Google</span>
+                    <div className="flex items-center justify-center">
+                      <span className="ml-4"> Log in with Google</span>
                     </div>
                   </button>
                 </div>

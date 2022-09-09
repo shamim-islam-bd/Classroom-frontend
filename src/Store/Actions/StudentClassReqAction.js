@@ -1,56 +1,61 @@
 import axios from 'axios';
 import {
-    CREATE_STUDENT_CLASS_REQUEST, CREATE_STUDENT_CLASS_REQUEST_FAIL, DELETE_STUDENT_CLASS_REQUEST, DELETE_STUDENT_CLASS_REQUEST_FAIL, GET_ALL_STUDENT_CLASS_REQUEST, GET_ALL_STUDENT_CLASS_REQUEST_FAIL, GET_SINGLE_STUDENT_CLASS_REQUEST, GET_SINGLE_STUDENT_CLASS_REQUEST_FAIL, STUDENT_CLASS_REQUEST_ERROR, UPDATE_STUDENT_CLASS_REQUEST, UPDATE_STUDENT_CLASS_REQUEST_FAIL
-} from '../constants/StudentClassReqConstant';
+    CREATE_STUDENT_CLASS_REQUEST, CREATE_STUDENT_CLASS_REQUEST_FAIL, DELETE_STUDENT_CLASS_REQUEST,
+    DELETE_STUDENT_CLASS_REQUEST_FAIL, GET_ALL_STUDENT_CLASS_REQUEST, GET_ALL_STUDENT_CLASS_REQUEST_FAIL,
+    GET_SINGLE_STUDENT_CLASS_REQUEST, GET_SINGLE_STUDENT_CLASS_REQUEST_FAIL, STUDENT_CLASS_REQUEST_ERROR,
+    UPDATE_STUDENT_CLASS_REQUEST, UPDATE_STUDENT_CLASS_REQUEST_FAIL
+} from '../constants/StudentclassReqConstant';
 
 
-// student class request Action 
-export const getAllStudentClassRequest = () => async (dispatch) => {
+// student className request Action 
+export const getAllStudentclassRequest = () => async (dispatch) => {
     try {
-        const res = await axios.get('/students-Class-Request');
-        console.log("from Actions allstudentClassReq: ", res.data.studentClassRequest);
-
+        const res = await axios.get('/students-className-Request');
+        console.log("from Actions allstudentclassNameReq: ", res.data.studentclassNameRequest);
+       
         dispatch({
             type: GET_ALL_STUDENT_CLASS_REQUEST,
-            payload: res.data.studentClassRequest,
-        })
-    } catch (error) {
-        console.log(error.message)
-        dispatch({
-            type: GET_ALL_STUDENT_CLASS_REQUEST_FAIL,
-            payload: error.res?.data?.message
+            payload: res.data.studentclassNameRequest
         })
     }
+    catch (err) {
+        dispatch({
+            type: GET_ALL_STUDENT_CLASS_REQUEST_FAIL,
+            payload: err.res?.data
+        })
+    }
+
 }
 
 
-export const getSingleStudentClassRequest = (id) => async (dispatch) => {
+export const getSingleStudentclassRequest = (id) => async (dispatch) => {
     try {
-        const res = await axios.get(`/students-Class-Request/${id}`);
+        const res = await axios.get(`/students-className-Request/${id}`);
         dispatch({
             type: GET_SINGLE_STUDENT_CLASS_REQUEST,
             payload: res.data
         })
-    } catch (error) {
+    }
+    catch (err) {
         dispatch({
             type: GET_SINGLE_STUDENT_CLASS_REQUEST_FAIL,
-            payload: error.response.data.message
+            payload: err.res?.data
         })
     }
 }
 
 
-export const createStudentClassRequest = (values) => async (dispatch) => {
+export const createStudentclassRequest = (values) => async (dispatch) => {
     try {
-        const res = await axios.post('/student/makeclassRequest', values);
-        // console.log("createStudentClassRequest Action: ", res.data.createClassReq);
+        const res = await axios.post('/student/makeclassNameRequest', values);
+        // console.log("createStudentclassNameRequest Action: ", res.data.createclassNameReq);
 
         dispatch({
             type: CREATE_STUDENT_CLASS_REQUEST,
-            payload: res?.data?.createClassReq,
+            payload: res.data.createclassNameReq
         })
-    } catch (error) {
-        console.log(error.message);
+    }
+    catch (error) {
         dispatch({
             type: CREATE_STUDENT_CLASS_REQUEST_FAIL,
             payload: error.res?.data.message
@@ -59,10 +64,10 @@ export const createStudentClassRequest = (values) => async (dispatch) => {
 }
 
 
-// update student class request by status
-export const updateStudentClassRequest = (id) => async (dispatch) => {
+// update student className request by status
+export const updateStudentclassRequest = (id) => async (dispatch) => {
     try {
-        const res = await axios.put(`/student/classRequest/${id}`);
+        const res = await axios.put(`/student/classNameRequest/${id}`);
         console.log("update Status From Redux Action :" , res.data);
 
         dispatch({
@@ -78,10 +83,10 @@ export const updateStudentClassRequest = (id) => async (dispatch) => {
 }
 
 
-export const deleteStudentClassRequest = (id) => async (dispatch) => {
+export const deleteStudentclassRequest = (id) => async (dispatch) => {
     try {
-       const res = await axios.delete(`/student/deleteClassRequest/${id}`);
-        // console.log("deleteStudentClassRequest Action: ", res.data);
+       const res = await axios.delete(`/student/deleteclassNameRequest/${id}`);
+        // console.log("deleteStudentclassNameRequest Action: ", res.data);
         
         dispatch({
             type: DELETE_STUDENT_CLASS_REQUEST,
@@ -97,7 +102,7 @@ export const deleteStudentClassRequest = (id) => async (dispatch) => {
 }
 
 
-export const studentClassRequestError = (error) => async (dispatch) => {
+export const studentclassRequestError = (error) => async (dispatch) => {
     dispatch({
         type: STUDENT_CLASS_REQUEST_ERROR,
         payload: error
