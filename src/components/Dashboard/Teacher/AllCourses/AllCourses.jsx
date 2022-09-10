@@ -51,7 +51,7 @@ export default function AllCourses() {
         <div className="min-h-screen grid lg:grid-cols-3 md:grid-cols-2">
           {Courses?.map((course) => (
             <div className="max-w-sm w-full py-4 px-3 text-sm" key={course._id}>
-              {console.log(course)}
+              {/* {console.log(course)} */}
               <div className="bg-white shadow-xl rounded-lg overflow-hidden">
                 <div className="bg-cover bg-center h-56 p-4 relative">
                   <img

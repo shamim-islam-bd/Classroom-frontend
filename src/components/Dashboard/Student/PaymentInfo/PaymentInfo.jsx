@@ -1,5 +1,5 @@
 import React from "react";
 
 export default function PaymentInfo() {
-  return <div>PaymentInfo</div>;
+  return <div className="mt-10">PaymentInfo</div>;
 }

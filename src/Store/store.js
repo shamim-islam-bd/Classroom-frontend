@@ -12,7 +12,7 @@ import { authReducer } from './reducers/authReducer';
 import { CourseReducer, SingleCourseReducer } from './reducers/CourseReducer';
 import { StudentclassReqReducer } from './reducers/StudentclassReqReducer';
 import { TeacherReducer } from './reducers/TeachersReducer';
-import { usersSlice } from './reducers/usersSlice';
+import { usersReducer } from './reducers/usersReducer';
 
 // const middleware = [thunk];
 
@@ -32,9 +32,9 @@ const persistedReducer = persistReducer(persistConfig, Reducer);
 export const store = configureStore({
       reducer:{
          auth: persistedReducer,
-         users: usersSlice.reducer,
+         users: usersReducer,
          teachers: TeacherReducer,
-         classNameReqByStudent: StudentclassReqReducer,
+         classReqByStudent: StudentclassReqReducer,
          allCourse : CourseReducer,
          CourseDetails: SingleCourseReducer,
          devTools: process.env.NODE_ENV !== 'production',

@@ -4,11 +4,11 @@ import React, { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { clearErrors } from "../../../../Store/Actions/authActions";
 import {
   createStudentclassRequest,
   deleteStudentclassRequest,
 } from "../../../../Store/Actions/StudentclassReqAction";
-import { clearErrors } from "../../../../Store/Actions/authActions";
 import {
   hideLoading,
   showLoading,
@@ -22,10 +22,10 @@ export default function ClassRequest() {
   const [errorMessage, setErrorMessage] = useState("");
   const [classRequest, setclassRequest] = useState([]);
 
-  const { user, error, isAuthenticated } = useSelector(
-    (state) => state.user.user
+  const { auth, error, isAuthenticated } = useSelector(
+    (state) => state.auth.login
   );
-  const userId = user._id;
+  const userId = auth._id;
 
   const { AllStudentclassRequest } = useSelector(
     (state) => state.classReqByStudent
@@ -37,7 +37,7 @@ export default function ClassRequest() {
     await axios
       .post("/student/makeclassRequest", values)
       .then((res) => {
-        console.log("frm clsreq: ", res.data);
+        // console.log("frm clsreq: ", res.data);
         dispatch(hideLoading());
         alert.success("You are successfully logged in");
         dispatch(createStudentclassRequest(values));
@@ -65,10 +65,9 @@ export default function ClassRequest() {
   // geting All className requsest for loggin student
   useEffect(() => {
     axios.get("/students-class-Request").then((res) => {
-      const result = res.data.studentclassRequest.filter(
-        (item) => item.student === userId
-      );
-      setclassNameRequest(result);
+      const result = res.data.studentClassRequest
+        .filter((item) => item.student === userId);
+      setclassRequest(result);
     });
   }, [userId]);
 
@@ -82,7 +81,7 @@ export default function ClassRequest() {
 
   return (
     <div className="mt-10">
-      {/* <h1 className="text-center font-semibold">classNameRequest</h1> */}
+      {/* <h1 className="text-center font-semibold">classRequest</h1> */}
       <Row>
         <Col span={24} sm={24} xm={24} md={24} lg={12}>
           <div className="items-center">
@@ -93,7 +92,7 @@ export default function ClassRequest() {
                 )}
                 <div className="flex justify-between items-center">
                   <h2 className="text-2xl font-extrabold text-neutral-600 mb-8">
-                    Make className requst form
+                    Make class requst form
                   </h2>
                 </div>
                 <Form className="space-y-6" onFinish={onFinish}>
@@ -300,9 +299,9 @@ export default function ClassRequest() {
             </div>
           </div>
         </Col>
-        <Col span={24} sm={24} xm={24} md={24} lg={12}>
+        <Col className="sm:mt-10" span={24} sm={24} xm={24} md={24} lg={12}>
           <h2 className="text-2xl text-center font-extrabold text-neutral-600 mb-8">
-            My Requsted classNamees
+            My Requsted classes
           </h2>
           <div className="overflow-scroll">
             <div className="relative">

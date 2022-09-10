@@ -11,11 +11,11 @@ import {
 export const getAllStudentclassRequest = () => async (dispatch) => {
     try {
         const res = await axios.get('/students-className-Request');
-        console.log("from Actions allstudentclassNameReq: ", res.data.studentclassNameRequest);
+        console.log("from Actions allstudentclassReq: ", res.data.studentclassRequest);
        
         dispatch({
             type: GET_ALL_STUDENT_CLASS_REQUEST,
-            payload: res.data.studentclassNameRequest
+            payload: res.data.studentclassRequest
         })
     }
     catch (err) {
@@ -30,7 +30,7 @@ export const getAllStudentclassRequest = () => async (dispatch) => {
 
 export const getSingleStudentclassRequest = (id) => async (dispatch) => {
     try {
-        const res = await axios.get(`/students-className-Request/${id}`);
+        const res = await axios.get(`/students-class-Request/${id}`);
         dispatch({
             type: GET_SINGLE_STUDENT_CLASS_REQUEST,
             payload: res.data
@@ -47,12 +47,12 @@ export const getSingleStudentclassRequest = (id) => async (dispatch) => {
 
 export const createStudentclassRequest = (values) => async (dispatch) => {
     try {
-        const res = await axios.post('/student/makeclassNameRequest', values);
-        // console.log("createStudentclassNameRequest Action: ", res.data.createclassNameReq);
+        const res = await axios.post('/student/makeclassRequest', values);
+        // console.log("createStudentclassNameRequest Action: ", res.data.createclassReq);
 
         dispatch({
             type: CREATE_STUDENT_CLASS_REQUEST,
-            payload: res.data.createclassNameReq
+            payload: res.data?.createclassReq
         })
     }
     catch (error) {

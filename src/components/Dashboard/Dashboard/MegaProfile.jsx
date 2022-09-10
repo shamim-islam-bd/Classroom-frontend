@@ -12,7 +12,7 @@ export default function MegaProfile() {
   let avater = "https://cdn-icons-png.flaticon.com/512/1053/1053244.png?w=360";
 
   const { auth } = useSelector((state) => state.auth.login);
-  console.log("From Dashboard", auth);
+  // console.log("From Dashboard", auth);
 
   const logoutHandler = () => {
     dispatch(logoutAction());

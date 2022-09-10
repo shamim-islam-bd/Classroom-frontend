@@ -20,7 +20,7 @@
   font-size: 12px;
   display: flex;
   align-items: center;
-  justify-content: end;
+  /* justify-content: end; */
 }
 .card .desc {
   padding: 0.5rem 1rem;
