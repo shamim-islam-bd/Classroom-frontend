@@ -36,8 +36,8 @@ export default function Requestedclass() {
     axios
       .put(`/student/classRequest/${id}`)
       .then((res) => {
+        console.log("status Update fned : ", res.data);
         dispatch(updateStudentclassRequest(id));
-        // console.log("status Update fned : ", res.data);
       })
       .catch((err) => {
         console.log(err.message);
@@ -52,8 +52,11 @@ export default function Requestedclass() {
     <div className="mt-10">
       <h1 className="text-xl font-bold m-2">Requested class </h1>
       <ul role="list" className="p-6 divide-y divide-slate-200 font-[8px]">
-        {AllStudentclassRequest?.map((person) => (
-          <div className="bg-gray-100 p-3 rounded-md flex justify-between flex-col sm:flex-row md-flex-row lg:flex-row  py-2 my-2 items-center">
+        {AllStudentclassRequest?.map((person, inx) => (
+          <div
+            key={inx}
+            className="bg-gray-100 p-3 rounded-md flex justify-between flex-col sm:flex-row md-flex-row lg:flex-row  py-2 my-2 items-center"
+          >
             <li className="flex sm:py-4 first:pt-0 last:pb-0">
               <img className="h-12 w-12 rounded-full" src={avader} alt="" />
               <div className="ml-3 text-sm">

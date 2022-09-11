@@ -1,8 +1,21 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 export default function SessionRoom() {
+  const { teachers } = useSelector((state) => state.teachers);
+  console.log(teachers);
+
   return (
     <div className="mt-20">
+      <div>
+        {teachers?.map((teacher) => {
+          return (
+            <div key={teacher._id}>
+              <h1>{teacher.name}</h1>
+            </div>
+          );
+        })}
+      </div>
       <h1 className="text-xl font-bold m-2">Session Room </h1>
       <div className="flex items-center justify-center">
         <div className="max-w-md md:max-w-2xl px-2">

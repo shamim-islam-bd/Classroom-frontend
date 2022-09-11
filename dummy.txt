@@ -1,0 +1,124 @@
+   
+
+// {
+//   teachers.map((teacher) => {
+//     return (
+//       <div className="flex flex-cols-1 gap-4" key={teacher._id}>
+//         <p>{teacher.specialist}</p>
+//         <p>{teacher.specialist}</p>
+//         <p>{teacher.specialist}</p>
+//       </div>
+//   )})
+// }
+
+
+
+/* {filterteacher.map(
+            (user) => (
+              // if (user._id === teacher.teacher_info) {
+              //   return (
+              <div key={user._id}>
+                <div className="title">
+                  <h2>Professior {user.name}</h2>
+                  <p>{user.email}</p>
+                </div>
+              </div>
+            )
+            //   );
+            // }
+          )} */
+
+
+
+   
+       //   <div className="flex flex-cols-1 gap-4 mt-4">
+        //   {/* {teachers && */}
+        //   {/* teachers.map((teacher) => { */}
+        //   <div className="mt-10">
+        //     {/* <h1>hey</h1> */}
+        //     <div className="card">
+        //       {/* {console.log(teacher)} */}
+        //       {/* <h1>{teacher.specialist}</h1> */}
+        //       {/* <div className="portada"></div> */}
+        //       <div className="img-avatar"></div>
+        //       <div className="title-total">
+        //         <div className="flex items-center justify-between pb-4">
+        //           <span className="text-green-800 font-bold text-[13px] p-3">
+        //             <p className="flex">
+        //               <i class="ri-focus-2-line mr-[2px]"></i> Online
+        //             </p>
+        //           </span>
+        //           <Link to="">
+        //             <Tooltip
+        //               title="View Profile"
+        //               color="#2db7f5"
+        //               // className="rounded-full border border-[#2db6f57e]"
+        //               className="inline-block text-white bg-[#2db7f5] border border-[#2db7f5] rounded-full hover:bg-transparent hover:text-cyan-600 active:text-cyan-500 focus:outline-none focus:ring"
+        //             >
+        //               <svg
+        //                 className="w-6 h-6"
+        //                 xmlns="http://www.w3.org/2000/svg"
+        //                 fill="none"
+        //                 viewBox="0 0 24 24"
+        //                 stroke="currentColor"
+        //               >
+        //                 <path
+        //                   strokeLinecap="round"
+        //                   strokeLinejoin="round"
+        //                   strokeWidth="2"
+        //                   d="M14 5l7 7m0 0l-7 7m7-7H3"
+        //                 />
+        //               </svg>
+        //               {/* <span className="flex text-sm px-1">
+        //                 <i class="ri-eye-line px-1"></i>
+        //                  Profile
+        //               </span> */}
+        //             </Tooltip>
+        //           </Link>
+        //         </div>
+        //         {/* <div className="title justify-end gap-2"> */}
+        //         {/* <span>Professior Mr.{user.name}</span> */}
+        //         {/* </div> */}
+        //         <h2>Mr Teacher</h2>
+        //         <p className="px-4 text-[12px]">specialist: Computer Science</p>
+        //         {/* <span className="text-[10px] px-4">{user.email}</span> */}
+        //         <div className="desc">
+        //           I have a contagious Can-Do attitude, determined to leverage my
+        //           knowledge and passion for writing to be a catalyst alongside
+        //           this journey with you.
+        //         </div>
+        //         <div className="actions mt-2">
+        //           <Tooltip
+        //             className="btn text-center"
+        //             title="Add to Favorite"
+        //             color="#2db7f5"
+        //           >
+        //             <Link to="" className="link">
+        //               <i className="ri-heart-line"></i>
+        //             </Link>
+        //           </Tooltip>
+        //           <Tooltip
+        //             className="btn text-center"
+        //             title="Message"
+        //             color="#2db7f5"
+        //           >
+        //             <Link to="" className="link">
+        //               {" "}
+        //               <i className="ri-chat-2-line"></i>
+        //             </Link>
+        //           </Tooltip>
+        //           <Tooltip
+        //             className="btn text-center"
+        //             title="Start class"
+        //             color="#2db7f5"
+        //           >
+        //             <Link to="" className="link">
+        //               <i className="ri-phone-line"></i>
+        //             </Link>
+        //           </Tooltip>
+        //         </div>
+        //       </div>
+        //     </div>
+        //   </div>
+        //   {/* })} */}
+        // </div>
