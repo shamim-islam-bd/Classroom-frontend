@@ -173,7 +173,7 @@ export default function Dashboard() {
             <div className="flex text-gray-600 items-center justify-around">
               <Message />
               {/* <i className="mx-3 px-1 ri-notification-4-line text-gray-600 "></i> */}
-              <i class="ri-rocket-2-line text-xl mx-3 px-1 text-gray-600"></i>
+              <i className="ri-rocket-2-line text-xl mx-3 px-1 text-gray-600"></i>
               {/* <i className="ri-notification-off-line"></i> */}
 
               {/*----------- MegaMenu------ */}

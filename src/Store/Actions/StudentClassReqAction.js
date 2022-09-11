@@ -64,7 +64,6 @@ export const createStudentclassRequest = (values) => async (dispatch) => {
     }
 }
 
-
 // update student className request by status
 export const updateStudentclassRequest = (id) => async (dispatch) => {
     try {
