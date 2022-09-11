@@ -1,21 +1,23 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { clearErrors } from "../../../Store/Actions/CoursesAction";
 import { registerAction } from "../../../Store/Actions/authActions";
+import { clearErrors } from "../../../Store/Actions/CoursesAction";
 import { hideLoading, showLoading } from "../../../Store/reducers/alertSlice";
 
 export default function Signup() {
+  const alert = useAlert();
   const dispatch = useDispatch();
   // error state
   const [errorMessage, setErrorMessage] = useState("");
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
 
-  const { user, isAuthenticated, error } = useSelector((state) => state.user);
-  // console.log("From signup route:", user);
+  const { auth, error, isAuthenticated } = useSelector((state) => state.auth);
+  // console.log(user, error, isAuthenticated);
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -24,7 +26,7 @@ export default function Signup() {
     if (error) {
       dispatch(clearErrors());
     }
-  }, [dispatch, error]);
+  }, [dispatch, error, auth, isAuthenticated]);
 
   const onSubmit = async (data) => {
     const userinfo = {
@@ -38,11 +40,13 @@ export default function Signup() {
     dispatch(hideLoading());
     dispatch(registerAction(userinfo))
       .then((res) => {
+        alert.success("User Registered Successfully");
         navigate("/login");
       })
       .catch((error) => {
+        console.log("frm sign up page: ", error.message);
         dispatch(hideLoading());
-        setError("Please enter your email or password & user role");
+        setErrorMessage("Please enter your email or password & user role");
       });
   };
 
@@ -101,7 +105,7 @@ export default function Signup() {
                           })}
                           type="name"
                           placeholder="Your name"
-                          className="classNameReq-input"
+                          className="classReq-input"
                         />
                       </div>
                     </div>
@@ -120,7 +124,7 @@ export default function Signup() {
                           })}
                           type="email"
                           placeholder="Your Email"
-                          className="classNameReq-input"
+                          className="classReq-input"
                         />
                         {/* {errors.email && <span role="alert">{errors.email.message}</span>} */}
                       </div>
@@ -144,7 +148,7 @@ export default function Signup() {
                           })}
                           type="password"
                           placeholder="Your Password"
-                          className="classNameReq-input"
+                          className="classReq-input"
                         />
                         {/* {errors.password && <span role="alert">{errors.password.message}</span>} */}
                       </div>
@@ -160,7 +164,7 @@ export default function Signup() {
                     </label>
                     <select
                       {...register("role", { required: true })}
-                      className="classNameReq-input"
+                      className="classReq-input"
                     >
                       <option value="">Select...</option>
                       <option value="student">Student</option>

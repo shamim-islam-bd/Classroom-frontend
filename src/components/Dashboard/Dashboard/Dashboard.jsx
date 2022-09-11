@@ -52,7 +52,7 @@ export default function Dashboard() {
       key: "14",
       icon: "ri-group-fill",
       link: "create-course",
-      role: ["teacher"],
+      role: ["teacher", 'student'],
       label: "Create Course",
     },
     {

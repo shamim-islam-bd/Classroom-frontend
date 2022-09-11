@@ -14,10 +14,10 @@ export default function CreateCourse() {
   const dispatch = useDispatch();
   const [errorMessage, setErrorMessage] = useState("");
 
-  const { user, error, isAuthenticated } = useSelector((state) => state.user);
+  const { auth, error, isAuthenticated } = useSelector((state) => state.auth);
 
   const { AllStudentclassRequest } = useSelector(
-    (state) => state.classNameReqByStudent
+    (state) => state.classReqByStudent
   );
   // console.log("frm classNamereq student: ", createclassRequest);
 
@@ -26,7 +26,7 @@ export default function CreateCourse() {
   const onFinish = async (values) => {
     // const onFinish = (values) => { values}
     await axios
-      .post("/student/makeclassNameRequest", values)
+      .post("/student/makeclassRequest", values)
       .then((res) => {
         dispatch(hideLoading());
         alert.success("You are successfully logged in");
@@ -54,7 +54,7 @@ export default function CreateCourse() {
                 )}
                 <div className="flex justify-between items-center">
                   <h2 className="text-2xl font-extrabold text-neutral-600 mb-8">
-                    Create className For Student
+                    Create Class Request For Student
                   </h2>
                 </div>
                 <Form className="space-y-6" onFinish={onFinish}>
@@ -69,7 +69,7 @@ export default function CreateCourse() {
                       <Input
                         type="title"
                         placeholder="Your title"
-                        className="classNameReq-input"
+                        className="classReq-input"
                       />
                     </Form.Item>
                   </div>
@@ -86,7 +86,7 @@ export default function CreateCourse() {
                       <Input.TextArea
                         type="description"
                         placeholder="Your description"
-                        className="classNameReq-input"
+                        className="classReq-input"
                       />
                       {/* {errors.email && <span role="alert">{errors.email.message}</span>} */}
                     </Form.Item>
@@ -100,7 +100,7 @@ export default function CreateCourse() {
                       Select Categories
                     </label>
                     <Form.Item className="mt-1" name="category">
-                      <Select className="classNameReq-input">
+                      <Select className="classReq-input">
                         <Select.Option value="">Select...</Select.Option>
                         <Select.Option value="Web Development">
                           Web Development
@@ -154,7 +154,7 @@ export default function CreateCourse() {
                       <Input
                         type="number"
                         placeholder="Your price"
-                        className="classNameReq-input"
+                        className="classReq-input"
                       />
                       {/* {errors.password && <span role="alert">{errors.password.message}</span>} */}
                     </Form.Item>
@@ -180,7 +180,7 @@ export default function CreateCourse() {
                       type="submit"
                       className="flex items-center justify-center w-full px-10 py-4 text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-blue-600 rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                     >
-                      Create className
+                      Create class
                     </button>
                   </Form.Item>
                 </Form>

@@ -13,17 +13,20 @@ export default function AllTeacher() {
   const { auth } = useSelector((state) => state.auth.login);
   const { users } = useSelector((state) => state.users);
   // console.log("teachers: ", teachers);
-  // console.log("users: ", users);
+
+  let filterteacher = [];
+  users.forEach((user) => {
+    teachers.forEach((teacher) => {
+      if (user._id === teacher.teacher_info) {
+        filterteacher.push(user);
+      }
+    });
+  });
+  // console.log("filter user: ", filterteacher);
 
   useEffect(() => {
     dispatch(getAllUsers());
   }, [dispatch]);
-
-  const teacherDeatils = users.filter(
-    (user) => user._id === teachers[0].teacher_info
-  );
-  const teacherInfo = teacherDeatils[0];
-  // console.log("filter TeacherDetail: ", teacherInfo);
 
   useEffect(() => {
     dispatch(getAllTeachers());
@@ -31,16 +34,18 @@ export default function AllTeacher() {
 
   return (
     <div className="mt-10">
-      <div className="flex flex-cols-2">
-        {teachers?.map((teacher) => (
-          <div className="card" key={teacher._id}>
+      {/* <h1>hey</h1> */}
+      <div className="flex flex-cols-1 gap-4">
+        {teachers.map((teacher) => { 
+          <div className="card">
+            {/* {console.log(teacher)} */}
             <div className="img-avatar"></div>
+            {/* <h1>{teacher.specialist}</h1> */}
             <div className="card-text">
               <div className="portada"></div>
               <div className="title-total">
                 <div className="title justify-end gap-2">
-                  <span>Professior Mr.{teacherInfo.name}</span>
-
+                  {/* <span>Professior Mr.{user.name}</span> */}
                   <Link to="">
                     <Tooltip
                       title="View Profile"
@@ -65,7 +70,8 @@ export default function AllTeacher() {
                   </Link>
                 </div>
                 <h2>Modern Science</h2>
-                <span className="text-[10px] px-4">{teacherInfo.email}</span>
+                {/* <p> {teacher.specialist}</p> */}
+                {/* <span className="text-[10px] px-4">{user.email}</span> */}
                 <div className="desc">
                   I have a contagious Can-Do attitude, determined to leverage my
                   knowledge and passion for writing to be a catalyst alongside
@@ -103,9 +109,35 @@ export default function AllTeacher() {
                 </div>
               </div>
             </div>
-          </div>
-        ))}
+          </div>;
+        })}
       </div>
     </div>
   );
 }
+
+// {
+//   teachers.map((teacher) => {
+//     return (
+//       <div className="flex flex-cols-1 gap-4" key={teacher._id}>
+//         <p>{teacher.specialist}</p>
+//         <p>{teacher.specialist}</p>
+//         <p>{teacher.specialist}</p>
+//       </div>
+//   )})
+// }
+
+/* {filterteacher.map(
+            (user) => (
+              // if (user._id === teacher.teacher_info) {
+              //   return (
+              <div key={user._id}>
+                <div className="title">
+                  <h2>Professior {user.name}</h2>
+                  <p>{user.email}</p>
+                </div>
+              </div>
+            )
+            //   );
+            // }
+          )} */

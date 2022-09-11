@@ -17,9 +17,11 @@ export default function AllCourses() {
   const dispatch = useDispatch();
 
   const { Courses, error } = useSelector((state) => state.allCourse);
-  // console.log(Courses);
+  const { teachers } = useSelector((state) => state.teachers);
+  console.log(Courses);
+  console.log(teachers);
 
-  const { loading } = useSelector((state) => state.auth.alerts);
+  // const { loading } = useSelector((state) => state.auth.alerts);
   // console.log(loading);
 
   useEffect(() => {
@@ -34,17 +36,17 @@ export default function AllCourses() {
       });
 
     hideLoading();
-  }, [dispatch]);
+  }, [dispatch, teachers]);
 
   return (
     <div className="mt-6">
       <div className="flex justify-between items-center px-6 ">
-        <h1 className="font-bold text-2xl">Popular classNamees</h1>
+        <h1 className="font-bold text-2xl">Popular class</h1>
         <Link
           to="/course/liveclassName"
           className="bg-red-600 hover:text-white text-white px-2 py-1 rounded-full"
         >
-          Live classNamees
+          Live class
         </Link>
       </div>
       <div className="">
@@ -119,7 +121,7 @@ export default function AllCourses() {
                       <a href="#" className="text-blue-500">
                         +199{" "}
                         <span className="text-gray-400 mx-1">
-                          Applied for className
+                          Applied for class
                         </span>
                       </a>
                     </div>
@@ -136,7 +138,7 @@ export default function AllCourses() {
                   <div className="flex-1 inline-flex items-center">
                     <Link to="" className="text-gray-900 text-sm flex">
                       <i className="ri-customer-service-line mx-1"></i>
-                      <span>Start className</span>
+                      <span>Start class</span>
                     </Link>
                   </div>
                 </div>
@@ -155,7 +157,9 @@ export default function AllCourses() {
                     </div>
                     <div>
                       <p className="font-bold text-gray-900">Tiffany Heffner</p>
-                      <p className="text-sm text-gray-700">(555) 555-4321</p>
+                      <p className="text-[13px] text-gray-700">
+                        example@gmail.com
+                      </p>
                     </div>
                   </div>
                 </div>

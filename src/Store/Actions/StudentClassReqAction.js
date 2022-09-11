@@ -10,15 +10,16 @@ import {
 // student className request Action 
 export const getAllStudentclassRequest = () => async (dispatch) => {
     try {
-        const res = await axios.get('/students-className-Request');
-        console.log("from Actions allstudentclassReq: ", res.data.studentclassRequest);
+        const res = await axios.get('/students-Class-Request');
+        console.log("from Actions allstudentclassReq: ", res.data);
        
         dispatch({
             type: GET_ALL_STUDENT_CLASS_REQUEST,
-            payload: res.data.studentclassRequest
+            payload: res.data.studentClassRequest
         })
     }
     catch (err) {
+        console.log(err);
         dispatch({
             type: GET_ALL_STUDENT_CLASS_REQUEST_FAIL,
             payload: err.res?.data
@@ -67,7 +68,7 @@ export const createStudentclassRequest = (values) => async (dispatch) => {
 // update student className request by status
 export const updateStudentclassRequest = (id) => async (dispatch) => {
     try {
-        const res = await axios.put(`/student/classNameRequest/${id}`);
+        const res = await axios.put(`/student/classRequest/${id}`);
         console.log("update Status From Redux Action :" , res.data);
 
         dispatch({
@@ -85,8 +86,8 @@ export const updateStudentclassRequest = (id) => async (dispatch) => {
 
 export const deleteStudentclassRequest = (id) => async (dispatch) => {
     try {
-       const res = await axios.delete(`/student/deleteclassNameRequest/${id}`);
-        // console.log("deleteStudentclassNameRequest Action: ", res.data);
+       const res = await axios.delete(`/student/deleteclassRequest/${id}`);
+        // console.log("deleteStudentclassRequest Action: ", res.data);
         
         dispatch({
             type: DELETE_STUDENT_CLASS_REQUEST,

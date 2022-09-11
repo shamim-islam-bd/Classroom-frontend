@@ -10,7 +10,7 @@ export const getAllCourses = () => {
     return async (dispatch) => {
         try{
             dispatch({ type: ALL_COURSE_REQUEST });
-            const {data}  = await axios.get('http://localhost:5000/allcourses');
+            const {data}  = await axios.get('/allcourses');
             // console.log('course actions', data.courses );
 
              dispatch({
@@ -31,7 +31,7 @@ export const getSingleCourse = (id) => {
     return async (dispatch) => {
         try{
             dispatch({ type: SINGLE_COURSE_DETAILS_REQUEST });
-            const {data}  = await axios.get(`http://localhost:5000/course/${id}`);
+            const {data}  = await axios.get(`/course/${id}`);
             console.log('course actions', data);
 
              dispatch({
