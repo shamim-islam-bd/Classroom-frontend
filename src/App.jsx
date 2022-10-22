@@ -1,4 +1,3 @@
-import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Profile from "./components/Dashboard/common/Profile/Profile";
@@ -18,7 +17,7 @@ import CreateCourse from "./components/Dashboard/Teacher/CreateCourse/CreateCour
 import LiveClass from "./components/Dashboard/Teacher/LiveClass/LiveClass";
 import LiveStream from "./components/Dashboard/Teacher/LiveStream/LiveStream";
 import RequestedClasses from "./components/Dashboard/Teacher/RequestedClasses/RequestedClasses";
-import Home from "./components/pages/Home/Home";
+// import Home from "./components/pages/Home/Home";
 import Login from "./components/pages/Login/Login";
 import NotFound from "./components/pages/NotFound/NotFound";
 import Signup from "./components/pages/Signup/Signup";
@@ -40,8 +39,8 @@ function App() {
       <BrowserRouter>
         {/* {loading ? <Loader /> : null} */}
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
+          {/* <Route path="/" element={<Home />} /> */}
+          <Route path="/" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="*" element={<NotFound />} />
 
