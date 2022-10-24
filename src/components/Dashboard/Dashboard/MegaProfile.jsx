@@ -18,7 +18,7 @@ export default function MegaProfile() {
     dispatch(logoutAction());
     localStorage.removeItem("token");
     alert.success("logged out successfully");
-    navigate("/login");
+    navigate("/");
   };
 
   const items = [

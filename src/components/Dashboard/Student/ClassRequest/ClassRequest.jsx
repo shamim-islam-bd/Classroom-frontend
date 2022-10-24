@@ -3,7 +3,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { clearErrors } from "../../../../Store/Actions/authActions";
 import {
   createStudentclassRequest,
@@ -14,9 +14,8 @@ import {
   showLoading,
 } from "../../../../Store/reducers/alertSlice";
 
-// const { RangePicker } = DatePicker;
-
 export default function ClassRequest() {
+  const navigate = useNavigate();
   const alert = useAlert();
   const dispatch = useDispatch();
   const [errorMessage, setErrorMessage] = useState("");
@@ -62,11 +61,18 @@ export default function ClassRequest() {
       });
   };
 
+  // view teacher profile
+  const ViewTeacher = async (id) => {
+    console.log("view Teacher: ", id);
+    navigate(`/dashboard/session-room/${id}`);
+  };
+
   // geting All className requsest for loggin student
   useEffect(() => {
     axios.get("/students-class-Request").then((res) => {
-      const result = res.data.studentClassRequest
-        .filter((item) => item.student === userId);
+      const result = res.data.studentClassRequest.filter(
+        (item) => item.student === userId
+      );
       setclassRequest(result);
     });
   }, [userId]);
@@ -310,7 +316,7 @@ export default function ClassRequest() {
                   className="p-4 border m-2 text-sm flex justify-between"
                   key={item._id}
                 >
-                  {console.log(item)}
+                  {/* {console.log(item)} */}
                   <div>
                     <p className="font-semibold">Title: {item.title}</p>
                     <p className="">Price: {item.price} $</p>
@@ -329,18 +335,21 @@ export default function ClassRequest() {
                       }}
                       className="ri-delete-bin-6-line text-2xl cursor-pointer text-red-600"
                     ></i>
-                    <div className="flex  text-sm">
+                    <div className="flex text-sm">
                       {item.status === "pending" ? (
                         <p className="text-yellow-500 rounded-sm mt-5 p-2">
                           Pending
                         </p>
                       ) : (
                         <>
-                          <Link to="/dashboard/session-room">
-                            <button className="btn-profile mt-5">
-                              View Teacher
-                            </button>
-                          </Link>
+                          {/* <Link to="/dashboard/session-room"> */}
+                          <button
+                            onClick={() => ViewTeacher(item.Accptedteacher[0])}
+                            className="btn-profile mt-5"
+                          >
+                            View Teacher
+                          </button>
+                          {/* </Link> */}
                         </>
                       )}
                     </div>

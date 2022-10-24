@@ -1,7 +1,7 @@
 import { Layout } from "antd";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import "./Dashboard.css";
 import MegaProfile from "./MegaProfile";
 import Message from "./Message";
@@ -52,7 +52,7 @@ export default function Dashboard() {
       key: "14",
       icon: "ri-group-fill",
       link: "create-course",
-      role: ["teacher", 'student'],
+      role: ["teacher", "student"],
       label: "Create Course",
     },
     {
@@ -121,7 +121,6 @@ export default function Dashboard() {
 
   let avater = "https://cdn-icons-png.flaticon.com/512/1053/1053244.png?w=360";
 
-
   return (
     <Layout>
       <Sider
@@ -140,15 +139,15 @@ export default function Dashboard() {
         <nav className="">
           {navElements.map((item) => (
             <div className="my-3 text-white" key={item.key}>
-              <NavLink
-                to={item.link}
+              <Link
+                to={{pathname: `${item.link}`}}
                 className={`${(state) =>
                   state.isActive ? "active" : ""} my-1 py-2 block`}
               >
                 <i className={`${item.icon} m-4 text-[18px]`} />
                 {!collapsed ? <span className="">{item.label}</span> : ""}
                 {item.route}
-              </NavLink>
+              </Link>
             </div>
           ))}
         </nav>

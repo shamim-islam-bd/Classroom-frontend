@@ -1,10 +1,9 @@
 // import Constants
-
 import axios from 'axios';
 import {
-  CREATE_USER, CREATE_USER_FAIL, DELETE_USER, DELETE_USER_FAIL, GET_SINGLE_USER,
-  GET_SINGLE_USER_FAIL, GET_USERS, GET_USERS_FAIL, UPDATE_USER, UPDATE_USER_FAIL,
-  USER_ERROR
+    CREATE_USER, CREATE_USER_FAIL, DELETE_USER, DELETE_USER_FAIL, GET_SINGLE_USER,
+    GET_SINGLE_USER_FAIL, GET_USERS, GET_USERS_FAIL, UPDATE_USER, UPDATE_USER_FAIL,
+    USER_ERROR
 } from '../constants/usersConstant';
 
 
@@ -12,7 +11,7 @@ import {
 export const getAllUsers = () => async (dispatch) => { 
     try {
         const res = await axios.get('/users');
-        // console.log("fnd usersAction: ", res.data.users); 
+        // console.log("frm usersAction: ", res.data.users); 
 
         dispatch({
             type: GET_USERS,

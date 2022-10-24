@@ -23,7 +23,7 @@ export default function AllTeacher() {
       }
     });
   });
-  console.log("filter teacher: ", filterteacher);
+  // console.log("filter teacher: ", filterteacher);
 
   // useEffect(() => {
   //   axios("/teachers")
@@ -50,8 +50,8 @@ export default function AllTeacher() {
         <div className="basis-3/4 lg:basis-2/4 gap-4">
           <div className=" mt-10">
             {teachers?.map((teacher, index) => {
-              console.log("Teachers: ", teacher);
-              console.log("Teachers index: ", index);
+              // console.log("Teachers: ", teacher);
+              // console.log("Teachers index: ", index);
               return (
                 <div className="" key={teacher._id}>
                   <div className="card">
