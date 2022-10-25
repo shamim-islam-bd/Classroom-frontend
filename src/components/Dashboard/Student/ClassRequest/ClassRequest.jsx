@@ -9,6 +9,7 @@ import {
   createStudentclassRequest,
   deleteStudentclassRequest,
 } from "../../../../Store/Actions/StudentclassReqAction";
+import { getAllTeachers, getSingleTeacher } from "../../../../Store/Actions/TeachersAction";
 import {
   hideLoading,
   showLoading,
@@ -21,31 +22,24 @@ export default function ClassRequest() {
   const [errorMessage, setErrorMessage] = useState("");
   const [classRequest, setclassRequest] = useState([]);
 
-  const { auth, error, isAuthenticated } = useSelector(
-    (state) => state.auth.login
-  );
+  const { auth, error } = useSelector((state) => state.auth.login);
   const userId = auth._id;
 
-  const { AllStudentclassRequest } = useSelector(
-    (state) => state.classReqByStudent
-  );
+  // const { AllStudentclassRequest } = useSelector(
+  //   (state) => state.classReqByStudent
+  // );
   // console.log("frm classereq student: ", AllStudentclassRequest);
 
   dispatch(showLoading());
   const onFinish = async (values) => {
-    await axios
-      .post("/student/makeclassRequest", values)
-      .then((res) => {
-        // console.log("frm clsreq: ", res.data);
-        dispatch(hideLoading());
-        alert.success("You are successfully logged in");
-        dispatch(createStudentclassRequest(values));
-      })
-      .catch((err) => {
-        console.log(err);
-        dispatch(hideLoading());
-        setErrorMessage(err.res?.data.message);
-      });
+    if (values) {
+      dispatch(showLoading());
+      dispatch(createStudentclassRequest(values));
+      alert.success("Class created Successfully");
+    } else {
+      dispatch(hideLoading());
+      alert.error("Please fill up all the fields");
+    }
   };
 
   // delete className request useing id from database
@@ -53,7 +47,7 @@ export default function ClassRequest() {
     await axios
       .delete(`/student/deleteclassRequest/${id}`)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         dispatch(deleteStudentclassRequest(id));
       })
       .catch((err) => {
@@ -63,11 +57,11 @@ export default function ClassRequest() {
 
   // view teacher profile
   const ViewTeacher = async (id) => {
-    console.log("view Teacher: ", id);
+    // console.log("view Teacher: ", id);
     navigate(`/dashboard/session-room/${id}`);
   };
 
-  // geting All className requsest for loggin student
+  // geting All className requsest htmlFor loggin student
   useEffect(() => {
     axios.get("/students-class-Request").then((res) => {
       const result = res.data.studentClassRequest.filter(
@@ -83,7 +77,14 @@ export default function ClassRequest() {
     }
   }, [dispatch, error]);
 
+  // useing dispatch htmlFor getting all teachers eve if reload the page.
+  useEffect(() => {
+    dispatch(getAllTeachers());
+  }, [dispatch, deleteclassRequest]);
+
   //  const status = "pending";
+
+  // console.log(classRequest);
 
   return (
     <div className="mt-10">
@@ -91,20 +92,20 @@ export default function ClassRequest() {
       <Row>
         <Col span={24} sm={24} xm={24} md={24} lg={12}>
           <div className="items-center">
-            <div className="flex flex-col w-full transition duration-500 ease-in-out transform bg-white">
+            <div className="flex flex-col w-full transition duration-500 ease-in-out transhtmlForm bg-white">
               <div className="px-3">
                 {errorMessage && (
                   <p className="text-red-500 text-sm">{errorMessage}</p>
                 )}
                 <div className="flex justify-between items-center">
                   <h2 className="text-2xl font-extrabold text-neutral-600 mb-8">
-                    Make class requst form
+                    Make class requst htmlForm
                   </h2>
                 </div>
                 <Form className="space-y-6" onFinish={onFinish}>
                   <div>
                     <label
-                      for="name"
+                      htmlFor="name"
                       className="block text-sm font-medium text-neutral-600"
                     >
                       Title
@@ -120,7 +121,7 @@ export default function ClassRequest() {
 
                   <div>
                     <label
-                      for="description"
+                      htmlFor="description"
                       className="block text-sm font-medium text-neutral-600"
                     >
                       {" "}
@@ -138,7 +139,7 @@ export default function ClassRequest() {
 
                   <div>
                     <label
-                      for="level"
+                      htmlFor="level"
                       className="block text-sm font-medium text-neutral-600"
                     >
                       Select Categories
@@ -188,7 +189,7 @@ export default function ClassRequest() {
 
                   <div>
                     <label
-                      for="price"
+                      htmlFor="price"
                       className="block text-sm font-medium text-neutral-600"
                     >
                       {" "}
@@ -206,7 +207,7 @@ export default function ClassRequest() {
 
                   <div>
                     <label
-                      for="studentSlot"
+                      htmlFor="studentSlot"
                       className="block py-2 text-sm font-medium text-neutral-600"
                     >
                       {" "}
@@ -236,7 +237,7 @@ export default function ClassRequest() {
 
                   <div>
                     <label
-                      for="level"
+                      htmlFor="level"
                       className="block text-sm font-medium text-neutral-600"
                     >
                       Level
@@ -259,7 +260,7 @@ export default function ClassRequest() {
                   <div className="flex items-center gap-5">
                     <div>
                       <label
-                        for="level"
+                        htmlFor="level"
                         className="block text-sm font-medium text-neutral-600"
                       >
                         Select Date
@@ -275,7 +276,7 @@ export default function ClassRequest() {
                     </div>
                     <div>
                       <label
-                        for="level"
+                        htmlFor="level"
                         className="block text-sm font-medium text-neutral-600"
                       >
                         Select Time
@@ -316,7 +317,7 @@ export default function ClassRequest() {
                   className="p-4 border m-2 text-sm flex justify-between"
                   key={item._id}
                 >
-                  {/* {console.log(item)} */}
+                  {console.log(item)}
                   <div>
                     <p className="font-semibold">Title: {item.title}</p>
                     <p className="">Price: {item.price} $</p>

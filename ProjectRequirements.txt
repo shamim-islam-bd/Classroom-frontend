@@ -33,3 +33,16 @@ eemail> davidbasser88@gmail.com
 
 
 following projects :  http://uitheme.net/elomoas/default-channel.html
+
+
+
+
+
+
+
+---------redux page reload Solved----------
+***redux er kno kisu store korte chaile page reload deyar por thakbe.**
+
+1. Action a ja thakbe, sei data gulo jei page a show/store korte chaibo sei page a
+   action function ta dispath korte hbe. dispath a kno value pass korar thake korte hbe.
+  

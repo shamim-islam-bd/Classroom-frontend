@@ -1,14 +1,22 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { getAllTeachers } from "../../../../Store/Actions/TeachersAction";
+import { getAllUsers } from "../../../../Store/Actions/usersAction";
 import "./PrivateSession.css";
 
 export default function PrivateSession() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { teachers } = useSelector((state) => state.teachers);
   const { users } = useSelector((state) => state.users);
   // console.log(teachers);
   // console.log(users);
+
+  useEffect(() => {
+    dispatch(getAllUsers());
+    dispatch(getAllTeachers());
+  }, [dispatch]);
 
   const { id } = useParams();
 
@@ -22,12 +30,11 @@ export default function PrivateSession() {
 
   // console.log(filterteacher);
 
-  
-  const destination = (id) => {
+  const profileDestination = (id) => {
+    console.log(id);
     navigate(`/dashboard/teachers/${id}`);
   };
 
-  
   // finding teacher basic info from users.
   let filterUser;
   users.forEach((ur) => {
@@ -35,6 +42,8 @@ export default function PrivateSession() {
       filterUser = ur;
     }
   });
+
+  // console.log(filterUser);
 
   return (
     <div className="mt-8">
@@ -50,7 +59,7 @@ export default function PrivateSession() {
               </span>
               {/* <Link to={`${filterUser._id}`}> */}
               <button
-                onClick={() => destination(filterUser._id)}
+                onClick={() => profileDestination(filterteacher._id)}
                 color="#2db7f5"
                 className="inline-block text-white bg-[#2db7f5] border border-[#2db7f5] rounded-full hover:bg-transparent hover:text-cyan-600 active:text-cyan-500 focus:outline-none focus:ring"
               >

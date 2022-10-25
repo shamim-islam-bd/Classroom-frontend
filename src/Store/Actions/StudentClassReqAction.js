@@ -49,8 +49,7 @@ export const getSingleStudentclassRequest = (id) => async (dispatch) => {
 export const createStudentclassRequest = (values) => async (dispatch) => {
     try {
         const res = await axios.post('/student/makeclassRequest', values);
-        // console.log("createStudentclassNameRequest Action: ", res.data.createclassReq);
-
+        // console.log("create Student classRequest Action: ", res.data.createclassReq);
         dispatch({
             type: CREATE_STUDENT_CLASS_REQUEST,
             payload: res.data?.createclassReq
