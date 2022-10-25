@@ -8,7 +8,6 @@ import Classroom from "./components/Dashboard/Student/Classroom/Classroom";
 import Lessons from "./components/Dashboard/Student/Lessons/Lessons";
 import PaymentInfo from "./components/Dashboard/Student/PaymentInfo/PaymentInfo";
 import SavedCourses from "./components/Dashboard/Student/SavedCourses/SavedCourses";
-import SessionRoom from "./components/Dashboard/Student/SessionRoom/SessionRoom";
 import AllCourses from "./components/Dashboard/Teacher/AllCourses/AllCourses";
 import AllTeacher from "./components/Dashboard/Teacher/AllTeacher/AllTeacher";
 import ClassScheduling from "./components/Dashboard/Teacher/ClassScheduling/ClassScheduling";
@@ -18,6 +17,9 @@ import LiveClass from "./components/Dashboard/Teacher/LiveClass/LiveClass";
 import LiveStream from "./components/Dashboard/Teacher/LiveStream/LiveStream";
 import RequestedClasses from "./components/Dashboard/Teacher/RequestedClasses/RequestedClasses";
 // import Home from "./components/pages/Home/Home";
+import PrivateSession from "./components/Dashboard/Student/PrivateSession/PrivateSession";
+import SessionRoom from "./components/Dashboard/Student/SessionRoom/SessionRoom";
+import SingleTeacher from "./components/Dashboard/Teacher/SingleTeacher/SingleTeacher";
 import Login from "./components/pages/Login/Login";
 import NotFound from "./components/pages/NotFound/NotFound";
 import Signup from "./components/pages/Signup/Signup";
@@ -54,11 +56,12 @@ function App() {
           >
             <Route path="profile" element={<Profile />} />
             <Route path="live-stream" element={<LiveStream />} />
-            <Route index path="session-room/:id" element={<SessionRoom />} />
-            {/* <Route path="session-room/:id" element={<SessionRoom />} /> */}
+            <Route index path="session-room" element={<SessionRoom />} />
+            <Route path="session-room/:id" element={<PrivateSession />} />
             <Route path="reqclassfeed" element={<RequestedClasses />} />
             <Route path="lessons" element={<Lessons />} />
             <Route path="teachers" element={<AllTeacher />} />
+            <Route path="teachers/:id" element={<SingleTeacher />} />
             <Route path="classScheduling" element={<ClassScheduling />} />
             <Route path="classroom" element={<Classroom />} />
             <Route path="create-course" element={<CreateCourse />} />

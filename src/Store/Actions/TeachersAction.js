@@ -36,7 +36,8 @@ export const getAllTeachers = () => async dispatch => {
 // Get single teacher
 export const getSingleTeacher = (id) => async dispatch => {
     try {
-        const res = await axios.get(`/api/teachers/${id}`);
+        const res = await axios.get(`/teachers/${id}`);
+        console.log("frm Action-single teacher: ", res)
         dispatch({
             type: GET_SINGLE_TEACHER,
             payload: res.data
@@ -53,7 +54,7 @@ export const getSingleTeacher = (id) => async dispatch => {
 // Create teacher
 export const createTeacher = (values) => async dispatch => {
     try {
-        const res = await axios.post('/api/teachers', values);
+        const res = await axios.post('/teachers', values);
         dispatch({
             type: CREATE_TEACHER,
             payload: res.data
@@ -70,7 +71,7 @@ export const createTeacher = (values) => async dispatch => {
 // Update teacher
 export const updateTeacher = (id, values) => async dispatch => {
     try {
-        const res = await axios.put(`/api/teachers/${id}`, values);
+        const res = await axios.put(`/teachers/${id}`, values);
         dispatch({
             type: UPDATE_TEACHER,
             payload: res.data
@@ -87,7 +88,7 @@ export const updateTeacher = (id, values) => async dispatch => {
 // Delete teacher
 export const deleteTeacher = (id) => async dispatch => {
     try {
-        await axios.delete(`/api/teachers/${id}`);
+        await axios.delete(`/teachers/${id}`);
         dispatch({
             type: DELETE_TEACHER,
             payload: id

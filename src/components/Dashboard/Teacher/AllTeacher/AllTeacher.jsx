@@ -54,6 +54,7 @@ export default function AllTeacher() {
               return (
                 <div className="p-2" key={teacher._id}>
                   <div className="card">
+                    {/* { console.log(teacher._id) } */}
                     {/* <div className="portada"></div> */}
                     <div className="img-avatar"></div>
                     <div className="title-total">
@@ -63,7 +64,7 @@ export default function AllTeacher() {
                             <i className="ri-focus-2-line mr-[2px]"></i> Online
                           </p>
                         </span>
-                        <Link to="">
+                        <Link to={`${teacher._id}`}>
                           <Tooltip
                             title="View Profile"
                             color="#2db7f5"
@@ -95,6 +96,13 @@ export default function AllTeacher() {
                         <span className="text-cyan-800">
                           {" "}
                           Mr. {filterteacher[index].name}
+                        </span>
+                      </p>
+                      <p className="px-4 text-[12px]">
+                        Experience :{" "}
+                        <span className="text-cyan-800">
+                          {" "}
+                         6 years.
                         </span>
                       </p>
                       <p className="px-4 text-[12px]">
