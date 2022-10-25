@@ -46,14 +46,13 @@ export default function AllTeacher() {
 
   return (
     <>
-      <div className="flex flex-row mt-10">
-        <div className="basis-3/4 lg:basis-2/4 gap-4">
-          <div className=" mt-10">
+      <div className="mt-10">
+        <div className=" gap-4">
+          <div className="mt-10 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
             {teachers?.map((teacher, index) => {
               // console.log("Teachers: ", teacher);
-              // console.log("Teachers index: ", index);
               return (
-                <div className="" key={teacher._id}>
+                <div className="p-2" key={teacher._id}>
                   <div className="card">
                     {/* <div className="portada"></div> */}
                     <div className="img-avatar"></div>
@@ -91,11 +90,19 @@ export default function AllTeacher() {
                           </Tooltip>
                         </Link>
                       </div>
-                      <p className="title text-cyan-800">
-                        Professior Mr. <span>{filterteacher[index].name}</span>
+                      <p className="px-4 text-sm pb-2">
+                        Professior{" "}
+                        <span className="text-cyan-800">
+                          {" "}
+                          Mr. {filterteacher[index].name}
+                        </span>
                       </p>
                       <p className="px-4 text-[12px]">
-                        specialist: {teacher.specialist}
+                        specialist:
+                        <span className="text-cyan-800">
+                          {" "}
+                          {teacher.specialist}
+                        </span>
                         <br />
                         email:{" "}
                         <span className="text-cyan-700">
@@ -145,9 +152,9 @@ export default function AllTeacher() {
             })}
           </div>
         </div>
-        <div className="basis-1/4">
+        {/* <div className="basis-1/4">
           <h1>Filter teacher</h1>
-        </div>
+        </div> */}
       </div>
     </>
   );
