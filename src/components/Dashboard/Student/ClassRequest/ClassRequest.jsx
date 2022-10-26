@@ -9,7 +9,7 @@ import {
   createStudentclassRequest,
   deleteStudentclassRequest,
 } from "../../../../Store/Actions/StudentclassReqAction";
-import { getAllTeachers, getSingleTeacher } from "../../../../Store/Actions/TeachersAction";
+import { getAllTeachers } from "../../../../Store/Actions/TeachersAction";
 import {
   hideLoading,
   showLoading,
@@ -24,11 +24,6 @@ export default function ClassRequest() {
 
   const { auth, error } = useSelector((state) => state.auth.login);
   const userId = auth._id;
-
-  // const { AllStudentclassRequest } = useSelector(
-  //   (state) => state.classReqByStudent
-  // );
-  // console.log("frm classereq student: ", AllStudentclassRequest);
 
   dispatch(showLoading());
   const onFinish = async (values) => {
@@ -83,8 +78,6 @@ export default function ClassRequest() {
   }, [dispatch, deleteclassRequest]);
 
   //  const status = "pending";
-
-  // console.log(classRequest);
 
   return (
     <div className="mt-10">

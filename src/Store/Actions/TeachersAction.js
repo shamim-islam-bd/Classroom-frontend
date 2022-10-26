@@ -36,7 +36,7 @@ export const getAllTeachers = () => async dispatch => {
 export const getSingleTeacher = (id) => async dispatch => {
     try {
         const res = await axios.get(`/teacher/profile/${id}`);
-        console.log("frm Action-single teacher: ", res.data.teacher)
+        // console.log("frm Action-single teacher: ", res.data.teacher)
         
         dispatch({
             type: GET_SINGLE_TEACHER,

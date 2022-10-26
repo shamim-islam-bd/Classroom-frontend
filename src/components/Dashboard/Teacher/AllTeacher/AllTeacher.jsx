@@ -8,9 +8,6 @@ import "./AllTeacher.css";
 
 export default function AllTeacher() {
   const dispatch = useDispatch();
-  // const [AllTeachers, setAllTeachers] = useState([]);
-
-  // const { auth } = useSelector((state) => state.auth.login);
   const { teachers } = useSelector((state) => state.teachers);
   const { users } = useSelector((state) => state.users);
   // console.log("teachers: ", teachers);
@@ -23,18 +20,8 @@ export default function AllTeacher() {
       }
     });
   });
-  // console.log("filter teacher: ", filterteacher);
-
-  // useEffect(() => {
-  //   axios("/teachers")
-  //     .then((res) => {
-  //       console.log(res.data.teachers);
-  //       setAllTeachers(res.data.teachers);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, []);
+  console.log("filter teacher: ", filterteacher);
+  // console.log(filterteacher.avader.url);
 
   useEffect(() => {
     dispatch(getAllUsers());
@@ -54,9 +41,13 @@ export default function AllTeacher() {
               return (
                 <div className="p-2" key={teacher._id}>
                   <div className="card">
-                    {/* { console.log(teacher._id) } */}
-                    {/* <div className="portada"></div> */}
-                    <div className="img-avatar"></div>
+                    <div className="relative">
+                      <img
+                        className="absolute h-20 w-20 inset-x-0 -top-8 block mx-auto rounded-full sm:shrink-0"
+                        src={filterteacher[index]?.avader?.url}
+                        alt={filterteacher[index]?.name}
+                      />
+                    </div>
                     <div className="title-total">
                       <div className="flex items-center justify-between pb-4">
                         <span className="text-green-800 font-bold text-[13px] p-3">
@@ -100,10 +91,7 @@ export default function AllTeacher() {
                       </p>
                       <p className="px-4 text-[12px]">
                         Experience :{" "}
-                        <span className="text-cyan-800">
-                          {" "}
-                         6 years.
-                        </span>
+                        <span className="text-cyan-800"> 6 years.</span>
                       </p>
                       <p className="px-4 text-[12px]">
                         specialist:
@@ -160,9 +148,6 @@ export default function AllTeacher() {
             })}
           </div>
         </div>
-        {/* <div className="basis-1/4">
-          <h1>Filter teacher</h1>
-        </div> */}
       </div>
     </>
   );

@@ -43,13 +43,21 @@ export default function PrivateSession() {
     }
   });
 
-  // console.log(filterUser);
+  const dummyImg = "https://img.freepik.com/free-photo/close-up-young-successful-man-smiling-camera-standing-casual-outfit-against-blue-background_1258-66609.jpg?w=900&t=st=1662704766~exp=1662705366~hmac=b64f930f1148a80edff6183ee6b96f384687cc18d9669183a420a5e85007c47d";
+  console.log(filterUser);
+
 
   return (
     <div className="mt-8">
       <div className="mt-8 grid sm:grid-rows-1 md:grid-cols-2 grid-cols-1 gap-4">
         <div className="card_session mt-6">
-          <div className="img-avatar"></div>
+          <div className="relative">
+            <img
+              className="absolute h-20 w-20 inset-x-0 -top-8 block mx-auto rounded-full sm:shrink-0"
+              src={dummyImg}
+              alt={filterUser?.name}
+            />
+          </div>
           <div className="title-total">
             <div className="flex items-center justify-between pb-4">
               <span className="text-green-800 font-bold text-[13px] p-3">
@@ -121,8 +129,8 @@ export default function PrivateSession() {
             </Link>
             <img
               className="block mx-auto h-14 rounded-full sm:mx-0 sm:shrink-0"
-              src="https://i.ibb.co/xzzM5L4/shamim-islam-3.png"
-              alt="Woman's Face"
+              src={filterUser?.avader?.url}
+              alt={filterUser?.name}
             />
             <div>
               <h4 className="text-[14px] font-bold">Andrew Neil</h4>
@@ -134,8 +142,9 @@ export default function PrivateSession() {
               <div className="header flex gap-3 text-justify items-center">
                 <img
                   className="block mx-auto h-10 rounded-full sm:mx-0 sm:shrink-0"
-                  src="https://i.ibb.co/xzzM5L4/shamim-islam-3.png"
-                  alt="Woman's Face"
+                  src={filterUser?.avader?.url}
+                  // "https://i.ibb.co/xzzM5L4/shamim-islam-3.png"
+                  alt={filterUser?.name}
                 />
                 <div className="shadow-md p-3 rounded-r-lg bg-white">
                   <p className="text-[12px]">hey how are you?</p>
@@ -149,8 +158,8 @@ export default function PrivateSession() {
                 </div>
                 <img
                   className="block mx-auto h-10 rounded-full sm:mx-0 sm:shrink-0"
-                  src="https://i.ibb.co/xzzM5L4/shamim-islam-3.png"
-                  alt="Woman's Face"
+                  src={filterUser?.avader?.url}
+                  alt={filterUser?.name}
                 />
               </div>
             </div>
