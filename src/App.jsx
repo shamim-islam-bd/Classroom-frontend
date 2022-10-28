@@ -13,7 +13,6 @@ import AllTeacher from "./components/Dashboard/Teacher/AllTeacher/AllTeacher";
 import ClassScheduling from "./components/Dashboard/Teacher/ClassScheduling/ClassScheduling";
 import CourseDetails from "./components/Dashboard/Teacher/CourseDetails/CourseDetails";
 import CreateCourse from "./components/Dashboard/Teacher/CreateCourse/CreateCourse";
-import LiveClass from "./components/Dashboard/Teacher/LiveClass/LiveClass";
 import LiveStream from "./components/Dashboard/Teacher/LiveStream/LiveStream";
 import RequestedClasses from "./components/Dashboard/Teacher/RequestedClasses/RequestedClasses";
 // import Home from "./components/pages/Home/Home";
@@ -55,9 +54,9 @@ function App() {
             }
           >
             <Route path="profile" element={<Profile />} />
-            <Route path="live-stream" element={<LiveStream />} />
             <Route index path="session-room" element={<SessionRoom />} />
             <Route path="private-session/:id" element={<PrivateSession />} />
+            <Route path="live-stream/:id" element={<LiveStream />} />
             <Route path="reqclassfeed" element={<RequestedClasses />} />
             <Route path="lessons" element={<Lessons />} />
             <Route path="teachers" element={<AllTeacher />} />
@@ -65,10 +64,9 @@ function App() {
             <Route path="classScheduling" element={<ClassScheduling />} />
             <Route path="classroom" element={<Classroom />} />
             <Route path="create-course" element={<CreateCourse />} />
-            <Route path="liveclass" element={<LiveClass />} />
             <Route path="class-requests" element={<ClassRequest />} />
             <Route path="saved-courses" element={<SavedCourses />} />
-            <Route path="payment-info" element={<PaymentInfo />} />
+            <Route path="payment-info/:id" element={<PaymentInfo />} />
             <Route path="courses" element={<AllCourses />}>
               <Route path=":id" element={<CourseDetails />} />
             </Route>

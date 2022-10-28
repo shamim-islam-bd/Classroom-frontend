@@ -16,34 +16,44 @@ export default function PrivateSession() {
     dispatch(getSingleTeacher(id));
   }, [dispatch]);
 
-
   const profileDestination = (id) => {
-    console.log(id);
+    // console.log(id);
     navigate(`/dashboard/teachers/${id}`);
   };
 
-
-  const dummyImg =
-    "https://img.freepik.com/free-photo/close-up-young-successful-man-smiling-camera-standing-casual-outfit-against-blue-background_1258-66609.jpg?w=900&t=st=1662704766~exp=1662705366~hmac=b64f930f1148a80edff6183ee6b96f384687cc18d9669183a420a5e85007c47d";
+  const LiveStreamRoute = (id) => {
+    // console.log(id);
+    navigate(`/dashboard/payment-info/${id}`);
+  };
 
   return (
     <div className="mt-8">
       <div className="mt-8 grid sm:grid-rows-1 md:grid-cols-2 grid-cols-1 gap-4">
         <div className="card_session mt-6">
-          <div className="relative">
+          {/* <div className="">
             <img
-              className="absolute h-20 w-20 inset-x-0 -top-8 block mx-auto rounded-full sm:shrink-0"
-              src={teacher?.avader?.url || dummyImg}
+              className="h-20 w-20 inset-x-0 -top-8 block rounded-full sm:shrink-0"
+              src={teacher?.teacher_info?.avader?.url}
               alt={teacher?.name}
             />
-          </div>
+          </div> */}
           <div className="title-total">
             <div className="flex items-center justify-between pb-4">
-              <span className="text-green-800 font-bold text-[13px] p-3">
-                <p className="flex">
-                  <i className="ri-focus-2-line mr-[2px]"></i> Online
-                </p>
-              </span>
+              <div className="flex items-center">
+                <img
+                  className="h-20 w-20 inset-x-0 -top-8 block rounded-full sm:shrink-0"
+                  src={teacher?.teacher_info?.avader?.url}
+                  alt={teacher?.name}
+                />
+                <div className="font-bold text-[13px] p-3">
+                  <p className="font-bold text-sm ">
+                    Mr. {teacher?.teacher_info?.name}
+                  </p>
+                  <p className="flex items-center py-1 text-green-900 ">
+                    <i className="ri-focus-2-line mr-[2px]"></i> Online
+                  </p>
+                </div>
+              </div>
               {/* <Link to={`${filterUser._id}`}> */}
               <button
                 onClick={() => profileDestination(teacher._id)}
@@ -57,10 +67,7 @@ export default function PrivateSession() {
               </button>
               {/* </Link> */}
             </div>
-            <p className="font-bold text-sm ">
-              Professior Mr. {teacher?.teacher_info?.name}
-              {/* <span>{filterteacher[index].name}</span> */}
-            </p>
+
             <p className="text-[12px] py-3">
               <span className="text-cyan-700">Specialist: </span>
               {teacher?.specialist}
@@ -90,14 +97,14 @@ export default function PrivateSession() {
                 <i className="ri-chat-2-line"></i>
               </Link>
 
-              <Link to="" className="link">
+              <p className="link">
                 <button
-                  className="py-1 text-sm px-3 md:py-2 md:px-2 bg-[#2db7f5] text-white rounded-lg shadow-mdhover:bg-white border border-[#2db7f5] hover:bg-transparent hover:text-cyan-600 active:text-cyan-500 focus:outline-none focus:ring
-                "
+                  onClick={() => LiveStreamRoute(teacher._id)}
+                  className="py-1 text-sm px-3 md:py-2 md:px-2 bg-[#2db7f5] text-white rounded-lg shadow-mdhover:bg-white border border-[#2db7f5] hover:bg-transparent hover:text-cyan-600 active:text-cyan-500 focus:outline-none focus:ring"
                 >
                   Start Session
                 </button>
-              </Link>
+              </p>
             </div>
           </div>
         </div>
@@ -108,7 +115,7 @@ export default function PrivateSession() {
             </Link>
             <img
               className="block mx-auto w-14 h-14 rounded-full sm:mx-0 sm:shrink-0"
-              src={teacher?.teacher_info?.avader?.url || dummyImg}
+              src={teacher?.teacher_info?.avader?.url}
               alt={teacher?.teacher_info?.name}
             />
             <div>
@@ -121,22 +128,24 @@ export default function PrivateSession() {
               <div className="header flex gap-3 text-justify items-center">
                 <img
                   className="block mx-auto h-10 w-10 rounded-full sm:mx-0 sm:shrink-0"
-                  src={teacher?.teacher_info?.avader?.url || dummyImg}
+                  src={teacher?.teacher_info?.avader?.url}
                   alt={teacher?.teacher_info?.name}
                 />
                 <div className="shadow-md p-3 rounded-r-lg bg-white">
                   <p className="text-[12px]">hey, how are you?</p>
                 </div>
+                <span className="text-[10px] text-slate-400">3.30 pm</span>
               </div>
             </div>
             <div className="flex gap-3 justify-end">
               <div className="header flex gap-3 text-justify items-center">
+                <span className="text-[10px] text-slate-400">3.30 pm</span>
                 <div className="shadow-md p-3 rounded-r-lg bg-white">
                   <p className="text-[12px]">im Good & you?</p>
                 </div>
                 <img
                   className="block mx-auto h-10 rounded-full sm:mx-0 sm:shrink-0"
-                  src={auth?.avader?.url || dummyImg}
+                  src={auth?.avader?.url}
                   alt={auth?.name}
                 />
               </div>
