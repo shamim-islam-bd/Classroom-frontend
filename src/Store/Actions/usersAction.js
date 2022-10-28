@@ -28,7 +28,6 @@ export const getAllUsers = () => async (dispatch) => {
     }
 }
 
-
 export const getSingleUser = (id) => async (dispatch) => {
     try {
         const res = await axios.get(`/users/${id}`);

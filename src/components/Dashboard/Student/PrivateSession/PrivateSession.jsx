@@ -1,51 +1,30 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { getAllTeachers } from "../../../../Store/Actions/TeachersAction";
-import { getAllUsers } from "../../../../Store/Actions/usersAction";
+import { getSingleTeacher } from "../../../../Store/Actions/TeachersAction";
 import "./PrivateSession.css";
 
 export default function PrivateSession() {
+  const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { teachers } = useSelector((state) => state.teachers);
-  const { users } = useSelector((state) => state.users);
-  // console.log(teachers);
-  // console.log(users);
+  const { teacher } = useSelector((state) => state.teachers);
+  const { auth } = useSelector((state) => state.auth.login);
+  // console.log("auth", auth);
 
   useEffect(() => {
-    dispatch(getAllUsers());
-    dispatch(getAllTeachers());
+    dispatch(getSingleTeacher(id));
   }, [dispatch]);
 
-  const { id } = useParams();
-
-  // finding teacher all information from Teachers.
-  let filterteacher;
-  teachers.forEach((teacher) => {
-    if (teacher.teacher_info === id) {
-      filterteacher = teacher;
-    }
-  });
-
-  // console.log(filterteacher);
 
   const profileDestination = (id) => {
     console.log(id);
     navigate(`/dashboard/teachers/${id}`);
   };
 
-  // finding teacher basic info from users.
-  let filterUser;
-  users.forEach((ur) => {
-    if (ur._id === id) {
-      filterUser = ur;
-    }
-  });
 
-  const dummyImg = "https://img.freepik.com/free-photo/close-up-young-successful-man-smiling-camera-standing-casual-outfit-against-blue-background_1258-66609.jpg?w=900&t=st=1662704766~exp=1662705366~hmac=b64f930f1148a80edff6183ee6b96f384687cc18d9669183a420a5e85007c47d";
-  console.log(filterUser);
-
+  const dummyImg =
+    "https://img.freepik.com/free-photo/close-up-young-successful-man-smiling-camera-standing-casual-outfit-against-blue-background_1258-66609.jpg?w=900&t=st=1662704766~exp=1662705366~hmac=b64f930f1148a80edff6183ee6b96f384687cc18d9669183a420a5e85007c47d";
 
   return (
     <div className="mt-8">
@@ -54,8 +33,8 @@ export default function PrivateSession() {
           <div className="relative">
             <img
               className="absolute h-20 w-20 inset-x-0 -top-8 block mx-auto rounded-full sm:shrink-0"
-              src={dummyImg}
-              alt={filterUser?.name}
+              src={teacher?.avader?.url || dummyImg}
+              alt={teacher?.name}
             />
           </div>
           <div className="title-total">
@@ -67,7 +46,7 @@ export default function PrivateSession() {
               </span>
               {/* <Link to={`${filterUser._id}`}> */}
               <button
-                onClick={() => profileDestination(filterteacher._id)}
+                onClick={() => profileDestination(teacher._id)}
                 color="#2db7f5"
                 className="inline-block text-white bg-[#2db7f5] border border-[#2db7f5] rounded-full hover:bg-transparent hover:text-cyan-600 active:text-cyan-500 focus:outline-none focus:ring"
               >
@@ -79,17 +58,17 @@ export default function PrivateSession() {
               {/* </Link> */}
             </div>
             <p className="font-bold text-sm ">
-              Professior Mr. {filterUser?.name}
+              Professior Mr. {teacher?.teacher_info?.name}
               {/* <span>{filterteacher[index].name}</span> */}
             </p>
             <p className="text-[12px] py-3">
               <span className="text-cyan-700">Specialist: </span>
-              {filterteacher?.specialist}
+              {teacher?.specialist}
               <br />
               <span className="text-cyan-700">
                 email: {/* {filterteacher[index].email} */}
               </span>
-              {filterUser?.email}
+              {teacher?.teacher_info?.email}
             </p>
             {/* <span className="text-[10px] px-4">{user.email}</span> */}
             <div className="text-sm pb-2">
@@ -97,10 +76,10 @@ export default function PrivateSession() {
               knowledge and passion.
             </div>
             <p className="text-[12px] text-cyan-700">
-              Avg fee: {filterteacher?.classFee} $
+              Avg fee: ${teacher?.classFee}
             </p>
             <p className="text-[12px] text-cyan-700">
-              Total Class: {filterteacher?.numOfCourses}
+              Total Class: {teacher?.numOfCourses}
             </p>
             <div className="actions mt-2">
               <Link to="" className="link">
@@ -128,9 +107,9 @@ export default function PrivateSession() {
               <i className="ri-arrow-left-line"></i>
             </Link>
             <img
-              className="block mx-auto h-14 rounded-full sm:mx-0 sm:shrink-0"
-              src={filterUser?.avader?.url}
-              alt={filterUser?.name}
+              className="block mx-auto w-14 h-14 rounded-full sm:mx-0 sm:shrink-0"
+              src={teacher?.teacher_info?.avader?.url || dummyImg}
+              alt={teacher?.name}
             />
             <div>
               <h4 className="text-[14px] font-bold">Andrew Neil</h4>
@@ -141,25 +120,24 @@ export default function PrivateSession() {
             <div className="flex gap-3 mb-5 justify-start">
               <div className="header flex gap-3 text-justify items-center">
                 <img
-                  className="block mx-auto h-10 rounded-full sm:mx-0 sm:shrink-0"
-                  src={filterUser?.avader?.url}
-                  // "https://i.ibb.co/xzzM5L4/shamim-islam-3.png"
-                  alt={filterUser?.name}
+                  className="block mx-auto h-10 w-10 rounded-full sm:mx-0 sm:shrink-0"
+                  src={teacher?.teacher_info?.avader?.url || dummyImg}
+                  alt={teacher?.name}
                 />
                 <div className="shadow-md p-3 rounded-r-lg bg-white">
-                  <p className="text-[12px]">hey how are you?</p>
+                  <p className="text-[12px]">hey, how are you?</p>
                 </div>
               </div>
             </div>
             <div className="flex gap-3 justify-end">
               <div className="header flex gap-3 text-justify items-center">
                 <div className="shadow-md p-3 rounded-r-lg bg-white">
-                  <p className="text-[12px]">hey how are you?</p>
+                  <p className="text-[12px]">im Good & you?</p>
                 </div>
                 <img
                   className="block mx-auto h-10 rounded-full sm:mx-0 sm:shrink-0"
-                  src={filterUser?.avader?.url}
-                  alt={filterUser?.name}
+                  src={auth?.avader?.url || dummyImg}
+                  alt={teacher?.name}
                 />
               </div>
             </div>

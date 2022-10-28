@@ -3,33 +3,18 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getAllTeachers } from "../../../../Store/Actions/TeachersAction";
-import { getAllUsers } from "../../../../Store/Actions/usersAction";
 import "./AllTeacher.css";
 
 export default function AllTeacher() {
   const dispatch = useDispatch();
   const { teachers } = useSelector((state) => state.teachers);
-  const { users } = useSelector((state) => state.users);
-  // console.log("teachers: ", teachers);
-
-  let filterteacher = [];
-  users.forEach((user) => {
-    teachers.forEach((teacher) => {
-      if (user._id === teacher.teacher_info) {
-        filterteacher.push(user);
-      }
-    });
-  });
-  console.log("filter teacher: ", filterteacher);
-  // console.log(filterteacher.avader.url);
-
-  useEffect(() => {
-    dispatch(getAllUsers());
-  }, [dispatch]);
 
   useEffect(() => {
     dispatch(getAllTeachers());
   }, [dispatch]);
+
+  const dummyImg =
+    "https://img.freepik.com/free-photo/close-up-young-successful-man-smiling-camera-standing-casual-outfit-against-blue-background_1258-66609.jpg?w=900&t=st=1662704766~exp=1662705366~hmac=b64f930f1148a80edff6183ee6b96f384687cc18d9669183a420a5e85007c47d";
 
   return (
     <>
@@ -37,15 +22,15 @@ export default function AllTeacher() {
         <div className=" gap-4">
           <div className="mt-10 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
             {teachers?.map((teacher, index) => {
-              // console.log("Teachers: ", teacher);
               return (
                 <div className="p-2" key={teacher._id}>
+                  {/* {console.log(teacher)} */}
                   <div className="card">
                     <div className="relative">
                       <img
                         className="absolute h-20 w-20 inset-x-0 -top-8 block mx-auto rounded-full sm:shrink-0"
-                        src={filterteacher[index]?.avader?.url}
-                        alt={filterteacher[index]?.name}
+                        src={teacher?.teacher_info?.avader?.url || dummyImg}
+                        alt={teacher?.teacher_info?.name}
                       />
                     </div>
                     <div className="title-total">
@@ -55,7 +40,7 @@ export default function AllTeacher() {
                             <i className="ri-focus-2-line mr-[2px]"></i> Online
                           </p>
                         </span>
-                        <Link to={`${teacher._id}`}>
+                        <Link to={`${teacher?._id}`}>
                           <Tooltip
                             title="View Profile"
                             color="#2db7f5"
@@ -86,7 +71,7 @@ export default function AllTeacher() {
                         Professior{" "}
                         <span className="text-cyan-800">
                           {" "}
-                          Mr. {filterteacher[index].name}
+                          Mr. {teacher?.teacher_info?.name}
                         </span>
                       </p>
                       <p className="px-4 text-[12px]">
@@ -97,12 +82,12 @@ export default function AllTeacher() {
                         specialist:
                         <span className="text-cyan-800">
                           {" "}
-                          {teacher.specialist}
+                          {teacher?.specialist}
                         </span>
                         <br />
                         email:{" "}
                         <span className="text-cyan-700">
-                          {filterteacher[index].email}
+                          {teacher?.teacher_info?.email}
                         </span>
                       </p>
                       {/* <span className="text-[10px] px-4">{user.email}</span> */}

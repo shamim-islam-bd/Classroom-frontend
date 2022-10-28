@@ -19,6 +19,7 @@ export const getAllTeachers = () => async dispatch => {
     try {
         const res = await axios.get('/teachers');
         // console.log("getAllTeacher frm Action: ", res.data.teachers)
+
         dispatch({
             type: GET_ALL_TEACHERS,
             payload: res.data.teachers
@@ -35,17 +36,20 @@ export const getAllTeachers = () => async dispatch => {
 // Get single teacher
 export const getSingleTeacher = (id) => async dispatch => {
     try {
-        const res = await axios.get(`/teacher/profile/${id}`);
-        // console.log("frm Action-single teacher: ", res.data.teacher)
+        const res = await axios.get(`/teacher/${id}`);
+
+        console.log("frm Action-single teacher: ", res.data.teacher)
         
         dispatch({
             type: GET_SINGLE_TEACHER,
             payload: res.data.teacher
         })
     } catch (err) {
+        console.log(err);
+
         dispatch({
             type: TEACHER_ERROR,
-            payload: err.response.data
+            payload: err.response.data.msg
         })
     }
 }

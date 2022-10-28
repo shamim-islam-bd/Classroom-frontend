@@ -33,6 +33,7 @@ export default function Requestedclass() {
   }, []);
 
   const handleConfirm = (id) => {
+    // console.log("confirm btn: ", id);
     axios
       .put(`/student/classRequest/${id}`)
       .then((res) => {

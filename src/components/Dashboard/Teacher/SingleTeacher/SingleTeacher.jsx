@@ -2,31 +2,25 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getSingleTeacher } from "../../../../Store/Actions/TeachersAction";
-import { getAllUsers } from "../../../../Store/Actions/usersAction";
+// import { getAllTeachers } from "../../../../Store/Actions/TeachersAction";
+// import { getAllUsers } from "../../../../Store/Actions/usersAction";
 import "./SingleTeacher.css";
 
 export default function SingleTeacher() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const { teacher } = useSelector((state) => state.teachers);
-  const { users } = useSelector((state) => state.users);
-  console.log("teacher: ", teacher);
-  // console.log("teachers: ", users);
-  // console.log(id);
+  // console.log("teacher: ", teacher);
+  console.log("SingleTeacher Id", id);
+
+  useEffect(() => {
+    dispatch(getSingleTeacher(id));
+  }, [dispatch]);
 
   // useing dispatch for storeing single teachers refreesh korleu data jave nah.
-  useEffect(() => {
-    dispatch(getAllUsers());
-    dispatch(getSingleTeacher(id));
-  }, [id, dispatch]);
-
-  let filterteacher;
-  users.forEach((user) => {
-    if (user._id === teacher.teacher_info) {
-      filterteacher = user;
-    }
-  });
-  console.log("filter teacher: ", filterteacher);
+  // useEffect(() => {
+  //   dispatch(getAllUsers());
+  // }, [dispatch]);
 
   return (
     <div className="mt-10">
@@ -47,8 +41,8 @@ export default function SingleTeacher() {
             alt=""
           />
           <div>
-            {/* <p className=" py-1">{teacher.name}</p> */}
-            {/* <p className=" py-1">{teacher.email}</p> */}
+            <p className=" py-1">{teacher?.teacher_info?.name}</p>
+            <p className=" py-1">{teacher?.teacher_info?.email}</p>
           </div>
         </div>
       </div>

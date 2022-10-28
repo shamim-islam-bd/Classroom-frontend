@@ -57,7 +57,7 @@ function App() {
             <Route path="profile" element={<Profile />} />
             <Route path="live-stream" element={<LiveStream />} />
             <Route index path="session-room" element={<SessionRoom />} />
-            <Route path="session-room/:id" element={<PrivateSession />} />
+            <Route path="private-session/:id" element={<PrivateSession />} />
             <Route path="reqclassfeed" element={<RequestedClasses />} />
             <Route path="lessons" element={<Lessons />} />
             <Route path="teachers" element={<AllTeacher />} />

@@ -52,8 +52,9 @@ export default function ClassRequest() {
 
   // view teacher profile
   const ViewTeacher = async (id) => {
-    // console.log("view Teacher: ", id);
-    navigate(`/dashboard/session-room/${id}`);
+    console.log("view Teacher: ", id);
+
+    navigate(`/dashboard/private-session/${id}`);
   };
 
   // geting All className requsest htmlFor loggin student
@@ -310,7 +311,7 @@ export default function ClassRequest() {
                   className="p-4 border m-2 text-sm flex justify-between"
                   key={item._id}
                 >
-                  {console.log(item)}
+                  {/* {console.log(item._id)} */}
                   <div>
                     <p className="font-semibold">Title: {item.title}</p>
                     <p className="">Price: {item.price} $</p>
