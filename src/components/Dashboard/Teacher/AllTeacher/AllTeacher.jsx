@@ -13,9 +13,6 @@ export default function AllTeacher() {
     dispatch(getAllTeachers());
   }, [dispatch]);
 
-  const dummyImg =
-    "https://img.freepik.com/free-photo/close-up-young-successful-man-smiling-camera-standing-casual-outfit-against-blue-background_1258-66609.jpg?w=900&t=st=1662704766~exp=1662705366~hmac=b64f930f1148a80edff6183ee6b96f384687cc18d9669183a420a5e85007c47d";
-
   return (
     <>
       <div className="mt-10">
@@ -29,7 +26,7 @@ export default function AllTeacher() {
                     <div className="relative">
                       <img
                         className="absolute h-20 w-20 inset-x-0 -top-8 block mx-auto rounded-full sm:shrink-0"
-                        src={teacher?.teacher_info?.avader?.url || dummyImg}
+                        src={teacher?.teacher_info?.avader?.url}
                         alt={teacher?.teacher_info?.name}
                       />
                     </div>
@@ -60,10 +57,6 @@ export default function AllTeacher() {
                                 d="M14 5l7 7m0 0l-7 7m7-7H3"
                               />
                             </svg>
-                            {/* <span className="flex text-sm px-1">
-                        <i class="ri-eye-line px-1"></i>
-                         Profile
-                      </span> */}
                           </Tooltip>
                         </Link>
                       </div>
@@ -90,7 +83,6 @@ export default function AllTeacher() {
                           {teacher?.teacher_info?.email}
                         </span>
                       </p>
-                      {/* <span className="text-[10px] px-4">{user.email}</span> */}
                       <div className="desc">
                         I have a contagious Can-Do attitude, determined to
                         leverage my knowledge and passion for writing to be a
@@ -102,16 +94,14 @@ export default function AllTeacher() {
                           title="Add to Favorite"
                           color="#2db7f5"
                         >
-                          <Link to="" className="link">
-                            <i className="ri-heart-line"></i>
-                          </Link>
+                          <i className="ri-heart-line link"></i>
                         </Tooltip>
                         <Tooltip
                           className="btn text-center"
                           title="Message"
                           color="#2db7f5"
                         >
-                          <Link to="" className="link">
+                          <Link to={`${teacher?._id}`} className="link">
                             {" "}
                             <i className="ri-chat-2-line"></i>
                           </Link>
@@ -121,7 +111,7 @@ export default function AllTeacher() {
                           title="Start class"
                           color="#2db7f5"
                         >
-                          <Link to="" className="link">
+                          <Link to={`${teacher?._id}`} className="link">
                             <i className="ri-phone-line"></i>
                           </Link>
                         </Tooltip>

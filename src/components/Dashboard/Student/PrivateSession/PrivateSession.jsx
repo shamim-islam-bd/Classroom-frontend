@@ -109,7 +109,7 @@ export default function PrivateSession() {
             <img
               className="block mx-auto w-14 h-14 rounded-full sm:mx-0 sm:shrink-0"
               src={teacher?.teacher_info?.avader?.url || dummyImg}
-              alt={teacher?.name}
+              alt={teacher?.teacher_info?.name}
             />
             <div>
               <h4 className="text-[14px] font-bold">Andrew Neil</h4>
@@ -122,7 +122,7 @@ export default function PrivateSession() {
                 <img
                   className="block mx-auto h-10 w-10 rounded-full sm:mx-0 sm:shrink-0"
                   src={teacher?.teacher_info?.avader?.url || dummyImg}
-                  alt={teacher?.name}
+                  alt={teacher?.teacher_info?.name}
                 />
                 <div className="shadow-md p-3 rounded-r-lg bg-white">
                   <p className="text-[12px]">hey, how are you?</p>
@@ -137,7 +137,7 @@ export default function PrivateSession() {
                 <img
                   className="block mx-auto h-10 rounded-full sm:mx-0 sm:shrink-0"
                   src={auth?.avader?.url || dummyImg}
-                  alt={teacher?.name}
+                  alt={auth?.name}
                 />
               </div>
             </div>
