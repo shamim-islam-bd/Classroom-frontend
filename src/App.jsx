@@ -72,7 +72,6 @@ function App() {
             </Route>
             <Route path="savedCourses" element={<SavedCourses />} />
             <Route path="class-requests" element={<ClassRequest />} />
-            <Route path="payments" element={<PaymentInfo />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>

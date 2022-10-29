@@ -1,7 +1,7 @@
 import { Tabs } from "antd";
-import axios from "axios";
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
+import { loadUserAction } from "../../../../Store/Actions/authActions";
 import Activity from "./Activity";
 import BookmarkCourses from "./BookmarkCourses";
 import Deatils from "./Deatils";
@@ -9,7 +9,6 @@ import EditProfile from "./EditProfile";
 import Favorites from "./Favorites";
 import Notifications from "./Notifications";
 import PassedLesson from "./PassedLesson";
-import { loadUserAction } from "../../../../Store/Actions/authActions";
 const { TabPane } = Tabs;
 
 export default function Profile() {
@@ -46,6 +45,12 @@ export default function Profile() {
           </>
         ) : (
           <>
+            <TabPane tab="About Me" key="1">
+              <Deatils />
+            </TabPane>
+            <TabPane tab="Edit Profile" key="2">
+              <EditProfile />
+            </TabPane>
             <TabPane tab="Passed Lessons" key="5">
               <PassedLesson />
             </TabPane>

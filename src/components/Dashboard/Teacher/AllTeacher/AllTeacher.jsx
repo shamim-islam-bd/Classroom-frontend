@@ -13,6 +13,13 @@ export default function AllTeacher() {
     dispatch(getAllTeachers());
   }, [dispatch]);
 
+
+
+  const AddtoFavorite = (id) => {
+    console.log(id);
+  };
+
+
   return (
     <>
       <div className="mt-10">
@@ -94,7 +101,9 @@ export default function AllTeacher() {
                           title="Add to Favorite"
                           color="#2db7f5"
                         >
-                          <i className="ri-heart-line link"></i>
+                          <i 
+                          onClick={() => AddtoFavorite(teacher._id)}
+                          className="ri-heart-line link"></i>
                         </Tooltip>
                         <Tooltip
                           className="btn text-center"

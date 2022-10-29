@@ -19,7 +19,7 @@ export default function PaymentInfo() {
 
   return (
     <div className="mt-16">
-      <div className="flex justify-between items-center">
+      <div className="grid grid-cols-2">
         <div className="card p-4">
           <div className="card-header">
             <h3 className="card-title">Payment Info</h3>
@@ -30,15 +30,53 @@ export default function PaymentInfo() {
               </p>
             </div>
           </div>
+          <div className="">
+            <h1 className="py-2">Payment Done</h1>
+            <button
+              onClick={() => LiveStreamRoute(teacher._id)}
+              className=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            >
+              LiveStream
+            </button>
+          </div>
         </div>
-        <div className="card p-3">
-          <h1 className="py-2">Payment Done</h1>
-          <button
-            onClick={() => LiveStreamRoute(teacher._id)}
-            className=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          >
-            LiveStream
-          </button>
+        <div>
+          <div className="">
+            <div class="max-w-lg mx-auto p-8">
+              <details
+                class="open:bg-white dark:open:bg-slate-900 open:ring-1 open:ring-black/5 dark:open:ring-white/10 open:shadow-lg p-6 rounded-lg"
+                open
+              >
+                <summary class="text-sm leading-6 text-slate-900 dark:text-white font-semibold select-none">
+                  Why do they call it Ovaltine?
+                </summary>
+                <div class="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-400">
+                  <p>
+                    The mug is round. The jar is round. They should call it
+                    Roundtine.
+                  </p>
+                </div>
+              </details>
+            </div>
+          </div>
+          <div className="">
+            <div class="max-w-lg mx-auto p-8">
+              <details
+                class="open:bg-white dark:open:bg-slate-900 open:ring-1 open:ring-black/5 dark:open:ring-white/10 open:shadow-lg p-6 rounded-lg"
+                open
+              >
+                <summary class="text-sm leading-6 text-slate-900 dark:text-white font-semibold select-none">
+                  Why do they call it Ovaltine?
+                </summary>
+                <div class="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-400">
+                  <p>
+                    The mug is round. The jar is round. They should call it
+                    Roundtine.
+                  </p>
+                </div>
+              </details>
+            </div>
+          </div>
         </div>
       </div>
     </div>

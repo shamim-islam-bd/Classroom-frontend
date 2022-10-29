@@ -21,7 +21,6 @@ const initialState = {
 
 export const TeacherReducer = (state = initialState, action)=> {
     const { type, payload } = action;
-
     switch (type) {
         case GET_ALL_TEACHERS:
             return {

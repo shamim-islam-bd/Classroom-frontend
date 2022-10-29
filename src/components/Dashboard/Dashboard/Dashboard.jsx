@@ -90,13 +90,13 @@ export default function Dashboard() {
       role: ["student"],
       label: "Saved Courses",
     },
-    {
-      key: "11",
-      icon: "ri-money-dollar-box-line",
-      link: "payments",
-      role: ["student"],
-      label: "Payment Info",
-    },
+    // {
+    //   key: "11",
+    //   icon: "ri-money-dollar-box-line",
+    //   link: "payments",
+    //   role: ["student"],
+    //   label: "Payment Info",
+    // },
     {
       key: "12",
       icon: "ri-money-dollar-box-line",

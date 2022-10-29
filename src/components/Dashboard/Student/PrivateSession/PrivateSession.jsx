@@ -30,13 +30,6 @@ export default function PrivateSession() {
     <div className="mt-8">
       <div className="mt-8 grid sm:grid-rows-1 md:grid-cols-2 grid-cols-1 gap-4">
         <div className="card_session mt-6">
-          {/* <div className="">
-            <img
-              className="h-20 w-20 inset-x-0 -top-8 block rounded-full sm:shrink-0"
-              src={teacher?.teacher_info?.avader?.url}
-              alt={teacher?.name}
-            />
-          </div> */}
           <div className="title-total">
             <div className="flex items-center justify-between pb-4">
               <div className="flex items-center">
