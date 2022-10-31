@@ -11,6 +11,7 @@ import { alertSlice } from './reducers/alertSlice';
 import { authReducer } from './reducers/authReducer';
 import { CourseReducer, SingleCourseReducer } from './reducers/CourseReducer';
 import { StudentclassReqReducer } from './reducers/StudentclassReqReducer';
+import { StudentReducer } from './reducers/StudentReducer';
 import { TeacherReducer } from './reducers/TeachersReducer';
 import { usersReducer } from './reducers/usersReducer';
 
@@ -34,6 +35,7 @@ export const store = configureStore({
          auth: persistedReducer,
          users: usersReducer,
          teachers: TeacherReducer,
+         students: StudentReducer,
          classReqByStudent: StudentclassReqReducer,
          allCourse : CourseReducer,
          CourseDetails: SingleCourseReducer,

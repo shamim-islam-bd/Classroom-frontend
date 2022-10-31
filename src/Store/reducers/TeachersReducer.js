@@ -1,5 +1,4 @@
 // import teacher constants
-
 import {
     CREATE_TEACHER,
     CREATE_TEACHER_FAIL,

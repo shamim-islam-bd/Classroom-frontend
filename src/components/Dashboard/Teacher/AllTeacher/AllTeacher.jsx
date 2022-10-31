@@ -2,23 +2,25 @@ import { Tooltip } from "antd";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { addToFavoriteTeacher } from "../../../../Store/Actions/StudentAction";
 import { getAllTeachers } from "../../../../Store/Actions/TeachersAction";
 import "./AllTeacher.css";
 
 export default function AllTeacher() {
   const dispatch = useDispatch();
   const { teachers } = useSelector((state) => state.teachers);
+  const { auth } = useSelector((state) => state.auth.login);
+  // console.log(auth._id);
+  const userId = auth._id;
 
   useEffect(() => {
     dispatch(getAllTeachers());
   }, [dispatch]);
 
-
-
-  const AddtoFavorite = (id) => {
-    console.log(id);
+  const AddtoFavorite = (id, userId) => {
+    // console.log(userId, id);
+    dispatch(addToFavoriteTeacher(id, userId));
   };
-
 
   return (
     <>
@@ -28,7 +30,7 @@ export default function AllTeacher() {
             {teachers?.map((teacher, index) => {
               return (
                 <div className="p-2" key={teacher._id}>
-                  {/* {console.log(teacher)} */}
+                  {/* {console.log(teacher._id)} */}
                   <div className="card">
                     <div className="relative">
                       <img
@@ -101,9 +103,14 @@ export default function AllTeacher() {
                           title="Add to Favorite"
                           color="#2db7f5"
                         >
-                          <i 
-                          onClick={() => AddtoFavorite(teacher._id)}
-                          className="ri-heart-line link"></i>
+                          <i
+                            onClick={() => AddtoFavorite(teacher._id, userId)}
+                            className="ri-heart-line link"
+                          ></i>
+                          <i
+                            onClick={() => AddtoFavorite(teacher._id, userId)}
+                            className="ri-dislike-fill"
+                          ></i>
                         </Tooltip>
                         <Tooltip
                           className="btn text-center"

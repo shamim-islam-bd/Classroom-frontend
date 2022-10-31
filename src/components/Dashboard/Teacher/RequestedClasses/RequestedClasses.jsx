@@ -7,16 +7,8 @@ export default function Requestedclass() {
   const avader =
     "https://cdn-icons-png.flaticon.com/512/1053/1053244.png?w=360";
   const dispatch = useDispatch();
-
   const [AllStudentclassRequest, setallStudentclassRequest] = useState([]);
 
-  // const { AllStudentclassRequest, error } = useSelector(
-  //   (state) => state.classReqByStudent
-  // );
-  // console.log("frm req classNamees: ", AllStudentclassNameRequest);
-
-  // const { auth, loading } = useSelector((state) => state.auth.login);
-  // console.log(auth);
 
   // get studentclassNameRequest id from redux store then teacher can make it update its status approved or rejected
 

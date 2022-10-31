@@ -1,190 +1,56 @@
+import axios from "axios";
+import { ADD_TO_FAVORITE_TEACHER_FAIL, ADD_TO_FAVORITE_TEACHER_SUCCESS, GET_ALL_FAVORITE_TEACHERS_FAIL, GET_ALL_FAVORITE_TEACHERS_SUCCESS, REMOVE_FROM_FAVORITE_TEACHER_FAIL, REMOVE_FROM_FAVORITE_TEACHER_SUCCESS } from "../constants/StudentConstant";
 
-export const getAllStudents = () => {
-    return async (dispatch) => {
-        try {
-            dispatch({ type: StudentConstant.GET_ALL_STUDENTS_REQUEST });
-            const res = await axios.get("/student/getAllStudents");
-            if (res.status === 200) {
-                const { students } = res.data;
-                dispatch({
-                    type: StudentConstant.GET_ALL_STUDENTS_SUCCESS,
-                    payload: { students },
-                });
-            } else {
-                dispatch({
-                    type: StudentConstant.GET_ALL_STUDENTS_FAIL,
-                    payload: res.data.error,
-                });
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    };
-};
+// add to favorite teacher 
+export const addToFavoriteTeacher = (id, userId) => {
+   return async (dispatch) => {
+    try {
+        const res = await axios.put(`/student/add-favorite/${id}`, { userId })
+        // console.log("addFavoriteTeacher: ", res.data.student);
 
-export const getSingleStudent = (id) => {
-    return async (dispatch) => {
-        try {
-            dispatch({ type: StudentConstant.GET_SINGLE_STUDENT_REQUEST });
-            const res = await axios.get(`/student/getSingleStudent/${id}`);
-            if (res.status === 200) {
-                const { student } = res.data;
-                dispatch({
-                    type: StudentConstant.GET_SINGLE_STUDENT_SUCCESS,
-                    payload: { student },
-                });
-            } else {
-                dispatch({
-                    type: StudentConstant.GET_SINGLE_STUDENT_FAIL,
-                    payload: res.data.error,
-                });
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    };
+        dispatch({
+            type: ADD_TO_FAVORITE_TEACHER_SUCCESS,
+            payload: res.data.student
+        })
+    } catch (err) {
+        dispatch({
+            type: ADD_TO_FAVORITE_TEACHER_FAIL,
+            payload: err.response.data
+        })
+    } 
+  }
 }
 
-export const updateStudentProfile = (id, student) => {
-    return async (dispatch) => {
-        try {
-            dispatch({ type: StudentConstant.UPDATE_STUDENT_PROFILE_REQUEST });
-            const res = await axios.put(`/student/updateStudentProfile/${id}`, student);
-            if (res.status === 200) {
-                const { student } = res.data;
-                dispatch({
-                    type: StudentConstant.UPDATE_STUDENT_PROFILE_SUCCESS,
-                    payload: { student },
-                });
-            } else {
-                dispatch({
-                    type: StudentConstant.UPDATE_STUDENT_PROFILE_FAIL,
-                    payload: res.data.error,
-                });
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    };
+// remove from favorite teacher.
+export const removeFavoriteTeacher = (id) => async dispatch => {
+    try {
+        const res = await axios.delete(`/student/remove-favorite/${id}`);
+        dispatch({
+            type: REMOVE_FROM_FAVORITE_TEACHER_SUCCESS,
+            payload: res.data
+        })
+    } catch (err) {
+        dispatch({
+            type: REMOVE_FROM_FAVORITE_TEACHER_FAIL,
+            payload: err.response.data
+        })
+    }
 }
 
-
-export const deleteStudent = (id) => {
-    return async (dispatch) => {
-        try {
-            dispatch({ type: StudentConstant.DELETE_STUDENT_REQUEST });
-            const res = await axios.delete(`/student/deleteStudent/${id}`);
-            if (res.status === 200) {
-                const { student } = res.data;
-                dispatch({
-                    type: StudentConstant.DELETE_STUDENT_SUCCESS,
-                    payload: { student },
-                });
-            } else {
-                dispatch({
-                    type: StudentConstant.DELETE_STUDENT_FAIL,
-                    payload: res.data.error,
-                });
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    };
+// get favorite teacher.
+export const AllFavoriteTeacher = (id) => async dispatch => {
+    try {
+        const res = await axios.get(`/student/allfavorite-teachers/${id}`);
+        // console.log("AllFavoriteTeacher: ", res.data.fvtTeachers );
+        dispatch({
+            type: GET_ALL_FAVORITE_TEACHERS_SUCCESS,
+            payload: res.data.fvtTeachers
+        })
+    } catch (err) {
+        console.log("err: ",err);
+        dispatch({
+            type: GET_ALL_FAVORITE_TEACHERS_FAIL,
+            payload: err.response.data
+        })
+    }
 }
-
-
-export const addToFavoriteTeacher = (id, teacherId) => {
-    return async (dispatch) => {
-        try {
-            dispatch({ type: StudentConstant.ADD_TO_FAVORITE_TEACHER_REQUEST });
-            const res = await axios.put(`/student/addToFavoriteTeacher/${id}`, { teacherId });
-            if (res.status === 200) {
-                const { student } = res.data;
-                dispatch({
-                    type: StudentConstant.ADD_TO_FAVORITE_TEACHER_SUCCESS,
-                    payload: { student },
-                });
-            } else {
-                dispatch({
-                    type: StudentConstant.ADD_TO_FAVORITE_TEACHER_FAIL,
-                    payload: res.data.error,
-                });
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    };
-}
-
-
-export const removeFromFavoriteTeacher = (id, teacherId) => {
-    return async (dispatch) => {
-        try {
-            dispatch({ type: StudentConstant.REMOVE_FROM_FAVORITE_TEACHER_REQUEST });
-            const res = await axios.put(`/student/removeFromFavoriteTeacher/${id}`, { teacherId });
-            if (res.status === 200) {
-                const { student } = res.data;
-                dispatch({
-                    type: StudentConstant.REMOVE_FROM_FAVORITE_TEACHER_SUCCESS,
-                    payload: { student },
-                });
-            } else {
-                dispatch({
-                    type: StudentConstant.REMOVE_FROM_FAVORITE_TEACHER_FAIL,
-                    payload: res.data.error,
-                });
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    };
-}
-
-
-export const addToFavoriteCourse = (id, courseId) => {
-    return async (dispatch) => {
-        try {
-            dispatch({ type: StudentConstant.ADD_TO_FAVORITE_COURSE_REQUEST });
-            const res = await axios.put(`/student/addToFavoriteCourse/${id}`, { courseId });
-            if (res.status === 200) {
-                const { student } = res.data;
-                dispatch({
-                    type: StudentConstant.ADD_TO_FAVORITE_COURSE_SUCCESS,
-                    payload: { student },
-                });
-            } else {
-                dispatch({
-                    type: StudentConstant.ADD_TO_FAVORITE_COURSE_FAIL,
-                    payload: res.data.error,
-                });
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    };
-}
-
-
-export const removeFromFavoriteCourse = (id, courseId) => {
-    return async (dispatch) => {
-        try {
-            dispatch({ type: StudentConstant.REMOVE_FROM_FAVORITE_COURSE_REQUEST });
-            const res = await axios.put(`/student/removeFromFavoriteCourse/${id}`, { courseId });
-            if (res.status === 200) {
-                const { student } = res.data;
-                dispatch({
-                    type: StudentConstant.REMOVE_FROM_FAVORITE_COURSE_SUCCESS,
-                    payload: { student },
-                });
-            } else {
-                dispatch({
-                    type: StudentConstant.REMOVE_FROM_FAVORITE_COURSE_FAIL,
-                    payload: res.data.error,
-                });
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    };
-}
-

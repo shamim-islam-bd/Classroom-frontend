@@ -46,3 +46,13 @@ following projects :  http://uitheme.net/elomoas/default-channel.html
 1. Action a ja thakbe, sei data gulo jei page a show/store korte chaibo sei page a
    action function ta dispath korte hbe. dispath a kno value pass korar thake korte hbe.
   
+
+
+-------headers set problem most probably solved-----------
+
+1. headers set korte hobe. (axios)
+2. function er jnnno async then await use korte hobe jekhane pblm hsce sekhane.
+3. brower console a dekhte hobe. (network tab)
+4. 401 error ase. (unauthorized)
+5. 401 error ase karon headers set kora hoi nai. (axios)
+

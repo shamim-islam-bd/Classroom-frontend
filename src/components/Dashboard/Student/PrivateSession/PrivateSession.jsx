@@ -16,16 +16,6 @@ export default function PrivateSession() {
     dispatch(getSingleTeacher(id));
   }, [dispatch]);
 
-  const profileDestination = (id) => {
-    // console.log(id);
-    navigate(`/dashboard/teachers/${id}`);
-  };
-
-  const LiveStreamRoute = (id) => {
-    // console.log(id);
-    navigate(`/dashboard/payment-info/${id}`);
-  };
-
   return (
     <div className="mt-8">
       <div className="mt-8 grid sm:grid-rows-1 md:grid-cols-2 grid-cols-1 gap-4">
@@ -49,7 +39,7 @@ export default function PrivateSession() {
               </div>
               {/* <Link to={`${filterUser._id}`}> */}
               <button
-                onClick={() => profileDestination(teacher._id)}
+                onClick={() => navigate(`/dashboard/teachers/${teacher._id}`)}
                 color="#2db7f5"
                 className="inline-block text-white bg-[#2db7f5] border border-[#2db7f5] rounded-full hover:bg-transparent hover:text-cyan-600 active:text-cyan-500 focus:outline-none focus:ring"
               >
@@ -92,7 +82,9 @@ export default function PrivateSession() {
 
               <p className="link">
                 <button
-                  onClick={() => LiveStreamRoute(teacher._id)}
+                  onClick={() =>
+                    navigate(`/dashboard/payment-info/${teacher._id}`)
+                  }
                   className="py-1 text-sm px-3 md:py-2 md:px-2 bg-[#2db7f5] text-white rounded-lg shadow-mdhover:bg-white border border-[#2db7f5] hover:bg-transparent hover:text-cyan-600 active:text-cyan-500 focus:outline-none focus:ring"
                 >
                   Start Session
