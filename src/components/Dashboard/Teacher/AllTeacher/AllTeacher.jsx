@@ -2,7 +2,11 @@ import { Tooltip } from "antd";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { addToFavoriteTeacher } from "../../../../Store/Actions/StudentAction";
+import {
+  addToFavoriteTeacher,
+  AllFavoriteTeacher,
+  removeFavoriteTeacher,
+} from "../../../../Store/Actions/StudentAction";
 import { getAllTeachers } from "../../../../Store/Actions/TeachersAction";
 import "./AllTeacher.css";
 
@@ -10,16 +14,23 @@ export default function AllTeacher() {
   const dispatch = useDispatch();
   const { teachers } = useSelector((state) => state.teachers);
   const { auth } = useSelector((state) => state.auth.login);
-  // console.log(auth._id);
+  const { favoriteTeachers } = useSelector((state) => state.students);
+  // console.log("favoriteTeachers: ", favoriteTeachers);
+
   const userId = auth._id;
+  // console.log(auth._id);
 
   useEffect(() => {
+    dispatch(AllFavoriteTeacher(userId));
     dispatch(getAllTeachers());
-  }, [dispatch]);
+  }, [dispatch, userId, favoriteTeachers]);
 
   const AddtoFavorite = (id, userId) => {
-    // console.log(userId, id);
     dispatch(addToFavoriteTeacher(id, userId));
+  };
+
+  const disLinked = (teacherId) => {
+    dispatch(removeFavoriteTeacher(teacherId));
   };
 
   return (
@@ -103,21 +114,26 @@ export default function AllTeacher() {
                           title="Add to Favorite"
                           color="#2db7f5"
                         >
-                          <i
-                            onClick={() => AddtoFavorite(teacher._id, userId)}
-                            className="ri-heart-line link"
-                          ></i>
-                          <i
-                            onClick={() => AddtoFavorite(teacher._id, userId)}
-                            className="ri-dislike-fill"
-                          ></i>
+                          {favoriteTeachers?.find(
+                            (item) => item._id === teacher._id
+                          ) ? (
+                            <i
+                              onClick={() => disLinked(teacher._id)}
+                              className="ri-dislike-fill"
+                            ></i>
+                          ) : (
+                            <i
+                              onClick={() => AddtoFavorite(teacher._id, userId)}
+                              className="ri-heart-line link"
+                            ></i>
+                          )}
                         </Tooltip>
                         <Tooltip
                           className="btn text-center"
                           title="Message"
                           color="#2db7f5"
                         >
-                          <Link to={`${teacher?._id}`} className="link">
+                          <Link to={`/dashboard/private-session/${teacher._id}`} className="link">
                             {" "}
                             <i className="ri-chat-2-line"></i>
                           </Link>
@@ -127,7 +143,7 @@ export default function AllTeacher() {
                           title="Start class"
                           color="#2db7f5"
                         >
-                          <Link to={`${teacher?._id}`} className="link">
+                          <Link to={`/dashboard/private-session/${teacher._id}`} className="link">
                             <i className="ri-phone-line"></i>
                           </Link>
                         </Tooltip>

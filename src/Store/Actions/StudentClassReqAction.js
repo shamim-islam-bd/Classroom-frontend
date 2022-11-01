@@ -10,8 +10,8 @@ import {
 // student className request Action 
 export const getAllStudentclassRequest = () => async (dispatch) => {
     try {
-        const res = await axios.get('/students-Class-Request');
-        console.log("from Actions allstudentclassReq: ", res.data);
+        const res = await axios.get('/AllStudent-classrequest');
+        // console.log("from Actions allstudentclassReq: ", res.data.studentClassRequest);
        
         dispatch({
             type: GET_ALL_STUDENT_CLASS_REQUEST,
@@ -50,6 +50,7 @@ export const createStudentclassRequest = (values) => async (dispatch) => {
     try {
         const res = await axios.post('/student/makeclassRequest', values);
         // console.log("create Student classRequest Action: ", res.data.createclassReq);
+        
         dispatch({
             type: CREATE_STUDENT_CLASS_REQUEST,
             payload: res.data?.createclassReq
@@ -84,15 +85,16 @@ export const updateStudentclassRequest = (id) => async (dispatch) => {
 
 export const deleteStudentclassRequest = (id) => async (dispatch) => {
     try {
-       const res = await axios.delete(`/student/deleteclassRequest/${id}`);
-        // console.log("deleteStudentclassRequest Action: ", res.data);
+        // console.log("frm Action id: ", id)
+       const res = await axios.delete(`/student/deleteClassRequest/${id}`);
+        console.log("deleteStudentclassRequest Action: ", res.data);
         
         dispatch({
             type: DELETE_STUDENT_CLASS_REQUEST,
-            payload: id
+            payload: res.data
         })
     } catch (error) {
-        console.log(error.message);
+        console.log({mgs: error.message, stack: error.stack});
         dispatch({
             type: DELETE_STUDENT_CLASS_REQUEST_FAIL,
             payload: error.res?.data.message

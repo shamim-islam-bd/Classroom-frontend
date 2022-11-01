@@ -1,5 +1,4 @@
 import { Col, DatePicker, Form, Input, Row, Select, TimePicker } from "antd";
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,11 +7,11 @@ import { clearErrors } from "../../../../Store/Actions/authActions";
 import {
   createStudentclassRequest,
   deleteStudentclassRequest,
+  getAllStudentclassRequest
 } from "../../../../Store/Actions/StudentclassReqAction";
-import { getAllTeachers } from "../../../../Store/Actions/TeachersAction";
 import {
   hideLoading,
-  showLoading,
+  showLoading
 } from "../../../../Store/reducers/alertSlice";
 
 export default function ClassRequest() {
@@ -20,16 +19,25 @@ export default function ClassRequest() {
   const alert = useAlert();
   const dispatch = useDispatch();
   const [errorMessage, setErrorMessage] = useState("");
-  const [classRequest, setclassRequest] = useState([]);
+  // this determines whether the button is disabled or not
+  const [isDisabled, setIsDisabled] = useState(false);
 
   const { auth, error } = useSelector((state) => state.auth.login);
+  // const { AllStudentclassRequest } = useSelector(
+  //   (state) => state.classReqByStudent
+  // );
+
   const userId = auth._id;
+
+  // console.log(AllStudentclassRequest);
 
   dispatch(showLoading());
   const onFinish = async (values) => {
+    // console.log(values);
     if (values) {
       dispatch(showLoading());
       dispatch(createStudentclassRequest(values));
+      setIsDisabled(true);
       alert.success("Class created Successfully");
     } else {
       dispatch(hideLoading());
@@ -37,48 +45,42 @@ export default function ClassRequest() {
     }
   };
 
-  // delete className request useing id from database
-  const deleteclassRequest = async (id) => {
-    await axios
-      .delete(`/student/deleteclassRequest/${id}`)
-      .then((res) => {
-        // console.log(res.data);
-        dispatch(deleteStudentclassRequest(id));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  const deleteclassRequest = (id) => {
+    dispatch(deleteStudentclassRequest(id));
+    alert.success("Class deleted Successfully");
   };
 
   // view teacher profile
   const ViewTeacher = async (id) => {
-    console.log("view Teacher: ", id);
-
     navigate(`/dashboard/private-session/${id}`);
   };
 
   // geting All className requsest htmlFor loggin student
   useEffect(() => {
-    axios.get("/students-class-Request").then((res) => {
-      const result = res.data.studentClassRequest.filter(
-        (item) => item.student === userId
-      );
-      setclassRequest(result);
-    });
-  }, [userId]);
+    dispatch(getAllStudentclassRequest());
+  }, [dispatch, deleteclassRequest, userId]);
 
   useEffect(() => {
     if (error) {
       dispatch(clearErrors());
     }
-  }, [dispatch, error]);
+  }, [error, errorMessage]);
 
-  // useing dispatch htmlFor getting all teachers eve if reload the page.
+  const { AllStudentclassRequest } = useSelector(
+    (state) => state.classReqByStudent
+  );
+
+  // const [data, setData] = useState();
+
   useEffect(() => {
-    dispatch(getAllTeachers());
-  }, [dispatch, deleteclassRequest]);
+    const classRequest = AllStudentclassRequest?.filter(
+      (item) => item.student === userId
+      // return item;
+    );
+    console.log(classRequest);
+  }, []);
 
-  //  const status = "pending";
+  // console.log("classRequest: ", data);
 
   return (
     <div className="mt-10">
@@ -287,13 +289,24 @@ export default function ClassRequest() {
                   </div>
 
                   <Form.Item>
-                    <button
-                      htmltype="submit"
-                      type="submit"
-                      className="flex items-center justify-center w-full px-10 py-4 text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-blue-600 rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                    >
-                      Create Request
-                    </button>
+                    {isDisabled ? (
+                      <button
+                        htmltype="submit"
+                        type="submit"
+                        disabled
+                        className="flex bg-slate-500 items-center justify-center w-full px-10 py-4 text-base font-medium text-center text-white transition duration-500 ease-in-out transform rounded-xl"
+                      >
+                        Create Request
+                      </button>
+                    ) : (
+                      <button
+                        htmltype="submit"
+                        type="submit"
+                        className="flex items-center justify-center w-full px-10 py-4 text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-blue-600 rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                      >
+                        Create Request
+                      </button>
+                    )}
                   </Form.Item>
                 </Form>
               </div>
@@ -304,9 +317,14 @@ export default function ClassRequest() {
           <h2 className="text-2xl text-center font-extrabold text-neutral-600 mb-8">
             My Requsted classes
           </h2>
+
+          {/* {classRequest.length === 0 ? ( */}
+          {/* <h1 className="grid h-56 place-items-center">
+              You have No Request.
+            </h1> */}
           <div className="overflow-scroll">
             <div className="relative">
-              {classRequest.map((item) => (
+              {AllStudentclassRequest?.map((item) => (
                 <div
                   className="p-4 border m-2 text-sm flex justify-between"
                   key={item._id}
@@ -322,14 +340,6 @@ export default function ClassRequest() {
                       </span>
                     </p>
                     <p>Created At: {item.date}</p>
-                  </div>
-                  <div className="text-end">
-                    <i
-                      onClick={() => {
-                        deleteclassRequest(item._id);
-                      }}
-                      className="ri-delete-bin-6-line text-2xl cursor-pointer text-red-600"
-                    ></i>
                     <div className="flex text-sm">
                       {item.status === "pending" ? (
                         <p className="text-yellow-500 rounded-sm mt-5 p-2">
@@ -342,12 +352,24 @@ export default function ClassRequest() {
                             onClick={() => ViewTeacher(item.Accptedteacher[0])}
                             className="btn-profile mt-5"
                           >
-                            View Teacher
+                            Accpted Teacher
                           </button>
                           {/* </Link> */}
                         </>
                       )}
                     </div>
+                  </div>
+                  <div className="text-end">
+                    {item.status === "pending" ? (
+                      <i
+                        onClick={() => {
+                          deleteclassRequest(item._id);
+                        }}
+                        className="ri-delete-bin-6-line text-2xl cursor-pointer text-red-600"
+                      ></i>
+                    ) : (
+                      " "
+                    )}
                   </div>
                 </div>
               ))}

@@ -6,7 +6,7 @@ export const addToFavoriteTeacher = (id, userId) => {
    return async (dispatch) => {
     try {
         const res = await axios.put(`/student/add-favorite/${id}`, { userId })
-        // console.log("addFavoriteTeacher: ", res.data.student);
+        console.log("addFavoriteTeacher: ", res.data);
 
         dispatch({
             type: ADD_TO_FAVORITE_TEACHER_SUCCESS,
@@ -25,6 +25,8 @@ export const addToFavoriteTeacher = (id, userId) => {
 export const removeFavoriteTeacher = (id) => async dispatch => {
     try {
         const res = await axios.delete(`/student/remove-favorite/${id}`);
+        console.log("removeFavoriteTeacher", res.data);
+
         dispatch({
             type: REMOVE_FROM_FAVORITE_TEACHER_SUCCESS,
             payload: res.data

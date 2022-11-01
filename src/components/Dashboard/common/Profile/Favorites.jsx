@@ -1,7 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { AllFavoriteTeacher } from "../../../../Store/Actions/StudentAction";
+import {
+  AllFavoriteTeacher,
+  removeFavoriteTeacher,
+} from "../../../../Store/Actions/StudentAction";
 import { getAllTeachers } from "../../../../Store/Actions/TeachersAction";
 
 export default function Favorites() {
@@ -9,30 +12,21 @@ export default function Favorites() {
   const dispatch = useDispatch();
   const { auth } = useSelector((state) => state.auth.login);
   const { favoriteTeachers } = useSelector((state) => state.students);
-  console.log("favoriteTeachers: ", favoriteTeachers);
-  
+  // console.log("favoriteTeachers: ", favoriteTeachers);
   // console.log("user id:", auth._id);
 
   useEffect(() => {
     dispatch(AllFavoriteTeacher(auth._id));
     dispatch(getAllTeachers());
-  }, [dispatch]);
+  }, [dispatch, auth._id, favoriteTeachers]);
 
-
-
-  const removeFavoriteTeacher = (teacherId) => {
-    console.log("teacherId: ", teacherId);
-    // const favoriteTeachers = auth.favoriteTeachers.filter(
-    //   (teacher) => teacher !== teacherId
-    // );
-    // console.log("favoriteTeachers: ", favoriteTeachers);
-    // dispatch(updateFavoriteTeachers(favoriteTeachers));
+  const disLinked = (teacherId) => {
+    dispatch(removeFavoriteTeacher(teacherId));
   };
-
 
   return (
     <div>
-      <div className="grid lg:grid-cols-3 sm:grid-rows-1 md:grid-cols-2 grid-cols-1">
+      <div className="grid gap-4 lg:grid-cols-3 sm:grid-rows-1 md:grid-cols-2 grid-cols-1">
         {favoriteTeachers?.map((teacher, index) => {
           return (
             <div className="card_session mt-6" key={index}>
@@ -74,28 +68,34 @@ export default function Favorites() {
                   <span className="">{teacher?.teacher_info?.email}</span>
                 </p>
                 <div className="flex justify-between">
-                  <Link to="" className="link">
-                    {
-                      teacher ?
-                      <i onClick={()=> removeFavoriteTeacher(teacher._id)}                   
-                       class="ri-dislike-fill"></i>
-                      :
-                      <i className="ri-heart-line"></i>
+                  <span
+                    onClick={() =>
+                      navigate(`/dashboard/private-session/${teacher._id}`)
                     }
-                  </Link>
-                  <Link to="" className="link">
+                    className="link"
+                  >
                     {" "}
                     <i className="ri-chat-2-line"></i>
+                  </span>
+                  <Link to="" className="link">
+                    {teacher ? (
+                      <i
+                        onClick={() => disLinked(teacher._id)}
+                        class="ri-dislike-fill"
+                      ></i>
+                    ) : (
+                      <i className="ri-heart-line"></i>
+                    )}
                   </Link>
 
-                  <p className="link">
+                  {/* <p className="link">
                     <button
                       onClick={() => LiveStreamRoute(teacher._id)}
                       className="py-1 text-sm px-3 md:py-2 md:px-2 bg-[#2db7f5] text-white rounded-lg shadow-mdhover:bg-white border border-[#2db7f5] hover:bg-transparent hover:text-cyan-600 active:text-cyan-500 focus:outline-none focus:ring"
                     >
                       Class
                     </button>
-                  </p>
+                  </p> */}
                 </div>
               </div>
             </div>
