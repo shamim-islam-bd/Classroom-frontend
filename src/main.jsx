@@ -1,6 +1,6 @@
 import axios from "axios";
 import React from "react";
-import { positions, Provider as AlertProvider, transitions } from "react-alert";
+import { Provider as AlertProvider, positions, transitions } from "react-alert";
 import AlertTemplate from "react-alert-template-basic";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
@@ -28,8 +28,8 @@ axios.defaults.headers.common["Authorization"] = `Bearer ${localStorage.getItem(
   "token"
 )}`;
 
-// axios.defaults.baseURL = "https://classroommern.herokuapp.com";
-axios.defaults.baseURL = "http://localhost:5000";
+axios.defaults.baseURL = "https://classroom-backend-api.onrender.com";
+// axios.defaults.baseURL = "http://localhost:5000";
 
 let persistor = persistStore(store);
 
