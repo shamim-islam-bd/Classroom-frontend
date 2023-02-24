@@ -4,8 +4,8 @@ import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { registerAction } from "../../../Store/Actions/authActions";
 import { clearErrors } from "../../../Store/Actions/CoursesAction";
+import { registerAction } from "../../../Store/Actions/authActions";
 import { hideLoading, showLoading } from "../../../Store/reducers/alertSlice";
 
 export default function Signup() {
@@ -64,7 +64,7 @@ export default function Signup() {
                   <h2 className="text-3xl font-extrabold text-neutral-600 mb-8">
                     Sign Up.
                   </h2>
-                  <Link to="/login">
+                  <Link to="/">
                     <a
                       className="inline-block p-3 text-indigo-600 border border-indigo-600 rounded-full hover:text-white hover:bg-indigo-600 active:bg-indigo-500 focus:outline-none focus:ring"
                       href="/download"

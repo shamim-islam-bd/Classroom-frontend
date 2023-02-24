@@ -1,4 +1,5 @@
 import { Col, DatePicker, Form, Input, Row, Select, TimePicker } from "antd";
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,11 +8,11 @@ import { clearErrors } from "../../../../Store/Actions/authActions";
 import {
   createStudentclassRequest,
   deleteStudentclassRequest,
-  getAllStudentclassRequest
+  getAllStudentclassRequest,
 } from "../../../../Store/Actions/StudentclassReqAction";
 import {
   hideLoading,
-  showLoading
+  showLoading,
 } from "../../../../Store/reducers/alertSlice";
 
 export default function ClassRequest() {
@@ -66,20 +67,28 @@ export default function ClassRequest() {
     }
   }, [error, errorMessage]);
 
-  const { AllStudentclassRequest } = useSelector(
-    (state) => state.classReqByStudent
-  );
+
+  const [data, setData ] = useState([])
+  useEffect(()=>{
+    axios.get('/AllStudent-classrequest')
+    .then((res)=>{
+      // console.log(res.data.studentClassRequest);
+      setData(res.data.studentClassRequest)
+    }).catch((err)=>{
+      err.message
+    })
+  },[])
+
 
   // const [data, setData] = useState();
-
-  useEffect(() => {
-    const classRequest = AllStudentclassRequest?.filter(
-      (item) => item.student === userId
-      // return item;
-    );
-    console.log(classRequest);
-  }, []);
-
+  // useEffect(() => {
+  //   const classRequest = AllStudentclassRequest?.filter(
+  //     (item) => item.student === userId
+  //     // return item;
+  //   );
+  //   setData(classRequest);
+  //   //  console.log(classRequest);
+  // }, [AllStudentclassRequest]);
   // console.log("classRequest: ", data);
 
   return (
@@ -324,7 +333,7 @@ export default function ClassRequest() {
             </h1> */}
           <div className="overflow-scroll">
             <div className="relative">
-              {AllStudentclassRequest?.map((item) => (
+              {data?.map((item) => (
                 <div
                   className="p-4 border m-2 text-sm flex justify-between"
                   key={item._id}

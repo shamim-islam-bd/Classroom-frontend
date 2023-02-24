@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getAllStudentclassRequest,
@@ -13,6 +14,20 @@ export default function Requestedclass() {
   // const { AllStudentclassRequest } = useSelector(
   //   (state) => state.classReqByStudent
   // );
+
+
+  const [data, setData ] = useState([])
+  useEffect(()=>{
+    axios.get('/AllStudent-classrequest')
+    .then((res)=>{
+      console.log(res.data.studentClassRequest);
+      setData(res.data.studentClassRequest)
+    }).catch((err)=>{
+      err.message
+    })
+  },[])
+
+
 
   const handleConfirm = (id) => {
     dispatch(updateStudentclassRequest(id));
@@ -33,7 +48,7 @@ export default function Requestedclass() {
         // <h1 className="grid h-56 place-items-center">No Class Request Available.</h1>
         //  ) : (
         <ul role="list" className="p-6 divide-y divide-slate-200 font-[8px]">
-          {AllStudentclassRequest?.map((person, inx) => (
+          {data?.map((person, inx) => (
             <div
               key={person._id}
               className="bg-gray-100 p-3 rounded-md flex justify-between flex-col sm:flex-row md-flex-row lg:flex-row  py-2 my-2 items-center"

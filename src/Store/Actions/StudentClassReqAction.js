@@ -7,7 +7,7 @@ import {
 } from '../constants/StudentclassReqConstant';
 
 
-// student className request Action 
+// student className request Action.
 export const getAllStudentclassRequest = () => async (dispatch) => {
     try {
         const res = await axios.get('/AllStudent-classrequest');
@@ -19,19 +19,18 @@ export const getAllStudentclassRequest = () => async (dispatch) => {
         })
     }
     catch (err) {
-        console.log(err);
+        // console.log(err);
         dispatch({
             type: GET_ALL_STUDENT_CLASS_REQUEST_FAIL,
             payload: err.res?.data
         })
     }
-
 }
 
 
 export const getSingleStudentclassRequest = (id) => async (dispatch) => {
     try {
-        const res = await axios.get(`/students-class-Request/${id}`);
+        const res = await axios.get(`/AllStudent-classrequest/${id}`);
         dispatch({
             type: GET_SINGLE_STUDENT_CLASS_REQUEST,
             payload: res.data

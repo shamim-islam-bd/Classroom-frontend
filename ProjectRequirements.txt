@@ -35,8 +35,18 @@ eemail> davidbasser88@gmail.com
 following projects :  http://uitheme.net/elomoas/default-channel.html
 
 
+------Educational website-----
+1. https://mentoring-react.dreamguystech.com/template/app/index
+(admin)
+https://mentoring-react.dreamguystech.com/template/admin/index
+2. https://preview.themeforest.net/item/educal-online-learning-and-education-vue-js-template/full_screen_preview/37099827?_ga=2.145605620.1980737118.1667376919-2069613993.1649570082
 
 
+
+
+
+-----------uncomplete/errror------------
+1. fonted with redux this route re-rendered automatically---    /AllStudent-classrequest
 
 
 

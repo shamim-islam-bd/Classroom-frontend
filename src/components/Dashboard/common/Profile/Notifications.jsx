@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { getAllTeachers } from "../../../../Store/Actions/TeachersAction";
 
 export default function Notifications() {
@@ -14,12 +14,12 @@ export default function Notifications() {
     dispatch(getAllTeachers());
   }, [dispatch]);
 
-  // const filterTeacher = teachers?.find((te) => {
-  //   if (te.teacher_info._id === auth._id) {
-  //     return te;
-  //   }
-  //   return te;
-  // });
+  const filterTeacher = teachers?.find((te) => {
+    if (te.teacher_info._id === auth._id) {
+      return te;
+    }
+    return te;
+  });
   // console.log(filterTeacher?.unseenNotifications);
 
   return (
@@ -31,29 +31,33 @@ export default function Notifications() {
           <a href=""> Delete All</a>
         </div>
       </div>
-      {
-        filterTeacher?.unseenNotifications?.map((notification, inx)=>{
-          <Link to="" className="flex gap-3 mt-5 text-black bg-slate-100" key={inx}>
+      {filterTeacher?.unseenNotifications?.map((notification, inx) => {
+        <Link
+          to=""
+          className="flex gap-3 mt-5 text-black bg-slate-100"
+          key={inx}
+        >
           <div className="left">
+            <h1>yahhhhhhhhhhhhh: {notification.type}</h1>
             {console.log(notification)}
             <div className="flex items-center justify-between">
               <div className="sm:flex">
                 <img
                   className="h-20 w-20 inset-x-0 -top-8 block rounded-full sm:shrink-0"
-                  src="{teacher?.teacher_info?.avader?.url}"
-                  // alt="{teacher?.teacher_info?.name}"
+                  src={notification?.Data?.img}
+                  alt={notification?.Data?.name}
                 />
                 <div className="p-3">
                   <span className="font-bold mr-2">
-                    Shamim Islam
-                    {/* {teacher?.teacher_info?.name} */}
+                    {notification?.Data?.name || "Dummy name"}
                   </span>
                   <span className="flex items-center text-[12px] text-green-900 ">
-                    Blockchain, Softer
+                    {notification?.Data?.catagories || "catagories"}
                   </span>
                   <span className="flex items-center text-[12px] text-green-900 ">
-                    created At: 12.30 PM
+                    created At: {notification?.Data?.created}
                   </span>
+                  <p>{notification.message}</p>
                 </div>
               </div>
               {/* <button
@@ -70,9 +74,8 @@ export default function Notifications() {
               </button> */}
             </div>
           </div>
-        </Link>
-        })
-      }
+        </Link>;
+      })}
     </div>
   );
 }
