@@ -11,7 +11,7 @@ import thunk from 'redux-thunk';
 import storage from 'reduxjs-toolkit-persist/lib/storage';
 import { CourseReducer, SingleCourseReducer } from './reducers/CourseReducer';
 import { StudentReducer } from './reducers/StudentReducer';
-import { StudentclassReqReducer } from './reducers/StudentclassReqReducer';
+// import { StudentclassReqReducer } from './reducers/StudentclassReqReducer';
 import { TeacherReducer } from './reducers/TeachersReducer';
 import { alertSlice } from './reducers/alertSlice';
 import { authReducer } from './reducers/authReducer';
@@ -40,7 +40,7 @@ export const store = configureStore({
          students: StudentReducer,
          allCourse : CourseReducer,
          CourseDetails: SingleCourseReducer,
-         classReqByStudent: StudentclassReqReducer,
+         // classReqByStudent: StudentclassReqReducer,
          devTools: process.env.NODE_ENV !== 'production',
          middleware: [thunk]
       },
